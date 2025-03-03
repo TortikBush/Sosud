@@ -24,6 +24,7 @@ public class frame2 {
         Field1.setSize(100, 500);
         Field1.setBackground(Color.black);
         Field1.setOpaque(false);
+        Field1.setDisabledTextColor(Color.RED);
 
 
         JTextField Field2 = new JTextField(25);
