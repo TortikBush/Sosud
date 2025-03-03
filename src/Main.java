@@ -1,26 +1,37 @@
 import javax.swing.*;
+import javax.swing.text.html.ImageView;
 import java.awt.*;
+import java.io.StringWriter;
+import java.util.Arrays;
 
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
+        JFrame frameMain = new JFrame();
+        JPanel panelMainButton = new JPanel();
+
 
         //Главная картика
-        ImageIcon originalIcon = new ImageIcon("C:\\Sosud\\IMG_2567.PNG");
+        ImageIcon originalIcon = new ImageIcon("C:\\Sosud\\forestMenu.jpg");
         Image scaledImage = originalIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel label = new JLabel(scaledIcon);
 
+
         //Кнопка Играть
-        JButton btnStartGame = new JButton("Начать игру");
+        ImageIcon imageOk = new ImageIcon("C:\\Sosud\\Untitled-14.png");
+        JButton btnStartGame = new JButton(imageOk);
+
         btnStartGame.setSize(100, 50);
         parButton(btnStartGame);
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
-            System.exit(0);
+            JFrame frame2 = new JFrame();
+            frame2.show();
+            frameMain.dispose();
+
         });
+
 
         //Кнопка Сохранение
         JButton btnSave = new JButton("Сохранение");
@@ -49,23 +60,23 @@ public class Main {
         });
 
         //Работа с панелью(Работа с гвоздями и картиной)
-        panel.setSize(110, 100);
-        panel.setOpaque(false);
-        panel.setLayout(new GridLayout(0, 1, 5, 8));
-        panel.add(btnStartGame);
-        panel.add(btnSave);
-        panel.add(btnSettings);
-        panel.add(btnExit);
-        panel.setLocation(1300, 750);
+        panelMainButton.setSize(600, 450);
+        panelMainButton.setOpaque(false);
+        panelMainButton.setLayout(new GridLayout(0, 1, 5, 8));
+        panelMainButton.add(btnStartGame);
+        panelMainButton.add(btnSave);
+        panelMainButton.add(btnSettings);
+        panelMainButton.add(btnExit);
+        panelMainButton.setLocation(1000, 600);
 
         //Работа с фреймом(Работа со стеной)
-        frame.setSize(69, 30);
-        frame.add(panel);
-        frame.add(label);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Максимизируем окно
-        frame.setUndecorated(true);  // Убираем границы и заголовок окна
-        frame.show();
+
+        frameMain.add(panelMainButton);
+        frameMain.add(label);
+        frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH); // Максимизируем окно
+        frameMain.setUndecorated(true);  // Убираем границы и заголовок окна
+        frameMain.show();
 
     }
 
