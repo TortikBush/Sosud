@@ -1,59 +1,68 @@
+package Frame;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Arrays;
+import java.sql.*;
+import java.util.Objects;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         JFrame frameMain = new JFrame();
         JPanel panelMainButton = new JPanel();
 
-
         //Главная картика
-        ImageIcon originalIcon = new ImageIcon("C:\\Sosud\\forestMenu.jpg");
-        Image scaledImage = originalIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(new File("src/Source/Начало-01.png").getAbsolutePath());
+
+        //картинка настройки
+        Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel label = new JLabel(scaledIcon);
-        //картинка настройки
-
 
         //Кнопка Играть
         JButton btnStartGame = new JButton();
         btnStartGame.setSize(650, 100);
-        File imgStartGame = new File("C:\\Sosud\\StartGame1.png");
+        File imgStartGame = new File("src/Source/StartGame1.png").getAbsoluteFile();
         Image imgReadStartGame = ImageIO.read(imgStartGame);
-        Image newImg = imgReadStartGame.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), java.awt.Image.SCALE_SMOOTH);
+        Image newImg = imgReadStartGame.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), Image.SCALE_SMOOTH);
         btnStartGame.setIcon(new ImageIcon(newImg));
         parButton(btnStartGame);
+
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
-            frame2.WorkFrame();
             try {
-                Thread.sleep(500);
+                Registration.WorkFrame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            try {
+                Thread.sleep(600);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+
             frameMain.dispose();
 
         });
-
 
         //Кнопка Сохранение
         JButton btnSave = new JButton();
         btnSave.setSize(200, 50);
 
-        File imgSave = new File("C:\\Sosud\\Save.png");
+        File imgSave = new File("src/Source/Save.png").getAbsoluteFile();
         Image imgReadSave = ImageIO.read(imgSave);
-        Image newImg2 = imgReadSave.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), java.awt.Image.SCALE_SMOOTH);
+        Image newImg2 = imgReadSave.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), Image.SCALE_SMOOTH);
         btnSave.setIcon(new ImageIcon(newImg2));
         parButton(btnSave);
+
         //обработчик кнопки старта
         btnSave.addActionListener(e -> {
             System.exit(0);
@@ -63,6 +72,7 @@ public class Main {
         JButton btnSettings = new JButton("Настройки");
         btnSettings.setSize(100, 50);
         parButton(btnSettings);
+
         //обработчик кнопки старта
         btnSettings.addActionListener(e -> {
             System.exit(0);
@@ -86,9 +96,7 @@ public class Main {
         panelMainButton.add(btnExit);
         panelMainButton.setLocation(1000, 600);
 
-
         //Работа с фреймом(Работа со стеной)
-
         frameMain.add(panelMainButton);
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -100,7 +108,6 @@ public class Main {
     }
 
     public static JButton parButton(JButton button) {
-
         button.setBackground(Color.black);
         button.setOpaque(false);
         button.setFocusable(false);
