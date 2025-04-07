@@ -1,19 +1,10 @@
 package Frame;
 
-import java.sql.Connection;
-
 public class Users {
-    int id;
-    String userName;
+    public String UserName;
 
-    public static Connection connect() {
-        return null;
-    }
-
-    public Connection connect(int id, String userName) {
-        this.id = id;
-        this.userName = userName;
-        return null;
+    public String getUserName() {
+        return UserName;
     }
 }
 

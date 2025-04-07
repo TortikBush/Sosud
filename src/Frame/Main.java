@@ -5,13 +5,16 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Objects;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+        MainFrain();
+    }
+
+    public static void MainFrain() throws IOException, SQLException, ClassNotFoundException {
         JFrame frameMain = new JFrame();
         JPanel panelMainButton = new JPanel();
 
@@ -34,22 +37,29 @@ public class Main {
 
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
-            try {
-                Registration.WorkFrame();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
+            Users user = new Users();
+            if (user.getUserName().isEmpty()) {
+                try {
+                    Registration.RegistrationFraim();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    Thread.sleep(600);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                frameMain.dispose();
             }
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
+            else {
+                //Начало игры
             }
 
-            frameMain.dispose();
 
         });
 
@@ -104,7 +114,6 @@ public class Main {
         frameMain.setUndecorated(true);// Убираем границы и заголовок окна
 
         frameMain.show();
-
     }
 
     public static JButton parButton(JButton button) {
