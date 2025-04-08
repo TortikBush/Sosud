@@ -7,5 +7,3 @@ public class Users {
         return UserName;
     }
 }
-
-

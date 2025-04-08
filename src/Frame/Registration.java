@@ -16,7 +16,7 @@ public class Registration {
         JFrame frame = new JFrame();
 
         JPanel panelBlock = new JPanel();
-        ImageIcon icon = new ImageIcon(new File("src/Source/forestMenu.png").getAbsolutePath());
+        ImageIcon icon = new ImageIcon(new File("src/resource/forestMenu.png").getAbsolutePath());
         Image scaledImage1 = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon2 = new ImageIcon(scaledImage1);
         JLabel label = new JLabel(scaledIcon2);
