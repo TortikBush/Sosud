@@ -1,6 +1,6 @@
 package Frame;
 
-import DBSourse.AchievementTable;
+import DBSourse.AchievementList;
 import DBSourse.JDBCPosgreSQLConnection;
 
 import javax.swing.*;
@@ -18,12 +18,11 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class Achievement {
     public static void Achievement() throws SQLException, ClassNotFoundException {
         var ref = new Object() {
-            int index = 1;
+            int indexAchiv = 1;
+            int idCharacter =1;
         };
 
-
         JFrame frameAchievement = new JFrame();
-
         //Главная картика
         ImageIcon icon = new ImageIcon(new File("src/resource/forestMenu.png").getAbsolutePath());
 
@@ -42,6 +41,12 @@ public class Achievement {
         centerLocation = Registration.CenterLocationObject(frameAchievement);
         panelBlock.setLocation(centerLocation[0] - 670, centerLocation[1] - 100);
 
+        JPanel panelForCharacter = new JPanel();
+        panelForCharacter.setSize(1400, 300);
+        panelForCharacter.setBackground(Color.blue);
+        panelForCharacter.setForeground(Color.BLUE);
+        panelForCharacter.setLocation(centerLocation[0] -350, centerLocation[1] -500);
+
         JPanel panelForDescription = new JPanel();
         panelBlock.setSize(1400, 300);
         panelBlock.setBackground(Color.blue);
@@ -53,7 +58,7 @@ public class Achievement {
         panelGrid.setLocation(centerLocation[0] - 800, centerLocation[1] - 100);
 
 
-        List<AchievementTable> achievementList = SelectAchievementFromDB();
+        List<AchievementList> achievementList = SelectAchievementFromDB();
 
 
         JTextArea NameAchievement = new JTextArea();
@@ -62,13 +67,14 @@ public class Achievement {
         NameAchievement.setLineWrap(true);
         NameAchievement.setFocusable(false);
         NameAchievement.setSize(300, 90);
+        NameAchievement.setLocation(centerLocation[0] -300, centerLocation[1] + 100);
         NameAchievement.setOpaque(true);
         NameAchievement.setForeground(Color.black);
         NameAchievement.setBackground(Color.red);
         NameAchievement.setEditable(false);
         NameAchievement.setLineWrap(false);
         NameAchievement.setWrapStyleWord(false);
-        NameAchievement.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        NameAchievement.setAlignmentX(Component.CENTER_ALIGNMENT);
         NameAchievement.setAlignmentY(Component.CENTER_ALIGNMENT);
 
 
@@ -78,7 +84,7 @@ public class Achievement {
         textDescription.setEditable(false);
         textDescription.setLineWrap(true);
         textDescription.setFocusable(false);
-        textDescription.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        textDescription.setAlignmentX(Component.CENTER_ALIGNMENT);
         textDescription.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         achievementList.stream()
@@ -109,11 +115,11 @@ public class Achievement {
         buttonNextNameAchievement.setFocusable(false);
 
         buttonNextNameAchievement.addActionListener(e -> {
-            if (achievementList.size() != ref.index){
-                ref.index +=1;
+            if (achievementList.size() != ref.indexAchiv){
+                ref.indexAchiv +=1;
             }
                 achievementList.stream()
-                        .filter(achievement -> achievement.getId() == ref.index) // Применение тернарного оператора
+                        .filter(achievement -> achievement.getId() == ref.indexAchiv) // Применение тернарного оператора
                         .forEach(achievement -> {
                             NameAchievement.setText(achievement.getName());
                             textDescription.setText(achievement.getDescription());
@@ -131,11 +137,11 @@ public class Achievement {
         buttonReversNameAchievement.setFocusable(false);
 
         buttonReversNameAchievement.addActionListener(e -> {
-            if (ref.index != 1){
-                ref.index -=1;
+            if (ref.indexAchiv != 1){
+                ref.indexAchiv -=1;
             }
             achievementList.stream()
-                    .filter(achievement -> achievement.getId() == ref.index) // Применение тернарного оператора
+                    .filter(achievement -> achievement.getId() == ref.indexAchiv) // Применение тернарного оператора
                     .forEach(achievement -> {
                         NameAchievement.setText(achievement.getName());
                         textDescription.setText(achievement.getDescription());
@@ -151,6 +157,7 @@ public class Achievement {
 
         panelGrid.add(panelBlock);
         panelGrid.add(panelForDescription);
+        frameAchievement.add(panelForCharacter);
 
         frameAchievement.add(panelGrid);
         frameAchievement.add(label);
@@ -161,21 +168,24 @@ public class Achievement {
         frameAchievement.show();
     }
 
-    public static List<AchievementTable> SelectAchievementFromDB() throws SQLException, ClassNotFoundException {
+    public static List<AchievementList> SelectAchievementFromDB() throws SQLException, ClassNotFoundException {
         Connection connection = JDBCPosgreSQLConnection.OpenConnection();
-        List<AchievementTable> achievementList = new ArrayList<>();
-        String sql1 = "Select id,name,idcharacter, description from achievement";
+        List<AchievementList> achievementList = new ArrayList<>();
+        String sql1 = "Select achievement.id as id, achievement.name AS name,idcharacter, description, character.name as namecharacter" +
+                " FROM achievement " +
+                "join character on achievement.idcharacter = character.id ";
+
         PreparedStatement stmt = connection.prepareStatement(sql1);
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            AchievementTable achievementTable = new AchievementTable();
-            achievementTable.setId(rs.getInt("id"));
-            achievementTable.setName(rs.getString("name"));
-            achievementTable.setIdCharacter(rs.getInt("idcharacter"));
-            achievementTable.setDescription(rs.getString("description"));
-
-            achievementList.add(achievementTable);
+            AchievementList achievement = new AchievementList();
+            achievement.setId(rs.getInt("id"));
+            achievement.setName(rs.getString("name"));
+            achievement.setIdCharacter(rs.getInt("idcharacter"));
+            achievement.setDescription(rs.getString("description"));
+            achievement.setNameCharacter(rs.getString("namecharacter"));
+            achievementList.add(achievement);
         }
 
         return achievementList;

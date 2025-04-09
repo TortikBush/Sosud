@@ -21,12 +21,12 @@ public class UsersTable {
     }
 
     public UsersTable() {
-
     }
 
     public int getId() {
         return Id;
     }
+
     public void setId(int id) {
         this.Id = id;
     }
@@ -34,6 +34,7 @@ public class UsersTable {
     public String getLogin() {
         return Login;
     }
+
     public void setLogin(String login) {
         this.Login = login;
     }
@@ -41,6 +42,7 @@ public class UsersTable {
     public String getPassword() {
         return Password;
     }
+
     public void setPassword(String password) {
         this.Password = password;
     }
@@ -48,6 +50,7 @@ public class UsersTable {
     public int getIdRole() {
         return IdRole;
     }
+
     public void setIdRole(int idRole) {
         IdRole = idRole;
     }
