@@ -7,14 +7,6 @@ public class AchievementList {
     private String Description;
     private String NameCharacter;
 
-    public AchievementList(int id, String name, int idCharacter, String description, String nameCharacter) {
-        Id = id;
-        Name = name;
-        IdCharacter = idCharacter;
-        Description = description;
-        NameCharacter = nameCharacter;
-    }
-
     public AchievementList() {
     }
 
