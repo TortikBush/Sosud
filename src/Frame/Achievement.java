@@ -2,6 +2,7 @@ package Frame;
 
 import DBSourse.AchievementList;
 import DBSourse.JDBCPosgreSQLConnection;
+
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -20,8 +21,8 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class Achievement {
     public static void Achievement() throws SQLException, ClassNotFoundException {
         var ref = new Object() {
-            int indexAchiv = 1;
-            int idCharacter =1;
+            int indexAchiv = 0;
+            int idCharacter = 1;
         };
 
         JFrame frameAchievement = new JFrame();
@@ -48,7 +49,7 @@ public class Achievement {
         panelForCharacter.setBackground(Color.blue);
         panelForCharacter.setForeground(Color.BLUE);
         panelForCharacter.setLayout(new BoxLayout(panelForCharacter, BoxLayout.X_AXIS));
-        panelForCharacter.setLocation(centerLocation[0] - 250, centerLocation[1] -400);
+        panelForCharacter.setLocation(centerLocation[0] - 250, centerLocation[1] - 400);
 
         JPanel panelForDescription = new JPanel();
         panelForDescription.setSize(300, 100);
@@ -64,7 +65,6 @@ public class Achievement {
 
 
         List<AchievementList> achievementList = SelectAchievementFromDB();
-
 
         JTextPane NameAchievement = new JTextPane();
         NameAchievement.setFont(new Font("a", Font.BOLD, 35));
@@ -82,8 +82,6 @@ public class Achievement {
         SimpleAttributeSet centerName = new SimpleAttributeSet();
         StyleConstants.setAlignment(centerName, StyleConstants.ALIGN_CENTER);
         docName.setParagraphAttributes(0, docName.getLength(), centerName, false);
-
-
 
         JTextPane textDescription = new JTextPane();
         textDescription.setPreferredSize(new Dimension(900, 150));
@@ -128,7 +126,6 @@ public class Achievement {
                     textCharacter.setText(achievement.getNameCharacter());
                 });
 
-
         textDescription.setOpaque(true);
         textDescription.setForeground(Color.black);
         textDescription.setBackground(Color.red);
@@ -144,21 +141,27 @@ public class Achievement {
         buttonNextNameCharacter.setFocusable(false);
 
         buttonNextNameCharacter.addActionListener(e -> {
-            if (achievementList.size() != ref.indexAchiv){
-                ref.indexAchiv +=1;
-            }
+            ref.indexAchiv = 0;
             if (ref.idCharacter != 3) {
                 ref.idCharacter += 1;
             }
+
             achievementList.stream()
                     .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter) // Применение тернарного оператора
                     .forEach(achievement -> {
-                        NameAchievement.setText(achievement.getName());
-                        textDescription.setText(achievement.getDescription());
                         textCharacter.setText(achievement.getNameCharacter());
                     });
 
+            List<AchievementList> achievementList1 = new ArrayList<>();
+            achievementList.stream()
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .forEach(achievement -> {
+                        achievementList1.add(achievement);
+                    });
 
+                AchievementList previous = achievementList1.get(ref.indexAchiv);
+                NameAchievement.setText(previous.getName());
+                textDescription.setText(previous.getDescription());
         });
 
 
@@ -172,14 +175,20 @@ public class Achievement {
         buttonNextNameAchievement.setFocusable(false);
 
         buttonNextNameAchievement.addActionListener(e -> {
+            List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
-                        NameAchievement.setText(achievement.getName());
-                        textDescription.setText(achievement.getDescription());
+                        achievementList1.add(achievement);
                     });
-        });
 
+            if (achievementList1.size() - 1 != ref.indexAchiv) {
+                ref.indexAchiv += 1;
+                AchievementList previous = achievementList1.get(ref.indexAchiv);
+                NameAchievement.setText(previous.getName());
+                textDescription.setText(previous.getDescription());
+            }
+        });
 
         JButton buttonReversNameAchievement = new JButton("<");
         buttonReversNameAchievement.setPreferredSize(new Dimension(70, 50));
@@ -191,12 +200,19 @@ public class Achievement {
         buttonReversNameAchievement.setFocusable(false);
 
         buttonReversNameAchievement.addActionListener(e -> {
+            List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
-                        NameAchievement.setText(achievement.getName());
-                        textDescription.setText(achievement.getDescription());
+                        achievementList1.add(achievement);
                     });
+
+            if (ref.indexAchiv > 0) {
+                ref.indexAchiv -= 1;
+                AchievementList previous = achievementList1.get(ref.indexAchiv);
+                 NameAchievement.setText(previous.getName());
+                 textDescription.setText(previous.getDescription());
+            }
         });
 
         JButton buttonReversNameCharacter = new JButton("<");
@@ -212,13 +228,22 @@ public class Achievement {
             if (ref.idCharacter != 1) {
                 ref.idCharacter -= 1;
             }
+            ref.indexAchiv = 0;
             achievementList.stream()
                     .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter) // Применение тернарного оператора
                     .forEach(achievement -> {
                         textCharacter.setText(achievement.getNameCharacter());
-                        textDescription.setText(achievement.getDescription());
-                        NameAchievement.setText(achievement.getName());
                     });
+
+            List<AchievementList> achievementList1 = new ArrayList<>();
+            achievementList.stream()
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .forEach(achievement -> {
+                        achievementList1.add(achievement);
+                    });
+                AchievementList previous = achievementList1.get(ref.indexAchiv);
+                NameAchievement.setText(previous.getName());
+                textDescription.setText(previous.getDescription());
         });
 
 
@@ -226,13 +251,12 @@ public class Achievement {
         panelBlockAchievement.add(NameAchievement);
         panelBlockAchievement.add(buttonNextNameAchievement);
 
-        panelForDescription.add(textDescription,BorderLayout.CENTER);
+        panelForDescription.add(textDescription, BorderLayout.CENTER);
         panelGrid.add(panelBlockAchievement);
         panelGrid.add(panelForDescription);
         panelForCharacter.add(buttonReversNameCharacter);
         panelForCharacter.add(textCharacter);
         panelForCharacter.add(buttonNextNameCharacter);
-
 
         frameAchievement.add(panelForCharacter);
 

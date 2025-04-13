@@ -22,7 +22,6 @@ public class Registration {
         JLabel label = new JLabel(scaledIcon2);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
-
         JTextField Field1 = new JTextField(15);
         Field1.setSize(100, 500);
         Field1.setBackground(Color.black);
