@@ -1,14 +1,9 @@
 package DBSourse;
 
-
 public class UsersTable {
-
-    private int Id;
-
-    private String Login;
-
+    private  int Id;
+    private String Login ;
     private String Password;
-
     private int IdRole;
 
     public UsersTable(int id, String login, String password, int idRole) {

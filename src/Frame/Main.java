@@ -20,7 +20,7 @@ public class Main {
         JPanel panelMainButton = new JPanel();
 
         //Главная картика
-        ImageIcon icon = new ImageIcon(new File("src/resource/MtnuForest.png").getAbsolutePath());
+        ImageIcon icon = new ImageIcon(new File("src/resource/MenuForest.png").getAbsolutePath());
 
         //картинка настройки
         Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);

@@ -2,8 +2,10 @@ package Frame;
 
 import DBSourse.AchievementList;
 import DBSourse.JDBCPosgreSQLConnection;
-
 import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.util.List;
 import java.io.File;
@@ -19,12 +21,12 @@ public class Achievement {
     public static void Achievement() throws SQLException, ClassNotFoundException {
         var ref = new Object() {
             int indexAchiv = 1;
-            int idCharacter = 1;
+            int idCharacter =1;
         };
 
         JFrame frameAchievement = new JFrame();
         //Главная картика
-        ImageIcon icon = new ImageIcon(new File("src/resource/MainbBackground.png").getAbsolutePath());
+        ImageIcon icon = new ImageIcon(new File("src/resource/MainBackground.png").getAbsolutePath());
 
         //картинка настройки
         Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
@@ -34,7 +36,7 @@ public class Achievement {
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
         JPanel panelBlockAchievement = new JPanel();
-        panelBlockAchievement.setSize(1400, 300);
+        panelBlockAchievement.setSize(900, 250);
         panelBlockAchievement.setBackground(Color.red);
         panelBlockAchievement.setForeground(Color.red);
         panelBlockAchievement.setLayout(new BoxLayout(panelBlockAchievement, BoxLayout.X_AXIS));
@@ -42,19 +44,21 @@ public class Achievement {
         panelBlockAchievement.setLocation(centerLocation[0] - 670, centerLocation[1] - 100);
 
         JPanel panelForCharacter = new JPanel();
-        panelForCharacter.setSize(1400, 300);
+        panelForCharacter.setSize(500, 150);
         panelForCharacter.setBackground(Color.blue);
         panelForCharacter.setForeground(Color.BLUE);
         panelForCharacter.setLayout(new BoxLayout(panelForCharacter, BoxLayout.X_AXIS));
-        panelForCharacter.setLocation(centerLocation[0] - 500, centerLocation[1] - 500);
+        panelForCharacter.setLocation(centerLocation[0] - 250, centerLocation[1] -400);
 
         JPanel panelForDescription = new JPanel();
-        panelBlockAchievement.setSize(1400, 300);
-        panelBlockAchievement.setBackground(Color.blue);
-        panelBlockAchievement.setForeground(Color.BLUE);
+        panelForDescription.setSize(300, 100);
+        panelForDescription.setBackground(Color.blue);
+        panelForDescription.setLayout(new BorderLayout());
+        panelForDescription.setForeground(Color.BLUE);
+        panelForDescription.setForeground(Color.BLUE);
 
         JPanel panelGrid = new JPanel(new GridLayout(2, 0));
-        panelGrid.setSize(1700, 300);
+        panelGrid.setSize(1000, 300);
         centerLocation = Registration.CenterLocationObject(frameAchievement);
         panelGrid.setLocation(centerLocation[0] - 800, centerLocation[1] - 100);
 
@@ -62,40 +66,58 @@ public class Achievement {
         List<AchievementList> achievementList = SelectAchievementFromDB();
 
 
-        JTextArea NameAchievement = new JTextArea();
+        JTextPane NameAchievement = new JTextPane();
         NameAchievement.setFont(new Font("a", Font.BOLD, 35));
         NameAchievement.setEditable(false);
-        NameAchievement.setLineWrap(true);
         NameAchievement.setFocusable(false);
-        NameAchievement.setSize(300, 90);
-        NameAchievement.setLocation(centerLocation[0] - 300, centerLocation[1] + 100);
+        NameAchievement.setPreferredSize(new Dimension(300, 90));
         NameAchievement.setOpaque(true);
         NameAchievement.setForeground(Color.black);
         NameAchievement.setBackground(Color.red);
-        NameAchievement.setEditable(false);
-        NameAchievement.setLineWrap(false);
-        NameAchievement.setWrapStyleWord(false);
         NameAchievement.setAlignmentX(Component.CENTER_ALIGNMENT);
         NameAchievement.setAlignmentY(Component.CENTER_ALIGNMENT);
 
+// Центрирование текста
+        StyledDocument docName = NameAchievement.getStyledDocument();
+        SimpleAttributeSet centerName = new SimpleAttributeSet();
+        StyleConstants.setAlignment(centerName, StyleConstants.ALIGN_CENTER);
+        docName.setParagraphAttributes(0, docName.getLength(), centerName, false);
 
-        JTextArea textDescription = new JTextArea();
-        textDescription.setPreferredSize(new Dimension(300, 100));
+
+
+        JTextPane textDescription = new JTextPane();
+        textDescription.setPreferredSize(new Dimension(900, 150));
         textDescription.setFont(new Font("a", Font.BOLD, 35));
         textDescription.setEditable(false);
-        textDescription.setLineWrap(true);
         textDescription.setFocusable(false);
+        textDescription.setOpaque(true);
+        textDescription.setForeground(Color.black);
+        textDescription.setBackground(Color.red);
         textDescription.setAlignmentX(Component.CENTER_ALIGNMENT);
         textDescription.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        JTextArea textCharacter = new JTextArea();
+// Устанавливаем выравнивание по центру
+        StyledDocument doc = textDescription.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+
+        JTextPane textCharacter = new JTextPane();
         textCharacter.setPreferredSize(new Dimension(300, 100));
         textCharacter.setFont(new Font("a", Font.BOLD, 35));
         textCharacter.setEditable(false);
-        textCharacter.setLineWrap(true);
         textCharacter.setFocusable(false);
+        textCharacter.setOpaque(true);
+        textCharacter.setForeground(Color.black);
+        textCharacter.setBackground(Color.red);
         textCharacter.setAlignmentX(Component.CENTER_ALIGNMENT);
         textCharacter.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+// Центрирование текста
+        StyledDocument docChar = textCharacter.getStyledDocument();
+        SimpleAttributeSet centerChar = new SimpleAttributeSet();
+        StyleConstants.setAlignment(centerChar, StyleConstants.ALIGN_CENTER);
+        docChar.setParagraphAttributes(0, docChar.getLength(), centerChar, false);
 
 
         achievementList.stream()
@@ -107,13 +129,10 @@ public class Achievement {
                 });
 
 
-        textDescription.setSize(200, 100);
         textDescription.setOpaque(true);
         textDescription.setForeground(Color.black);
         textDescription.setBackground(Color.red);
         textDescription.setEditable(false);
-        textDescription.setLineWrap(false);
-        textDescription.setWrapStyleWord(false);
 
         JButton buttonNextNameCharacter = new JButton(">");
         buttonNextNameCharacter.setPreferredSize(new Dimension(70, 50));
@@ -125,8 +144,8 @@ public class Achievement {
         buttonNextNameCharacter.setFocusable(false);
 
         buttonNextNameCharacter.addActionListener(e -> {
-            if (achievementList.size() != ref.indexAchiv) {
-                ref.indexAchiv += 1;
+            if (achievementList.size() != ref.indexAchiv){
+                ref.indexAchiv +=1;
             }
             if (ref.idCharacter != 3) {
                 ref.idCharacter += 1;
@@ -154,7 +173,7 @@ public class Achievement {
 
         buttonNextNameAchievement.addActionListener(e -> {
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)
+                    .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)
                     .forEach(achievement -> {
                         NameAchievement.setText(achievement.getName());
                         textDescription.setText(achievement.getDescription());
@@ -173,7 +192,7 @@ public class Achievement {
 
         buttonReversNameAchievement.addActionListener(e -> {
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         NameAchievement.setText(achievement.getName());
                         textDescription.setText(achievement.getDescription());
@@ -200,8 +219,6 @@ public class Achievement {
                         textDescription.setText(achievement.getDescription());
                         NameAchievement.setText(achievement.getName());
                     });
-
-
         });
 
 
@@ -209,7 +226,7 @@ public class Achievement {
         panelBlockAchievement.add(NameAchievement);
         panelBlockAchievement.add(buttonNextNameAchievement);
 
-        panelForDescription.add(textDescription);
+        panelForDescription.add(textDescription,BorderLayout.CENTER);
         panelGrid.add(panelBlockAchievement);
         panelGrid.add(panelForDescription);
         panelForCharacter.add(buttonReversNameCharacter);
