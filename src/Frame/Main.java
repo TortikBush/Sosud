@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Main {
@@ -27,7 +28,7 @@ public class Main {
 
         //Кнопка Играть
         JButton btnStartGame = new JButton();
-        btnStartGame.setSize(650, 100);
+        btnStartGame.setSize(850, 150);
         File imgStartGame = new File("src/resource/ButtonStartGame.png").getAbsoluteFile();
         Image imgReadStartGame = ImageIO.read(imgStartGame);
         Image newImg = imgReadStartGame.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), Image.SCALE_SMOOTH);
@@ -60,29 +61,21 @@ public class Main {
 
         //Кнопка Сохранение
         JButton btnSave = new JButton();
-        btnSave.setSize(200, 50);
+        btnSave.setSize(500, 50);
 
         File imgSave = new File("src/resource/ButtonSave.png").getAbsoluteFile();
         Image imgReadSave = ImageIO.read(imgSave);
-        Image newImg2 = imgReadSave.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), Image.SCALE_SMOOTH);
+        Image newImg2 = imgReadSave.getScaledInstance((int) btnSave.getSize().getWidth(), (int) btnSave.getSize().getHeight(), Image.SCALE_SMOOTH);
         btnSave.setIcon(new ImageIcon(newImg2));
         parButton(btnSave);
 
-        //обработчик кнопки старта
-        btnSave.addActionListener(e -> {
-            try {
-                Achievement.Achievement();
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-            frameMain.dispose();
+        //обработчик кнопки сохранение
+        btnSave.addActionListener(e ->
 
+        {
+            System.exit(0);
         });
+
 
         //Кнопка Настройки
         JButton btnSettings = new JButton("Настройки");
@@ -107,9 +100,34 @@ public class Main {
         {
             System.exit(0);
         });
+        //Кнопка Достижения
+        JButton btnAchievement = new JButton();
+        btnAchievement.setSize(60, 50);
+
+        File imgAchievement = new File("src/resource/Achievement.png").getAbsoluteFile();
+        Image imgReadAchievement = ImageIO.read(imgAchievement);
+        Image newImg3 = imgReadAchievement.getScaledInstance((int) btnAchievement.getSize().getWidth(), (int) btnAchievement.getSize().getHeight(), Image.SCALE_SMOOTH);
+        btnAchievement.setIcon(new ImageIcon(newImg3));
+        parButton(btnAchievement);
+
+        //обработчик кнопки старта
+        btnAchievement.addActionListener(e -> {
+            try {
+                Achievement.Achievement();
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            frameMain.dispose();
+
+        });
 
         //Работа с панелью(Работа с гвоздями и картиной)
-        panelMainButton.setSize(664, 400);
+        panelMainButton.setSize(900, 450);
         panelMainButton.setOpaque(false);
         panelMainButton.setLayout(new
 
@@ -118,10 +136,13 @@ public class Main {
         panelMainButton.add(btnSave);
         panelMainButton.add(btnSettings);
         panelMainButton.add(btnExit);
-        panelMainButton.setLocation(1000, 600);
+
+        panelMainButton.setLocation(800, 600);
 
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
+        int[] topLocation = Registration.CenterLocationObject(frameMain);
+        frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH); // Максимизируем окно
