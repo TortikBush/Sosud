@@ -14,6 +14,7 @@ public class AchievementList {
         IdCharacter = idCharacter;
         Description = description;
         NameCharacter = nameCharacter;
+
     }
     public AchievementList() {
     }
