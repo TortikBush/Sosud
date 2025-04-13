@@ -62,7 +62,7 @@ public class Main {
         //Кнопка Сохранение
         JButton btnSave = new JButton();
         btnSave.setSize(500, 50);
-
+        btnSave.setMargin(new Insets(10, 250, 0, 0));
         File imgSave = new File("src/resource/ButtonSave.png").getAbsoluteFile();
         Image imgReadSave = ImageIO.read(imgSave);
         Image newImg2 = imgReadSave.getScaledInstance((int) btnSave.getSize().getWidth(), (int) btnSave.getSize().getHeight(), Image.SCALE_SMOOTH);
@@ -78,10 +78,15 @@ public class Main {
 
 
         //Кнопка Настройки
-        JButton btnSettings = new JButton("Настройки");
-        btnSettings.setSize(100, 50);
+        JButton btnSettings = new JButton();
+        btnSettings.setSize(90, 70);
 
+        File imgSetting = new File("src/resource/ButtonSetting.png").getAbsoluteFile();
+        Image imgReadSetting = ImageIO.read(imgSetting);
+        Image newImg4 = imgReadSetting.getScaledInstance((int) btnSettings.getSize().getWidth(), (int) btnSettings.getSize().getHeight(), Image.SCALE_SMOOTH);
+        btnSettings.setIcon(new ImageIcon(newImg4));
         parButton(btnSettings);
+
 
         //обработчик кнопки старта
         btnSettings.addActionListener(e ->
@@ -91,8 +96,14 @@ public class Main {
         });
 
         //Кнопка Выход
-        JButton btnExit = new JButton("Выход");
-        btnExit.setSize(100, 50);
+        JButton btnExit = new JButton();
+        btnExit.setSize(300, 100);
+        btnExit.setMargin(new Insets(10, 350, 0, 0));
+        File imgExit = new File("src/resource/ButtonExit.png").getAbsoluteFile();
+        Image imgReadExit = ImageIO.read(imgExit);
+        Image newImg5 = imgReadExit.getScaledInstance((int) btnExit.getSize().getWidth(), (int) btnExit.getSize().getHeight(), Image.SCALE_SMOOTH);
+        btnExit.setIcon(new ImageIcon(newImg5));
+
 
         parButton(btnExit);
         btnExit.addActionListener(e ->
@@ -102,7 +113,7 @@ public class Main {
         });
         //Кнопка Достижения
         JButton btnAchievement = new JButton();
-        btnAchievement.setSize(60, 50);
+        btnAchievement.setSize(90, 70);
 
         File imgAchievement = new File("src/resource/Achievement.png").getAbsoluteFile();
         Image imgReadAchievement = ImageIO.read(imgAchievement);
@@ -129,12 +140,11 @@ public class Main {
         //Работа с панелью(Работа с гвоздями и картиной)
         panelMainButton.setSize(900, 450);
         panelMainButton.setOpaque(false);
-        panelMainButton.setLayout(new
+        panelMainButton.setLayout(new GridLayout(0, 1, 2, 4));
 
-                GridLayout(0, 1, 2, 4));
         panelMainButton.add(btnStartGame);
-        panelMainButton.add(btnSave).setLocation(1000, 600);
-        panelMainButton.add(btnSettings);
+        panelMainButton.add(btnSave);
+
         panelMainButton.add(btnExit);
 
         panelMainButton.setLocation(800, 600);
@@ -143,6 +153,7 @@ public class Main {
         frameMain.add(panelMainButton);
         int[] topLocation = Registration.CenterLocationObject(frameMain);
         frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
+        frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH); // Максимизируем окно
