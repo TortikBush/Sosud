@@ -6,9 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
 
 public class Main {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
