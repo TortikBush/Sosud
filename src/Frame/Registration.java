@@ -78,6 +78,7 @@ public class Registration {
         signInBtn.addActionListener(e -> {
             if (ref.RegSign == 0) {
                 btnRegistration.setText("Войти");
+                Field3.setText("");
                 Account.setText("У вас нет аккаунта? ");
                 signInBtn.setText("Зарегистрироваться");
                 ref.RegSign = 1;
@@ -85,6 +86,7 @@ public class Registration {
                 Account.setText("У вас есть аккаунт? ");
                 signInBtn.setText("Войти");
                 btnRegistration.setText("Зарегистрироваться");
+                Field3.setText("");
                 ref.RegSign = 0;
             }
         });
@@ -93,12 +95,12 @@ public class Registration {
         panelsignIn.add(signInBtn);
 
         btnRegistration.addActionListener(e -> {
+            if (LogginField1.getText().isEmpty() || PasswordField2.getText().isEmpty()) {
+                Field3.setText("Вы не заполнили все поля");
+                return;
+            }
             if (ref.RegSign == 1) {
                 Field3.setText("");
-                if (LogginField1.getText().isEmpty() || PasswordField2.getText().isEmpty()) {
-                    Field3.setText("Вы не заполнили все поля");
-                    return;
-                }
                 try {
                     Connection connection = JDBCPosgreSQLConnection.OpenConnection();
                     String sql1 = "Select id, login from users where login = ? and password = ? LIMIT 1;";
@@ -107,21 +109,17 @@ public class Registration {
                     stmt.setString(2, PasswordField2.getText());
                     ResultSet rs = stmt.executeQuery();
                     Users user = new Users();
-                    while (!rs.next()) {
-                        if (!rs.next()) {
-                            Field3.setText("Такого пользователя нет!");
-                            break;
-                        } else {
-                            user.UserName = rs.getString("login");
-                            MainFrain();
-                            try {
-                                Thread.sleep(600);
-                            } catch (InterruptedException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            frame.dispose();
-                            break;
+                    if (!rs.next()) {
+                        Field3.setText("Такого пользователя нет!");
+                    } else {
+                        user.UserName = rs.getString("login");
+                        MainFrain();
+                        try {
+                            Thread.sleep(600);
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
                         }
+                        frame.dispose();
                     }
 
                 } catch (SQLException ex) {
@@ -134,10 +132,6 @@ public class Registration {
 
             } else {
                 Field3.setText("");
-                if (LogginField1.getText().isEmpty() || PasswordField2.getText().isEmpty()) {
-                    Field3.setText("Вы не заполнили все поля");
-                    return;
-                }
                 try {
                     Connection connection = JDBCPosgreSQLConnection.OpenConnection();
                     String sql1 = "Select id from users where login = ? LIMIT 1;";
