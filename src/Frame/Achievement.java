@@ -8,30 +8,23 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.util.List;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static Frame.Main.cachedMainBackground;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Achievement {
-    public static void Achievement() throws SQLException, ClassNotFoundException {
+    public Achievement() throws SQLException, ClassNotFoundException {
         var ref = new Object() {
             int indexAchiv = 0;
             int idCharacter = 1;
         };
-
         JFrame frameAchievement = new JFrame();
-        //Главная картика
-        ImageIcon icon = new ImageIcon(new File("src/resource/MainBackground.png").getAbsolutePath());
-
-        //картинка настройки
-        Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        JLabel label = new JLabel(scaledIcon);
+        JLabel label = new JLabel(cachedMainBackground);
         int[] centerLocation = Registration.CenterLocationObject(frameAchievement);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
@@ -264,8 +257,7 @@ public class Achievement {
         frameAchievement.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameAchievement.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameAchievement.setUndecorated(true);
-
-        frameAchievement.show();
+        frameAchievement.setVisible(true);
     }
 
     public static List<AchievementList> SelectAchievementFromDB() throws SQLException, ClassNotFoundException {

@@ -3,18 +3,19 @@ package Frame;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-public class Main {
+public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        MainFrain();
+        new Main();
     }
 
-    public static void MainFrain() throws IOException, SQLException, ClassNotFoundException {
+    public Main() throws IOException, SQLException, ClassNotFoundException {
         JFrame frameMain = new JFrame();
         JPanel panelMainButton = new JPanel();
 
@@ -41,7 +42,7 @@ public class Main {
             if (user.getUserName() == null) {
                 //
                 try {
-                    Registration.RegistrationFraim();
+                    Registration.RegistrationFrame();
                 } catch (IOException | ClassNotFoundException | SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -55,7 +56,6 @@ public class Main {
             } else {
                 //Начало игры
             }
-
 
         });
 
@@ -71,11 +71,9 @@ public class Main {
 
         //обработчик кнопки сохранение
         btnSave.addActionListener(e ->
-
         {
             System.exit(0);
         });
-
 
         //Кнопка Настройки
         JButton btnSettings = new JButton();
@@ -90,9 +88,16 @@ public class Main {
 
         //обработчик кнопки старта
         btnSettings.addActionListener(e ->
-
         {
-            System.exit(0);
+            try {
+                Setting.SettingFrame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         //Кнопка Выход
@@ -124,16 +129,13 @@ public class Main {
         //обработчик кнопки старта
         btnAchievement.addActionListener(e -> {
             try {
-                Achievement.Achievement();
+                new Achievement();
+                dispose();
+
+
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-            frameMain.dispose();
 
         });
 
@@ -156,10 +158,21 @@ public class Main {
         frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH); // Максимизируем окно
-        frameMain.setUndecorated(true);// Убираем границы и заголовок окна
+        frameMain.setUndecorated(true);
+        frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH);// Убираем границы и заголовок окна
+        frameMain.setVisible(true);
+    }
 
-        frameMain.show();
+    static ImageIcon cachedMainBackground;
+
+    static {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
+            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
+            cachedMainBackground = new ImageIcon(scaled);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static JButton parButton(JButton button) {

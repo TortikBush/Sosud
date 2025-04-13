@@ -8,14 +8,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-
-import static Frame.Main.MainFrain;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
-    public static void RegistrationFraim() throws IOException, SQLException, ClassNotFoundException {
+    public static void RegistrationFrame() throws IOException, SQLException, ClassNotFoundException {
         var ref = new Object() {
             int RegSign = 0;
         };
@@ -113,7 +111,7 @@ public class Registration {
                         Field3.setText("Такого пользователя нет!");
                     } else {
                         user.UserName = rs.getString("login");
-                        MainFrain();
+                        new Main();
                         try {
                             Thread.sleep(600);
                         } catch (InterruptedException ex) {
@@ -152,7 +150,7 @@ public class Registration {
                         if (resultUpdate == 1) {
                             Users users = new Users();
                             users.UserName = LogginField1.getText();
-                            MainFrain();
+                            new Main();
                             try {
                                 Thread.sleep(600);
                             } catch (InterruptedException ex) {
