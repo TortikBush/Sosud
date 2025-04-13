@@ -133,7 +133,7 @@ public class Main {
 
                 GridLayout(0, 1, 2, 4));
         panelMainButton.add(btnStartGame);
-        panelMainButton.add(btnSave);
+        panelMainButton.add(btnSave).setLocation(1000, 600);
         panelMainButton.add(btnSettings);
         panelMainButton.add(btnExit);
 
