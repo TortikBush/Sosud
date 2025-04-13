@@ -1,16 +1,14 @@
 package DBSourse;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
+
 public class UsersTable {
-    @Setter
-    private  int Id;
-    @Setter
-    private String Login ;
-    @Setter
+
+    private int Id;
+
+    private String Login;
+
     private String Password;
-    @Setter
+
     private int IdRole;
 
     public UsersTable(int id, String login, String password, int idRole) {

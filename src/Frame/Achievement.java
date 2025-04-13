@@ -19,12 +19,12 @@ public class Achievement {
     public static void Achievement() throws SQLException, ClassNotFoundException {
         var ref = new Object() {
             int indexAchiv = 1;
-            int idCharacter =1;
+            int idCharacter = 1;
         };
 
         JFrame frameAchievement = new JFrame();
         //Главная картика
-        ImageIcon icon = new ImageIcon(new File("src/resource/forestMenu.png").getAbsolutePath());
+        ImageIcon icon = new ImageIcon(new File("src/resource/MainbBackground.png").getAbsolutePath());
 
         //картинка настройки
         Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
@@ -46,7 +46,7 @@ public class Achievement {
         panelForCharacter.setBackground(Color.blue);
         panelForCharacter.setForeground(Color.BLUE);
         panelForCharacter.setLayout(new BoxLayout(panelForCharacter, BoxLayout.X_AXIS));
-        panelForCharacter.setLocation(centerLocation[0] -500, centerLocation[1] -500);
+        panelForCharacter.setLocation(centerLocation[0] - 500, centerLocation[1] - 500);
 
         JPanel panelForDescription = new JPanel();
         panelBlockAchievement.setSize(1400, 300);
@@ -68,7 +68,7 @@ public class Achievement {
         NameAchievement.setLineWrap(true);
         NameAchievement.setFocusable(false);
         NameAchievement.setSize(300, 90);
-        NameAchievement.setLocation(centerLocation[0] -300, centerLocation[1] + 100);
+        NameAchievement.setLocation(centerLocation[0] - 300, centerLocation[1] + 100);
         NameAchievement.setOpaque(true);
         NameAchievement.setForeground(Color.black);
         NameAchievement.setBackground(Color.red);
@@ -125,8 +125,8 @@ public class Achievement {
         buttonNextNameCharacter.setFocusable(false);
 
         buttonNextNameCharacter.addActionListener(e -> {
-            if (achievementList.size() != ref.indexAchiv){
-                ref.indexAchiv +=1;
+            if (achievementList.size() != ref.indexAchiv) {
+                ref.indexAchiv += 1;
             }
             if (ref.idCharacter != 3) {
                 ref.idCharacter += 1;
@@ -153,12 +153,12 @@ public class Achievement {
         buttonNextNameAchievement.setFocusable(false);
 
         buttonNextNameAchievement.addActionListener(e -> {
-                achievementList.stream()
-                        .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)
-                        .forEach(achievement -> {
-                            NameAchievement.setText(achievement.getName());
-                            textDescription.setText(achievement.getDescription());
-                        });
+            achievementList.stream()
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)
+                    .forEach(achievement -> {
+                        NameAchievement.setText(achievement.getName());
+                        textDescription.setText(achievement.getDescription());
+                    });
         });
 
 
@@ -173,7 +173,7 @@ public class Achievement {
 
         buttonReversNameAchievement.addActionListener(e -> {
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter()== ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         NameAchievement.setText(achievement.getName());
                         textDescription.setText(achievement.getDescription());
