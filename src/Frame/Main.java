@@ -1,10 +1,13 @@
 package Frame;
 
+import HelpClasses.ClickArrow;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
@@ -14,7 +17,15 @@ public class Main extends JFrame {
         new Main();
     }
 
+    public static byte[] mp3Data;
+
     public Main() throws IOException, SQLException, ClassNotFoundException {
+        File file = new File("src/resource/SoundForSosud/Clac.mp3");
+        FileInputStream fis = new FileInputStream(file);
+        mp3Data = fis.readAllBytes(); // Кешируем в массив байтов
+        fis.close();
+
+
         JFrame frameMain = new JFrame();
         JPanel panelMainButton = new JPanel();
 
@@ -118,18 +129,15 @@ public class Main extends JFrame {
 
         //обработчик кнопки старта
         btnAchievement.addActionListener(e -> {
+            ClickArrow.playCachedMP3();
             try {
                 new Achievement();
+                Thread.sleep(350);
                 frameMain.dispose();
-
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (FontFormatException ex) {
+            } catch (SQLException | ClassNotFoundException | IOException | FontFormatException |
+                     InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
-
         });
 
         //Работа с панелью(Работа с гвоздями и картиной)
@@ -149,8 +157,8 @@ public class Main extends JFrame {
         int[] topLocation = Registration.CenterLocationObject(frameMain);
 
 //        if (Users.GetUserName()!=null) {
-            frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
-            frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
+        frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
+        frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
 //        }
 
         frameMain.add(label);
@@ -161,6 +169,7 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedMainBackground;
+
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
@@ -185,6 +194,7 @@ public class Main extends JFrame {
 
 
     static ImageIcon cachedSettingFon;
+
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));
