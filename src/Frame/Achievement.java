@@ -1,6 +1,7 @@
 package Frame;
 
 import DBSourse.AchievementList;
+import DBSourse.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
 
 import javax.imageio.ImageIO;
@@ -23,7 +24,7 @@ import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Achievement {
-    public Achievement() throws SQLException, ClassNotFoundException, IOException {
+    public Achievement() throws SQLException, ClassNotFoundException, IOException, FontFormatException {
         var ref = new Object() {
             int indexAchiv = 0;
             int idCharacter = 1;
@@ -66,12 +67,13 @@ public class Achievement {
         List<AchievementList> achievementList = SelectAchievementFromDB();
 
         JTextPane NameAchievement = new JTextPane();
-        NameAchievement.setFont(new Font("a", Font.BOLD, 60));
+        NameAchievement.setFont(CustomFont.CustomFont1().deriveFont(70f));
+        NameAchievement.setForeground(new Color(254, 222, 143));
         NameAchievement.setBorder(BorderFactory.createLineBorder(new Color(254, 222, 143), 2, true));
         NameAchievement.setEditable(false);
         NameAchievement.setFocusable(false);
-        NameAchievement.setOpaque(true);
-        NameAchievement.setBackground(Color.red);
+        NameAchievement.setPreferredSize(new Dimension(300, 60));
+
         NameAchievement.setOpaque(false);
         NameAchievement.setAlignmentX(Component.CENTER_ALIGNMENT);
         NameAchievement.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -83,13 +85,10 @@ public class Achievement {
         docName.setParagraphAttributes(0, docName.getLength(), centerName, false);
 
         JTextPane textDescription = new JTextPane();
-        textDescription.setPreferredSize(new Dimension(900, 150));
-        textDescription.setFont(new Font("a", Font.BOLD, 35));
+        textDescription.setFont(CustomFont.CustomFont2().deriveFont(50f));
+        textDescription.setForeground(new Color(254, 222, 143));
         textDescription.setEditable(false);
         textDescription.setFocusable(false);
-        textDescription.setOpaque(true);
-        textDescription.setForeground(Color.black);
-        textDescription.setBackground(Color.red);
         textDescription.setOpaque(false);
         textDescription.setAlignmentX(Component.CENTER_ALIGNMENT);
         textDescription.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -103,13 +102,12 @@ public class Achievement {
 
         JTextPane textCharacter = new JTextPane();
         textCharacter.setPreferredSize(new Dimension(300, 100));
-        textCharacter.setFont(new Font("a", Font.BOLD, 35));
+        textCharacter.setFont(CustomFont.CustomFont1().deriveFont(60f));
+        textCharacter.setForeground(new Color(254, 222, 143));
         textCharacter.setEditable(false);
         textCharacter.setFocusable(false);
         textCharacter.setBorder(BorderFactory.createLineBorder(new Color(254, 222, 143), 2, true));
 
-        textCharacter.setForeground(Color.black);
-        textCharacter.setBackground(Color.red);
         textCharacter.setOpaque(false);
         textCharacter.setAlignmentX(Component.CENTER_ALIGNMENT);
         textCharacter.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -130,8 +128,6 @@ public class Achievement {
                 });
 
         textDescription.setOpaque(false);
-        textDescription.setForeground(Color.black);
-
         textDescription.setEditable(false);
 
         JButton buttonNextNameCharacter = new JButton();
