@@ -1,6 +1,6 @@
 package Frame;
 
-import DBSourse.CustomFont;
+import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package Frame;
 
 import DBSourse.AchievementList;
-import DBSourse.CustomFont;
+import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
 
 import javax.imageio.ImageIO;
