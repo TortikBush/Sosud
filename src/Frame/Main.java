@@ -168,6 +168,19 @@ public class Main extends JFrame {
         }
     }
 
+    static ImageIcon cachedRegistrationFon;
+
+    static {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/resource/RegistrationFon.png"));
+            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
+            cachedRegistrationFon = new ImageIcon(scaled);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     static ImageIcon cachedSettingFon;
 
     static {
