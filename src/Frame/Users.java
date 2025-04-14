@@ -1,9 +1,17 @@
 package Frame;
 
-public class Users {
-    public String UserName;
 
-    public String getUserName() {
+public class Users {
+    public static int IdUser;
+    public static String UserName;
+
+    public static String GetUserName(){
         return UserName;
     }
+
+    public static int GetIdUser() {
+        return IdUser;
+    }
+
+
 }

@@ -2,22 +2,23 @@ package Frame;
 
 import DBSourse.JDBCPosgreSQLConnection;
 import DBSourse.UsersTable;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
-
 import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
+    private static JButton btnRegistration = new JButton("Регистрация");
+    private static JTextArea Field3 = new JTextArea();
+    private static JTextArea Account = new JTextArea();
+    private static JButton signInBtn = new JButton();
+    private static int RegSign = 0;
+
     public Registration() throws IOException, SQLException, ClassNotFoundException {
-        var ref = new Object() {
-            int RegSign = 0;
-        };
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
         JLabel label = new JLabel(cachedMainBackground);
@@ -39,12 +40,10 @@ public class Registration {
 
         PasswordField2.setOpaque(false);
 
-        JTextArea Field3 = new JTextArea();
         Field3.setSize(300, 30);
         Field3.setOpaque(false);
         Field3.setForeground(Color.RED);
 
-        JButton btnRegistration = new JButton("Регистрация");
         btnRegistration.setSize(100, 30);
         btnRegistration.setForeground(Color.WHITE);
         btnRegistration.setOpaque(false);
@@ -55,8 +54,6 @@ public class Registration {
         panelsignIn.setSize(250, 50);
         panelsignIn.setLocation(centerLocation[0] - 50, centerLocation[1] + 100);
 
-
-        JTextArea Account = new JTextArea();
         Account.setSize(300, 30);
         Account.setOpaque(false);
         Account.setForeground(Color.WHITE);
@@ -64,26 +61,13 @@ public class Registration {
         Account.setBackground(Color.black);
         Account.setText("У вас есть аккаунт?");
 
-        JButton signInBtn = new JButton();
         signInBtn.setSize(100, 30);
         signInBtn.setForeground(Color.WHITE);
         signInBtn.setOpaque(false);
         signInBtn.setText("Войти");
         signInBtn.setBackground(Color.black);
         signInBtn.addActionListener(e -> {
-            if (ref.RegSign == 0) {
-                btnRegistration.setText("Войти");
-                Field3.setText("");
-                Account.setText("У вас нет аккаунта? ");
-                signInBtn.setText("Зарегистрироваться");
-                ref.RegSign = 1;
-            } else if (ref.RegSign == 1) {
-                Account.setText("У вас есть аккаунт? ");
-                signInBtn.setText("Войти");
-                btnRegistration.setText("Зарегистрироваться");
-                Field3.setText("");
-                ref.RegSign = 0;
-            }
+            SignInRegistration();
         });
 
         panelsignIn.add(Account);
@@ -94,7 +78,7 @@ public class Registration {
                 Field3.setText("Вы не заполнили все поля");
                 return;
             }
-            if (ref.RegSign == 1) {
+            if (RegSign == 1) {
                 Field3.setText("");
                 try {
                     Connection connection = JDBCPosgreSQLConnection.OpenConnection();
@@ -103,11 +87,11 @@ public class Registration {
                     stmt.setString(1, LogginField1.getText());
                     stmt.setString(2, PasswordField2.getText());
                     ResultSet rs = stmt.executeQuery();
-                    Users user = new Users();
                     if (!rs.next()) {
                         Field3.setText("Такого пользователя нет!");
                     } else {
-                        user.UserName = rs.getString("login");
+                        Users.IdUser = rs.getInt("id");
+                        Users.UserName = rs.getString("login");
                         new Main();
                         try {
                             Thread.sleep(600);
@@ -117,11 +101,7 @@ public class Registration {
                         frame.dispose();
                     }
 
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
+                } catch (SQLException | ClassNotFoundException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
 
@@ -133,8 +113,8 @@ public class Registration {
                     PreparedStatement stmt = connection.prepareStatement(sql1);
                     stmt.setString(1, LogginField1.getText());
                     ResultSet rs = stmt.executeQuery();
-
                     UsersTable UsersTable = new UsersTable();
+
                     while (rs.next()) {
                         UsersTable.setId(rs.getInt("Id"));
                     }
@@ -145,20 +125,12 @@ public class Registration {
                         add.setString(2, PasswordField2.getText());
                         int resultUpdate = add.executeUpdate();
                         if (resultUpdate == 1) {
-                            Users users = new Users();
-                            users.UserName = LogginField1.getText();
-                            new Main();
-                            try {
-                                Thread.sleep(600);
-                            } catch (InterruptedException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            frame.dispose();
+                            SignInRegistration();
                         } else {
                             Field3.setText("Неизвестная ошибка, попробуйте еще раз");
                         }
                     } else {
-                        Field3.setText("Такой пользователь существует");
+                        Field3.setText("Такой пользователь c таким логином существует");
                     }
 
                 } catch (SQLException ex) {
@@ -167,14 +139,11 @@ public class Registration {
                     } catch (SQLException exc) {
                         throw new RuntimeException(exc);
                     }
-                } catch (ClassNotFoundException | IOException ex) {
+                } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
             }
-
-
         });
-
         panelBlock.setSize(300, 130);
         panelBlock.setOpaque(false);
         panelBlock.add(LogginField1);
@@ -192,6 +161,22 @@ public class Registration {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
         frame.setVisible(true);
+    }
+
+    public static void SignInRegistration() {
+        if (RegSign == 0) {
+            btnRegistration.setText("Войти");
+            Field3.setText("");
+            Account.setText("У вас нет аккаунта? ");
+            signInBtn.setText("Зарегистрироваться");
+            RegSign = 1;
+        } else if (RegSign == 1) {
+            Account.setText("У вас есть аккаунт? ");
+            signInBtn.setText("Войти");
+            btnRegistration.setText("Зарегистрироваться");
+            Field3.setText("");
+            RegSign = 0;
+        }
     }
 
     public static int[] CenterLocationObject(Frame frame) {

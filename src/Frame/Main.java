@@ -38,7 +38,7 @@ public class Main extends JFrame {
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
             Users user = new Users();
-            if (user.getUserName() == null) {
+            if (user.GetUserName() == null) {
                 //
                 try {
                     new Registration();
@@ -147,8 +147,12 @@ public class Main extends JFrame {
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
         int[] topLocation = Registration.CenterLocationObject(frameMain);
-        frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
-        frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
+
+//        if (Users.GetUserName()!=null) {
+            frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
+            frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
+//        }
+
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameMain.setUndecorated(true);
@@ -157,7 +161,6 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedMainBackground;
-
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
@@ -169,7 +172,6 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedSettingFon;
-
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));
@@ -188,4 +190,3 @@ public class Main extends JFrame {
         return button;
     }
 }
-
