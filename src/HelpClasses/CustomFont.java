@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class CustomFont {
-
-
     public static Font CustomFont1() throws IOException, FontFormatException {
         Font customFont1 = Font.createFont(Font.TRUETYPE_FONT, new File("src/resource/fonts/font1.ttf")); // размер и стиль
         GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();

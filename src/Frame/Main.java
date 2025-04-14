@@ -1,7 +1,6 @@
 package Frame;
 
 import HelpClasses.ClickArrow;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +23,6 @@ public class Main extends JFrame {
         FileInputStream fis = new FileInputStream(file);
         mp3Data = fis.readAllBytes(); // Кешируем в массив байтов
         fis.close();
-
 
         JFrame frameMain = new JFrame();
         JPanel panelMainButton = new JPanel();
@@ -60,7 +58,6 @@ public class Main extends JFrame {
             } else {
                 //Начало игры
             }
-
         });
 
         //Кнопка Сохранение
@@ -74,8 +71,7 @@ public class Main extends JFrame {
         parButton(btnSave);
 
         //обработчик кнопки сохранение
-        btnSave.addActionListener(e ->
-        {
+        btnSave.addActionListener(e -> {
             System.exit(0);
         });
 
@@ -88,7 +84,6 @@ public class Main extends JFrame {
         Image newImg4 = imgReadSetting.getScaledInstance((int) btnSettings.getSize().getWidth(), (int) btnSettings.getSize().getHeight(), Image.SCALE_SMOOTH);
         btnSettings.setIcon(new ImageIcon(newImg4));
         parButton(btnSettings);
-
 
         //обработчик кнопки старта
         btnSettings.addActionListener(e ->
@@ -109,7 +104,6 @@ public class Main extends JFrame {
         Image imgReadExit = ImageIO.read(imgExit);
         Image newImg5 = imgReadExit.getScaledInstance((int) btnExit.getSize().getWidth(), (int) btnExit.getSize().getHeight(), Image.SCALE_SMOOTH);
         btnExit.setIcon(new ImageIcon(newImg5));
-
 
         parButton(btnExit);
         btnExit.addActionListener(e ->
@@ -144,18 +138,14 @@ public class Main extends JFrame {
         panelMainButton.setSize(900, 450);
         panelMainButton.setOpaque(false);
         panelMainButton.setLayout(new GridLayout(0, 1, 2, 4));
-
         panelMainButton.add(btnStartGame);
         panelMainButton.add(btnSave);
-
         panelMainButton.add(btnExit);
-
         panelMainButton.setLocation(800, 600);
 
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
         int[] topLocation = Registration.CenterLocationObject(frameMain);
-
 //        if (Users.GetUserName()!=null) {
         frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
         frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
@@ -169,7 +159,6 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedMainBackground;
-
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
@@ -181,7 +170,6 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedRegistrationFon;
-
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/RegistrationFon.png"));
@@ -194,7 +182,6 @@ public class Main extends JFrame {
 
 
     static ImageIcon cachedSettingFon;
-
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));

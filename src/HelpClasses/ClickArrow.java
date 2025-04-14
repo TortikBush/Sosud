@@ -2,10 +2,8 @@ package HelpClasses;
 
 import Frame.Main;
 import javazoom.jl.player.Player;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-
 
 public class ClickArrow {
     public static void playCachedMP3() {

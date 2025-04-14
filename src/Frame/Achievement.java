@@ -3,7 +3,6 @@ package Frame;
 import DBSourse.AchievementList;
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
@@ -18,7 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -78,6 +76,25 @@ public class Achievement {
         NameAchievement.setAlignmentX(Component.CENTER_ALIGNMENT);
         NameAchievement.setAlignmentY(Component.CENTER_ALIGNMENT);
 
+        JButton buttonClose = new JButton();
+        File imgAchievement = new File("src/resource/CloseImage.png").getAbsoluteFile();
+        Image imgReadAchievement = ImageIO.read(imgAchievement);
+        buttonClose.setSize(60,60);
+        Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
+        buttonClose.setIcon(new ImageIcon(newImg3));
+        Main.parButton(buttonClose);
+        int[] centerLocation1 = Registration.CenterLocationObject(frameAchievement);
+        buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 380);
+        buttonClose.addActionListener(e -> {
+            try {
+                new Main();
+                frameAchievement.dispose();
+            } catch (IOException | SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+
 // Центрирование текста
         StyledDocument docName = NameAchievement.getStyledDocument();
         SimpleAttributeSet centerName = new SimpleAttributeSet();
@@ -99,7 +116,6 @@ public class Achievement {
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-
         JTextPane textCharacter = new JTextPane();
         textCharacter.setPreferredSize(new Dimension(300, 100));
         textCharacter.setFont(CustomFont.CustomFont1().deriveFont(60f));
@@ -107,7 +123,6 @@ public class Achievement {
         textCharacter.setEditable(false);
         textCharacter.setFocusable(false);
         textCharacter.setBorder(BorderFactory.createLineBorder(new Color(254, 222, 143), 2, true));
-
         textCharacter.setOpaque(false);
         textCharacter.setAlignmentX(Component.CENTER_ALIGNMENT);
         textCharacter.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -117,7 +132,6 @@ public class Achievement {
         SimpleAttributeSet centerChar = new SimpleAttributeSet();
         StyleConstants.setAlignment(centerChar, StyleConstants.ALIGN_CENTER);
         docChar.setParagraphAttributes(0, docChar.getLength(), centerChar, false);
-
 
         achievementList.stream()
                 .filter(achievement -> achievement.getId() == 1) // Применение тернарного оператора
@@ -275,6 +289,7 @@ public class Achievement {
 
         frameAchievement.add(panelForCharacter);
 
+        frameAchievement.add(buttonClose);
         frameAchievement.add(panelGrid);
         frameAchievement.add(label);
         frameAchievement.setDefaultCloseOperation(EXIT_ON_CLOSE);

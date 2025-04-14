@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
-
 import static Frame.Main.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 

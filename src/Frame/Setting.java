@@ -2,6 +2,7 @@ package Frame;
 
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -39,6 +40,24 @@ public class Setting {
         panelBlockSettings.setLocation(centerLocation[0] - 150, centerLocation[1] - 50);
         panelBlockSettings.setBackground(Color.blue);
         panelBlockSettings.setOpaque(false);
+
+        JButton buttonClose = new JButton();
+        File imgAchievement = new File("src/resource/CloseImage.png").getAbsoluteFile();
+        Image imgReadAchievement = ImageIO.read(imgAchievement);
+        buttonClose.setSize(60,60);
+        Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
+        buttonClose.setIcon(new ImageIcon(newImg3));
+        Main.parButton(buttonClose);
+        int[] centerLocation1 = Registration.CenterLocationObject(frameSetting);
+        buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 180);
+        buttonClose.addActionListener(e -> {
+            try {
+                new Main();
+                frameSetting.dispose();
+            } catch (IOException | SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JCheckBox checkboxMusic = new JCheckBox("Музыка");
         checkboxMusic.setFont(CustomFont.CustomFont2().deriveFont(70f));
@@ -99,6 +118,7 @@ public class Setting {
             }
         });
 
+        frameSetting.add(buttonClose);
         panelBlockSettings.add(checkboxMusic);
         panelBlockSettings.add(checkboxSound);
         panelBlockSettings.add(buttonSave);
