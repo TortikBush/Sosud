@@ -2,7 +2,6 @@ package Frame;
 
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import static Frame.Main.cachedSettingFon;
 
 public class Setting {
@@ -27,9 +25,6 @@ public class Setting {
                 .deriveFont(Font.PLAIN, 70f); // размер и стиль
         GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge1.registerFont(customFont1);
-
-        // Регистрация в системе Java
-
 
         // Создание фрейма
         JFrame frameSetting = new JFrame();

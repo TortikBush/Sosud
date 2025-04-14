@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
-import static Frame.Main.cachedMainBackground;
-import static Frame.Main.parButton;
+
+import static Frame.Main.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
@@ -21,7 +21,7 @@ public class Registration {
     public Registration() throws IOException, SQLException, ClassNotFoundException {
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
-        JLabel label = new JLabel(cachedMainBackground);
+        JLabel label = new JLabel(cachedRegistrationFon);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
@@ -31,6 +31,28 @@ public class Registration {
         LogginField1.setForeground(Color.WHITE);
         LogginField1.setOpaque(false);
         LogginField1.setDisabledTextColor(Color.RED);
+
+        JPanel panelsignIn1 = new JPanel();
+        panelsignIn1.setBackground(Color.black);
+        panelsignIn1.setSize(250, 50);
+        panelsignIn1.setLocation(centerLocation[0] - 300, centerLocation[1] + 1);
+        panelsignIn1.setLayout(new BoxLayout(panelsignIn1, BoxLayout.Y_AXIS));
+
+        JTextArea Login = new JTextArea();
+        Login.setSize(300, 30);
+        Login.setOpaque(false);
+        Login.setForeground(Color.WHITE);
+        Login.setOpaque(false);
+        Login.setBackground(Color.black);
+        Login.setText("Логин");
+
+        JTextArea Password = new JTextArea();
+        Password.setSize(300, 30);
+        Password.setOpaque(false);
+        Password.setForeground(Color.WHITE);
+        Password.setOpaque(false);
+        Password.setBackground(Color.black);
+        Password.setText("Пароль");
 
 
         JTextField PasswordField2 = new JTextField(25);
@@ -152,7 +174,10 @@ public class Registration {
         panelBlock.add(PasswordField2);
         panelBlock.add(btnRegistration);
         panelBlock.add(Field3);
+        panelsignIn1.add(Login);
+        panelsignIn1.add(Password);
 
+        frame.add(panelsignIn1);
         frame.add(panelBlock);
         frame.add(panelsignIn);
         frame.add(label);

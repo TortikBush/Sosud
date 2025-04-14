@@ -1,6 +1,5 @@
 package Frame;
 
-
 public class Users {
     public static int IdUser;
     public static String UserName;
@@ -12,6 +11,4 @@ public class Users {
     public static int GetIdUser() {
         return IdUser;
     }
-
-
 }
