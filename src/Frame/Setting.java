@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import static Frame.Main.cachedSettingFon;
 
 public class Setting {
     public Setting() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
-
         ImageIcon uncheckedImg = new ImageIcon(new File("src/resource/CheckBoxRes/unchecked.png").getAbsolutePath());
         Image scaledImage = uncheckedImg.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon unchecked = new ImageIcon(scaledImage);
@@ -28,8 +28,7 @@ public class Setting {
         GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge1.registerFont(customFont1);
 
-         // Регистрация в системе Java
-
+        // Регистрация в системе Java
 
 
         // Создание фрейма
@@ -39,17 +38,17 @@ public class Setting {
 
         JPanel panelBlockSettings = new JPanel();
         panelBlockSettings.setLayout(new BoxLayout(panelBlockSettings, BoxLayout.Y_AXIS));
-        panelBlockSettings.setSize(350,350);
+        panelBlockSettings.setSize(350, 350);
         int[] centerLocation;
         centerLocation = Registration.CenterLocationObject(frameSetting);
-        panelBlockSettings.setLocation(centerLocation[0]-150, centerLocation[1]-50);
+        panelBlockSettings.setLocation(centerLocation[0] - 150, centerLocation[1] - 50);
         panelBlockSettings.setBackground(Color.blue);
         panelBlockSettings.setOpaque(false);
 
         JCheckBox checkboxMusic = new JCheckBox("Музыка");
         checkboxMusic.setFont(CustomFont.CustomFont2().deriveFont(70f));
         checkboxMusic.setPreferredSize(new Dimension(500, 130));
-        checkboxMusic.setSize(500,180);
+        checkboxMusic.setSize(500, 180);
         checkboxMusic.setBackground(Color.black);
         checkboxMusic.setIcon(unchecked);
         checkboxMusic.setSelectedIcon(checked);
@@ -59,11 +58,10 @@ public class Setting {
         checkboxMusic.setFocusable(false);
         checkboxMusic.setOpaque(false);
 
-
         JCheckBox checkboxSound = new JCheckBox("Звуки");
         checkboxSound.setFont(CustomFont.CustomFont2().deriveFont(70f));
         checkboxSound.setPreferredSize(new Dimension(500, 130));
-        checkboxSound.setSize(500,130);
+        checkboxSound.setSize(500, 130);
         checkboxSound.setIcon(unchecked);
         checkboxSound.setSelectedIcon(checked);
         checkboxSound.setForeground(new Color(254, 222, 143));
@@ -82,27 +80,29 @@ public class Setting {
         buttonSave.setBorderPainted(true);
 
         buttonSave.addActionListener(e -> {
-
             try {
                 Connection connection = JDBCPosgreSQLConnection.OpenConnection();
-                String sql1 = "UPDATE settings SET isactive = ? WHERE name = 'Звук';";
-                String sql2 = "UPDATE settings SET isactive = ? WHERE name = 'Музыка';";
 
+                String sql1 = "UPDATE user_setting SET isactive = ? from settings WHERE user_setting.idsetting = 1 and user_setting.iduser = ?;";
                 PreparedStatement stm1 = connection.prepareStatement(sql1);
                 stm1.setBoolean(1, checkboxSound.isSelected());
+                stm1.setInt(2, Users.GetIdUser());
 
+                String sql2 = "UPDATE user_setting SET isactive = ? from settings WHERE user_setting.idsetting = 2 and user_setting.iduser = ?;";
                 PreparedStatement stm2 = connection.prepareStatement(sql2);
                 stm2.setBoolean(1, checkboxMusic.isSelected());
+                stm2.setInt(2, Users.GetIdUser());
 
                 stm1.executeUpdate();
                 stm2.executeUpdate();
 
-            } catch (SQLException | ClassNotFoundException ex) {
+                new Main();
+                frameSetting.dispose();
+
+            } catch (SQLException | ClassNotFoundException | IOException ex) {
                 throw new RuntimeException(ex);
             }
-
         });
-
 
         panelBlockSettings.add(checkboxMusic);
         panelBlockSettings.add(checkboxSound);
