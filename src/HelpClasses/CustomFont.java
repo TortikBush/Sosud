@@ -1,4 +1,4 @@
-package DBSourse;
+package HelpClasses;
 
 import java.awt.*;
 import java.io.File;
