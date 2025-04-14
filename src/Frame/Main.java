@@ -126,6 +126,8 @@ public class Main extends JFrame {
                 throw new RuntimeException(ex);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
+            } catch (FontFormatException ex) {
+                throw new RuntimeException(ex);
             }
 
         });
