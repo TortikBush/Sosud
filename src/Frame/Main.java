@@ -124,6 +124,8 @@ public class Main extends JFrame {
 
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
 
         });
