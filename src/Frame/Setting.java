@@ -2,12 +2,34 @@ package Frame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import static Frame.Main.cachedMainBackground;
+import static Frame.Main.cachedSettingFon;
 
 public class Setting {
-    public Setting() throws IOException, SQLException, ClassNotFoundException {
+    public Setting() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
+
+        ImageIcon uncheckedImg = new ImageIcon(new File("src/resource/CheckBoxRes/unchecked.png").getAbsolutePath());
+        Image scaledImage = uncheckedImg.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon unchecked = new ImageIcon(scaledImage);
+
+        ImageIcon checkedImg = new ImageIcon(new File("src/resource/CheckBoxRes/checked.png").getAbsolutePath());
+        Image scaledImage1 = checkedImg.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon checked = new ImageIcon(scaledImage1);
+
+        Font customFont1 = Font.createFont(Font.TRUETYPE_FONT, new File("src/resource/fonts/font1.ttf"))
+                .deriveFont(Font.PLAIN, 70f); // размер и стиль
+        GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge1.registerFont(customFont1);
+
+        Font customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("src/resource/fonts/font2.ttf"))
+                .deriveFont(Font.PLAIN, 70f); // размер и стиль
+        GraphicsEnvironment ge2 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge2.registerFont(customFont2); // Регистрация в системе Java
+
+
+
         // Создание фрейма
         JFrame frameSetting = new JFrame();
         frameSetting.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,18 +37,50 @@ public class Setting {
 
         JPanel panelBlockSettings = new JPanel();
         panelBlockSettings.setLayout(new BoxLayout(panelBlockSettings, BoxLayout.Y_AXIS));
+        panelBlockSettings.setSize(350,230);
+        int[] centerLocation;
+        centerLocation = Registration.CenterLocationObject(frameSetting);
+        panelBlockSettings.setLocation(centerLocation[0]-150, centerLocation[1]-10);
+        panelBlockSettings.setBackground(Color.blue);
+        panelBlockSettings.setOpaque(false);
 
 
-        JCheckBox checkbox = new JCheckBox("Music");
-        checkbox.setFont(new Font("Arial", Font.BOLD, 24));
-        checkbox.setPreferredSize(new Dimension(250, 50));
-        checkbox.setMargin(new Insets(10, 10, 10, 10));
-        checkbox.setSize(100,100);
-        frameSetting.add(checkbox);
+        JCheckBox checkboxMusic = new JCheckBox("Музыка");
+        checkboxMusic.setFont(customFont2);
+        checkboxMusic.setPreferredSize(new Dimension(500, 130));
+        checkboxMusic.setSize(500,130);
+        checkboxMusic.setBackground(Color.black);
+        checkboxMusic.setIcon(unchecked);
+        checkboxMusic.setSelectedIcon(checked);
+        checkboxMusic.setForeground(new Color(254, 222, 143));
+        checkboxMusic.setFocusable(false);
+        checkboxMusic.setBorderPainted(false);
+        checkboxMusic.setFocusable(false);
+        checkboxMusic.setOpaque(false);
 
-        JLabel label = new JLabel(cachedMainBackground);
+
+        JCheckBox checkboxSound = new JCheckBox("Звуки");
+        checkboxSound.setFont(customFont2);
+        checkboxSound.setPreferredSize(new Dimension(500, 130));
+        checkboxSound.setSize(500,130);
+        checkboxSound.setIcon(unchecked);
+        checkboxSound.setSelectedIcon(checked);
+        checkboxSound.setForeground(new Color(254, 222, 143));
+        checkboxSound.setFocusable(false);
+        checkboxSound.setBorderPainted(false);
+        checkboxSound.setFocusable(false);
+        checkboxSound.setOpaque(false);
+
+
+
+        panelBlockSettings.add(checkboxMusic);
+        panelBlockSettings.add(checkboxSound);
+
+        JLabel label = new JLabel(cachedSettingFon);
+        frameSetting.add(panelBlockSettings);
         frameSetting.add(label);
         frameSetting.setUndecorated(true);
         frameSetting.setVisible(true);
+
     }
 }

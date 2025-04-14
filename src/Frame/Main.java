@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
@@ -43,7 +42,7 @@ public class Main extends JFrame {
                 //
                 try {
                     new Registration();
-                    dispose();
+                    frameMain.dispose();
                 } catch (IOException | ClassNotFoundException | SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -85,12 +84,8 @@ public class Main extends JFrame {
         {
             try {
                 new Setting();
-                dispose();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
+                frameMain.dispose();
+            } catch (IOException | FontFormatException | ClassNotFoundException | SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
@@ -125,7 +120,7 @@ public class Main extends JFrame {
         btnAchievement.addActionListener(e -> {
             try {
                 new Achievement();
-                dispose();
+                frameMain.dispose();
 
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
@@ -164,6 +159,18 @@ public class Main extends JFrame {
             BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
             Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
             cachedMainBackground = new ImageIcon(scaled);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static ImageIcon cachedSettingFon;
+
+    static {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));
+            Image scaled = img.getScaledInstance(1920, 1090, Image.SCALE_FAST);
+            cachedSettingFon = new ImageIcon(scaled);
         } catch (IOException e) {
             e.printStackTrace();
         }
