@@ -129,31 +129,34 @@ public class Registration {
             } else {
                 Field3.setText("");
                 try {
-                    Connection connection = JDBCPosgreSQLConnection.OpenConnection();
-                    String sql1 = "Select id from users where login = ? LIMIT 1;";
-                    PreparedStatement stmt = connection.prepareStatement(sql1);
-                    stmt.setString(1, LogginField1.getText());
-                    ResultSet rs = stmt.executeQuery();
-                    UsersTable UsersTable = new UsersTable();
+                    if (LogginField1.getText().length() >= 5 && PasswordField2.getText().length() >= 8) {
+                        Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+                        String sql1 = "Select id from users where login = ? LIMIT 1;";
+                        PreparedStatement stmt = connection.prepareStatement(sql1);
+                        stmt.setString(1, LogginField1.getText());
+                        ResultSet rs = stmt.executeQuery();
+                        UsersTable UsersTable = new UsersTable();
 
-                    while (rs.next()) {
-                        UsersTable.setId(rs.getInt("Id"));
-                    }
-                    if (UsersTable.getId() == 0) {
-                        String sql2 = "INSERT INTO users (login, password, idrole) VALUES (?, ?, 2)";
-                        PreparedStatement add = connection.prepareStatement(sql2);
-                        add.setString(1, LogginField1.getText());
-                        add.setString(2, PasswordField2.getText());
-                        int resultUpdate = add.executeUpdate();
-                        if (resultUpdate == 1) {
-                            SignInRegistration();
-                        } else {
-                            Field3.setText("Неизвестная ошибка, попробуйте еще раз");
+                        while (rs.next()) {
+                            UsersTable.setId(rs.getInt("Id"));
                         }
-                    } else {
-                        Field3.setText("Такой пользователь c таким логином существует");
+                        if (UsersTable.getId() == 0) {
+                            String sql2 = "INSERT INTO users (login, password, idrole) VALUES (?, ?, 2)";
+                            PreparedStatement add = connection.prepareStatement(sql2);
+                            add.setString(1, LogginField1.getText());
+                            add.setString(2, PasswordField2.getText());
+                            int resultUpdate = add.executeUpdate();
+                            if (resultUpdate == 1) {
+                                SignInRegistration();
+                            } else {
+                                Field3.setText("Неизвестная ошибка, попробуйте еще раз");
+                            }
+                        } else {
+                            Field3.setText("Такой пользователь c таким логином существует");
+                        }
+                    }else {
+                        Field3.setText("Логин должен состоять из 5 символов, а пароль из 8");
                     }
-
                 } catch (SQLException ex) {
                     try {
                         throw new SQLException(ex);
