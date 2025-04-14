@@ -1,11 +1,14 @@
 package Frame;
 
 import DBSourse.CustomFont;
+import DBSourse.JDBCPosgreSQLConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import static Frame.Main.cachedSettingFon;
 
@@ -36,18 +39,17 @@ public class Setting {
 
         JPanel panelBlockSettings = new JPanel();
         panelBlockSettings.setLayout(new BoxLayout(panelBlockSettings, BoxLayout.Y_AXIS));
-        panelBlockSettings.setSize(350,230);
+        panelBlockSettings.setSize(350,350);
         int[] centerLocation;
         centerLocation = Registration.CenterLocationObject(frameSetting);
-        panelBlockSettings.setLocation(centerLocation[0]-150, centerLocation[1]-10);
+        panelBlockSettings.setLocation(centerLocation[0]-150, centerLocation[1]-50);
         panelBlockSettings.setBackground(Color.blue);
         panelBlockSettings.setOpaque(false);
-
 
         JCheckBox checkboxMusic = new JCheckBox("Музыка");
         checkboxMusic.setFont(CustomFont.CustomFont2().deriveFont(70f));
         checkboxMusic.setPreferredSize(new Dimension(500, 130));
-        checkboxMusic.setSize(500,130);
+        checkboxMusic.setSize(500,180);
         checkboxMusic.setBackground(Color.black);
         checkboxMusic.setIcon(unchecked);
         checkboxMusic.setSelectedIcon(checked);
@@ -70,10 +72,41 @@ public class Setting {
         checkboxSound.setFocusable(false);
         checkboxSound.setOpaque(false);
 
+        JButton buttonSave = new JButton("Сохранить");
+        buttonSave.setFont(CustomFont.CustomFont2().deriveFont(50f));
+        buttonSave.setSize(500, 10);
+        buttonSave.setForeground(new Color(254, 222, 143));
+        buttonSave.setFocusable(false);
+        buttonSave.setBorder(BorderFactory.createLineBorder(new Color(254, 222, 143), 3));
+        Main.parButton(buttonSave);
+        buttonSave.setBorderPainted(true);
+
+        buttonSave.addActionListener(e -> {
+
+            try {
+                Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+                String sql1 = "UPDATE settings SET isactive = ? WHERE name = 'Звук';";
+                String sql2 = "UPDATE settings SET isactive = ? WHERE name = 'Музыка';";
+
+                PreparedStatement stm1 = connection.prepareStatement(sql1);
+                stm1.setBoolean(1, checkboxSound.isSelected());
+
+                PreparedStatement stm2 = connection.prepareStatement(sql2);
+                stm2.setBoolean(1, checkboxMusic.isSelected());
+
+                stm1.executeUpdate();
+                stm2.executeUpdate();
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        });
 
 
         panelBlockSettings.add(checkboxMusic);
         panelBlockSettings.add(checkboxSound);
+        panelBlockSettings.add(buttonSave);
 
         JLabel label = new JLabel(cachedSettingFon);
         frameSetting.add(panelBlockSettings);

@@ -121,10 +121,7 @@ public class Main extends JFrame {
             try {
                 new Achievement();
                 frameMain.dispose();
-
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            } catch (IOException ex) {
+            } catch (SQLException | ClassNotFoundException | FontFormatException | IOException ex) {
                 throw new RuntimeException(ex);
             }
 
