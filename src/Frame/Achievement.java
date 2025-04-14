@@ -66,13 +66,11 @@ public class Achievement {
         List<AchievementList> achievementList = SelectAchievementFromDB();
 
         JTextPane NameAchievement = new JTextPane();
-        NameAchievement.setFont(new Font("a", Font.BOLD, 35));
+        NameAchievement.setFont(new Font("a", Font.BOLD, 60));
         NameAchievement.setBorder(BorderFactory.createLineBorder(new Color(254, 222, 143), 2, true));
         NameAchievement.setEditable(false);
         NameAchievement.setFocusable(false);
-        NameAchievement.setPreferredSize(new Dimension(300, 60));
         NameAchievement.setOpaque(true);
-        NameAchievement.setForeground(Color.black);
         NameAchievement.setBackground(Color.red);
         NameAchievement.setOpaque(false);
         NameAchievement.setAlignmentX(Component.CENTER_ALIGNMENT);

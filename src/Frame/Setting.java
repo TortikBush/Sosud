@@ -1,5 +1,7 @@
 package Frame;
 
+import DBSourse.CustomFont;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -23,10 +25,7 @@ public class Setting {
         GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge1.registerFont(customFont1);
 
-        Font customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("src/resource/fonts/font2.ttf"))
-                .deriveFont(Font.PLAIN, 70f); // размер и стиль
-        GraphicsEnvironment ge2 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge2.registerFont(customFont2); // Регистрация в системе Java
+         // Регистрация в системе Java
 
 
 
@@ -46,7 +45,7 @@ public class Setting {
 
 
         JCheckBox checkboxMusic = new JCheckBox("Музыка");
-        checkboxMusic.setFont(customFont2);
+        checkboxMusic.setFont(CustomFont.CustomFont2().deriveFont(70f));
         checkboxMusic.setPreferredSize(new Dimension(500, 130));
         checkboxMusic.setSize(500,130);
         checkboxMusic.setBackground(Color.black);
@@ -60,7 +59,7 @@ public class Setting {
 
 
         JCheckBox checkboxSound = new JCheckBox("Звуки");
-        checkboxSound.setFont(customFont2);
+        checkboxSound.setFont(CustomFont.CustomFont2().deriveFont(70f));
         checkboxSound.setPreferredSize(new Dimension(500, 130));
         checkboxSound.setSize(500,130);
         checkboxSound.setIcon(unchecked);
