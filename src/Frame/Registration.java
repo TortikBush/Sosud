@@ -5,25 +5,22 @@ import DBSourse.UsersTable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+
+import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
-    public static void RegistrationFrame() throws IOException, SQLException, ClassNotFoundException {
+    public Registration() throws IOException, SQLException, ClassNotFoundException {
         var ref = new Object() {
             int RegSign = 0;
         };
-
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
-        ImageIcon icon = new ImageIcon(new File("src/resource/MainBackground.png").getAbsolutePath());
-        Image scaledImage1 = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon2 = new ImageIcon(scaledImage1);
-        JLabel label = new JLabel(scaledIcon2);
+        JLabel label = new JLabel(cachedMainBackground);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
@@ -194,8 +191,7 @@ public class Registration {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
-
-        frame.show();
+        frame.setVisible(true);
     }
 
     public static int[] CenterLocationObject(Frame frame) {

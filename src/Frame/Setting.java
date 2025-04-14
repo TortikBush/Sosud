@@ -1,23 +1,32 @@
 package Frame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import static Frame.Main.cachedMainBackground;
 
 public class Setting {
-    public static void SettingFrame() throws IOException, SQLException, ClassNotFoundException {
+    public Setting() throws IOException, SQLException, ClassNotFoundException {
         // Создание фрейма
-        JFrame frameAchievement = new JFrame();
-        frameAchievement.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameAchievement.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        JFrame frameSetting = new JFrame();
+        frameSetting.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameSetting.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Создание и установка метки с изображением
+        JPanel panelBlockSettings = new JPanel();
+        panelBlockSettings.setLayout(new BoxLayout(panelBlockSettings, BoxLayout.Y_AXIS));
+
+
+        JCheckBox checkbox = new JCheckBox("Music");
+        checkbox.setFont(new Font("Arial", Font.BOLD, 24));
+        checkbox.setPreferredSize(new Dimension(250, 50));
+        checkbox.setMargin(new Insets(10, 10, 10, 10));
+        checkbox.setSize(100,100);
+        frameSetting.add(checkbox);
+
         JLabel label = new JLabel(cachedMainBackground);
-        label.setBounds(0, 0, 1920, 1080);
-        frameAchievement.getContentPane().setLayout(null);
-        frameAchievement.getContentPane().add(label);
-        frameAchievement.setUndecorated(true);
-        frameAchievement.setVisible(true); // Используй setVisible вместо show()
+        frameSetting.add(label);
+        frameSetting.setUndecorated(true);
+        frameSetting.setVisible(true);
     }
 }

@@ -42,17 +42,11 @@ public class Main extends JFrame {
             if (user.getUserName() == null) {
                 //
                 try {
-                    Registration.RegistrationFrame();
+                    new Registration();
+                    dispose();
                 } catch (IOException | ClassNotFoundException | SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-                try {
-                    Thread.sleep(600);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                frameMain.dispose();
             } else {
                 //Начало игры
             }
@@ -90,7 +84,8 @@ public class Main extends JFrame {
         btnSettings.addActionListener(e ->
         {
             try {
-                Setting.SettingFrame();
+                new Setting();
+                dispose();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             } catch (SQLException ex) {
@@ -131,7 +126,6 @@ public class Main extends JFrame {
             try {
                 new Achievement();
                 dispose();
-
 
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
