@@ -1,6 +1,7 @@
 package Frame;
 
 import HelpClasses.ClickArrow;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +53,7 @@ public class Main extends JFrame {
                 try {
                     new Registration();
                     frameMain.dispose();
-                } catch (IOException | ClassNotFoundException | SQLException ex) {
+                } catch (IOException | ClassNotFoundException | SQLException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
             } else {
@@ -159,6 +160,7 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedMainBackground;
+
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
@@ -170,6 +172,7 @@ public class Main extends JFrame {
     }
 
     static ImageIcon cachedRegistrationFon;
+
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/RegistrationFon.png"));
@@ -182,6 +185,7 @@ public class Main extends JFrame {
 
 
     static ImageIcon cachedSettingFon;
+
     static {
         try {
             BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));

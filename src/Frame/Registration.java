@@ -2,22 +2,25 @@ package Frame;
 
 import DBSourse.JDBCPosgreSQLConnection;
 import DBSourse.UsersTable;
+import HelpClasses.CustomFont;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
+
 import static Frame.Main.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
-    private static JButton btnRegistration = new JButton("Регистрация");
+    private static JButton btnRegistration = new JButton("Зарегистрироваться");
     private static JTextArea Field3 = new JTextArea();
     private static JTextArea Account = new JTextArea();
     private static JButton signInBtn = new JButton();
     private static int RegSign = 0;
 
-    public Registration() throws IOException, SQLException, ClassNotFoundException {
+    public Registration() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
         JLabel label = new JLabel(cachedRegistrationFon);
@@ -25,25 +28,26 @@ public class Registration {
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
         JTextField LogginField1 = new JTextField(15);
-        LogginField1.setSize(100, 500);
+        LogginField1.setSize(300, 500);
         LogginField1.setBackground(Color.black);
         LogginField1.setForeground(Color.WHITE);
         LogginField1.setOpaque(false);
         LogginField1.setDisabledTextColor(Color.RED);
+        LogginField1.setFont(CustomFont.CustomFont1().deriveFont(40f));
 
         JPanel panelsignIn1 = new JPanel();
         panelsignIn1.setBackground(Color.black);
-        panelsignIn1.setSize(250, 50);
-        panelsignIn1.setLocation(centerLocation[0] - 300, centerLocation[1] + 1);
+        panelsignIn1.setOpaque(false);
+        panelsignIn1.setSize(230, 100);
+        panelsignIn1.setLocation(centerLocation[0] - 300, centerLocation[1] - 45);
         panelsignIn1.setLayout(new BoxLayout(panelsignIn1, BoxLayout.Y_AXIS));
 
         JTextArea Login = new JTextArea();
         Login.setSize(300, 30);
         Login.setOpaque(false);
-        Login.setForeground(Color.WHITE);
-        Login.setOpaque(false);
-        Login.setBackground(Color.black);
         Login.setText("Логин");
+        Login.setFont(CustomFont.CustomFont1().deriveFont(40f));
+        Login.setForeground(new Color(254, 222, 143));
 
         JTextArea Password = new JTextArea();
         Password.setSize(300, 30);
@@ -52,12 +56,15 @@ public class Registration {
         Password.setOpaque(false);
         Password.setBackground(Color.black);
         Password.setText("Пароль");
+        Password.setFont(CustomFont.CustomFont1().deriveFont(40f));
+        Password.setForeground(new Color(254, 222, 143));
 
 
-        JTextField PasswordField2 = new JTextField(25);
+        JTextField PasswordField2 = new JTextField(15);
         PasswordField2.setSize(300, 500);
         PasswordField2.setBackground(Color.black);
         PasswordField2.setForeground(Color.WHITE);
+        PasswordField2.setFont(CustomFont.CustomFont1().deriveFont(40f));
 
         PasswordField2.setOpaque(false);
 
@@ -72,21 +79,25 @@ public class Registration {
 
         JPanel panelsignIn = new JPanel();
         panelsignIn.setBackground(Color.black);
-        panelsignIn.setSize(250, 50);
-        panelsignIn.setLocation(centerLocation[0] - 50, centerLocation[1] + 100);
+        panelsignIn.setOpaque(false);
+        panelsignIn.setSize(400, 70);
+        panelsignIn.setLocation(centerLocation[0] - 200, centerLocation[1] + 170);
 
         Account.setSize(300, 30);
         Account.setOpaque(false);
         Account.setForeground(Color.WHITE);
-        Account.setOpaque(false);
-        Account.setBackground(Color.black);
+
         Account.setText("У вас есть аккаунт?");
+        Account.setFont(CustomFont.CustomFont1().deriveFont(20f));
+        Account.setForeground(new Color(254, 222, 143));
 
         signInBtn.setSize(100, 30);
         signInBtn.setForeground(Color.WHITE);
         signInBtn.setOpaque(false);
         signInBtn.setText("Войти");
-        signInBtn.setBackground(Color.black);
+        signInBtn.setFont(CustomFont.CustomFont1().deriveFont(20f));
+        signInBtn.setForeground(new Color(254, 222, 143));
+
         signInBtn.addActionListener(e -> {
             SignInRegistration();
         });
@@ -154,7 +165,7 @@ public class Registration {
                         } else {
                             Field3.setText("Такой пользователь c таким логином существует");
                         }
-                    }else {
+                    } else {
                         Field3.setText("Логин должен состоять из 5 символов, а пароль из 8");
                     }
                 } catch (SQLException ex) {
@@ -168,12 +179,13 @@ public class Registration {
                 }
             }
         });
-        panelBlock.setSize(300, 130);
+        panelBlock.setSize(400, 130);
         panelBlock.setOpaque(false);
         panelBlock.add(LogginField1);
         centerLocation = CenterLocationObject(frame);
-        panelBlock.setLocation(centerLocation[0] - 50, centerLocation[1]);
+        panelBlock.setLocation(centerLocation[0] - 100, centerLocation[1] - 45);
         panelBlock.add(PasswordField2);
+
         panelBlock.add(btnRegistration);
         panelBlock.add(Field3);
         panelsignIn1.add(Login);
