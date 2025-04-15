@@ -1,5 +1,6 @@
 package Frame;
 
+import Frame.History.NovelFrame;
 import HelpClasses.ClickArrow;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -56,7 +57,8 @@ public class Main extends JFrame {
                     throw new RuntimeException(ex);
                 }
             } else {
-                //Начало игры
+                frameMain.dispose();
+                new NovelFrame("src/story.json");
             }
         });
 
