@@ -22,11 +22,15 @@ import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Achievement {
+    private static int FirstIdCharacter = 0;
     public Achievement() throws SQLException, ClassNotFoundException, IOException, FontFormatException {
         var ref = new Object() {
             int indexAchiv = 0;
-            int idCharacter = 1;
+            int IdCharacter = 1;
+            int id = 0;
+
         };
+
         JFrame frameAchievement = new JFrame();
         JLabel label = new JLabel(cachedMainBackground);
         int[] centerLocation = Registration.CenterLocationObject(frameAchievement);
@@ -79,7 +83,7 @@ public class Achievement {
         JButton buttonClose = new JButton();
         File imgAchievement = new File("src/resource/CloseImage.png").getAbsoluteFile();
         Image imgReadAchievement = ImageIO.read(imgAchievement);
-        buttonClose.setSize(60,60);
+        buttonClose.setSize(60, 60);
         Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
         buttonClose.setIcon(new ImageIcon(newImg3));
         Main.parButton(buttonClose);
@@ -134,7 +138,7 @@ public class Achievement {
         docChar.setParagraphAttributes(0, docChar.getLength(), centerChar, false);
 
         achievementList.stream()
-                .filter(achievement -> achievement.getId() == 1) // Применение тернарного оператора
+                .filter(achievement -> achievement.getId() == FirstId(achievementList)) // Применение тернарного оператора
                 .forEach(achievement -> {
                     NameAchievement.setText(achievement.getName());
                     textDescription.setText(achievement.getDescription());
@@ -158,19 +162,40 @@ public class Achievement {
 
         buttonNextNameCharacter.addActionListener(e -> {
             ref.indexAchiv = 0;
-            if (ref.idCharacter != 3) {
-                ref.idCharacter += 1;
+            ref.id = 0;
+            if (FirstIdCharacter == 2){
+                ref.IdCharacter = FirstIdCharacter;
+                FirstIdCharacter = 0;
+            }
+            int ID = ref.IdCharacter;
+            if (ref.IdCharacter != 3) {
+                ref.IdCharacter += 1;
+            }
+            for (int i = 0; i < 2; i++) {
+                achievementList.stream()
+                        .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter) // Применение тернарного оператора
+                        .forEach(achievement -> {
+                            ref.id = achievement.getId();
+                        });
+                if (ref.id == 0) {
+                    ref.IdCharacter += 1;
+                } else if (ref.id != 0) {
+                    break;
+                }
+                if (ref.IdCharacter > 3) {
+                    ref.IdCharacter = ID;
+                }
             }
 
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter) // Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter) // Применение тернарного оператора
                     .forEach(achievement -> {
                         textCharacter.setText(achievement.getNameCharacter());
                     });
 
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         achievementList1.add(achievement);
                     });
@@ -196,7 +221,7 @@ public class Achievement {
         buttonNextNameAchievement.addActionListener(e -> {
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         achievementList1.add(achievement);
                     });
@@ -225,7 +250,7 @@ public class Achievement {
         buttonReversNameAchievement.addActionListener(e -> {
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         achievementList1.add(achievement);
                     });
@@ -252,19 +277,42 @@ public class Achievement {
 
 
         buttonReversNameCharacter.addActionListener(e -> {
-            if (ref.idCharacter != 1) {
-                ref.idCharacter -= 1;
-            }
             ref.indexAchiv = 0;
+            int ID = ref.IdCharacter;
+            ref.id = 0;
+
+            if (ref.IdCharacter > 1) {
+                ref.IdCharacter -= 1;
+            }
+            for (int i = 0; i < 2; i++) {
+                achievementList.stream()
+                        .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter) // Применение тернарного оператора
+                        .forEach(achievement -> {
+                            ref.id = achievement.getId();
+                        });
+                if (ref.IdCharacter < 1) {
+                    ref.IdCharacter = ID;
+                    return;
+                }
+
+                if (ref.id == 0) {
+                    if (ref.IdCharacter == 1) {
+                        ref.IdCharacter = ID;
+                        break;
+                    }
+                    ref.IdCharacter -= 1;
+                }
+            }
+
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter) // Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter) // Применение тернарного оператора
                     .forEach(achievement -> {
                         textCharacter.setText(achievement.getNameCharacter());
                     });
 
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
-                    .filter(achievement -> achievement.getIdCharacter() == ref.idCharacter)// Применение тернарного оператора
+                    .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
                     .forEach(achievement -> {
                         achievementList1.add(achievement);
                     });
@@ -301,11 +349,14 @@ public class Achievement {
     public static List<AchievementList> SelectAchievementFromDB() throws SQLException, ClassNotFoundException {
         Connection connection = JDBCPosgreSQLConnection.OpenConnection();
         List<AchievementList> achievementList = new ArrayList<>();
-        String sql1 = "Select achievement.id as id, achievement.name AS name, idcharacter, description, character.name as namecharacter" +
-                " FROM achievement " +
-                "join character on achievement.idcharacter = character.id ";
+        String sql1 = "SELECT achievement.id AS id, achievement.name AS name, idcharacter, description, \"character\".name AS namecharacter " +
+                "FROM achievement " +
+                "JOIN \"character\" ON achievement.idcharacter = \"character\".id " +
+                "JOIN userachievement ON userachievement.idachievement = achievement.id " +
+                "WHERE userachievement.iduser = ?;";
 
         PreparedStatement stmt = connection.prepareStatement(sql1);
+        stmt.setInt(1, Users.GetIdUser());
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
@@ -317,7 +368,12 @@ public class Achievement {
             achievement.setNameCharacter(rs.getString("namecharacter"));
             achievementList.add(achievement);
         }
-
         return achievementList;
+    }
+
+    public static int FirstId(List<AchievementList> achievementList) {
+        AchievementList achievement = achievementList.get(0);
+        FirstIdCharacter = achievement.getIdCharacter();
+        return achievement.getId();
     }
 }
