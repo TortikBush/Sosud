@@ -1,0 +1,37 @@
+{
+  "start": {
+    "type": "monologue",
+    "text": "Вы просыпаетесь в темной комнате...",
+    "next": "intro_dialogue"
+  },
+  "intro_dialogue": {
+    "type": "dialogue",
+    "lines": [
+      {"name": "Голос", "text": "Ты наконец-то проснулся."},
+      {"name": "Ты", "text": "Где я? Что происходит?"}
+    ],
+    "next": "first_choice"
+  },
+  "first_choice": {
+    "type": "choice",
+    "question": "Что ты сделаешь?",
+    "options": {
+      "Осмотреться": "look_around",
+      "Позвать на помощь": "call_for_help"
+    }
+  },
+  "look_around": {
+    "type": "monologue",
+    "text": "Ты осматриваешь комнату и замечаешь дверь...",
+    "next": "end"
+  },
+  "call_for_help": {
+    "type": "monologue",
+    "text": "Ты зовешь, но никто не отвечает...",
+    "next": "end"
+  },
+  "end": {
+    "type": "monologue",
+    "text": "Продолжение следует..."
+  }
+}
