@@ -59,7 +59,11 @@ public class Main extends JFrame {
                 }
             } else {
                 frameMain.dispose();
-                new NovelFrame("src/story.json");
+                try {
+                    new NovelFrame("src/story.json");
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

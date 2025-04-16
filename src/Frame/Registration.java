@@ -42,19 +42,24 @@ public class Registration {
         panelsignIn1.setLocation(centerLocation[0] - 300, centerLocation[1] - 45);
         panelsignIn1.setLayout(new BoxLayout(panelsignIn1, BoxLayout.Y_AXIS));
 
-        JTextArea Login = new JTextArea();
+        JTextField Login = new JTextField();
         Login.setSize(300, 30);
         Login.setOpaque(false);
         Login.setText("Логин");
+        Login.setEditable(false);
+        Login.setBorder(null);
+        Login.setFocusable(false);
         Login.setFont(CustomFont.CustomFont1().deriveFont(40f));
         Login.setForeground(new Color(254, 222, 143));
 
-        JTextArea Password = new JTextArea();
+        JTextField Password = new JTextField();
         Password.setSize(300, 30);
-        Password.setOpaque(false);
         Password.setForeground(Color.WHITE);
         Password.setOpaque(false);
         Password.setBackground(Color.black);
+        Password.setEditable(false);
+        Password.setBorder(null);
+        Password.setFocusable(false);
         Password.setText("Пароль");
         Password.setFont(CustomFont.CustomFont1().deriveFont(40f));
         Password.setForeground(new Color(254, 222, 143));

@@ -2,10 +2,12 @@
 package Frame.History;
 
 import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.util.Map;
 
 public class PageFactory {
-    public static JPanel createPage(String key, Map<String, Object> data, StoryManager manager) {
+    public static JPanel createPage(String key, Map<String, Object> data, StoryManager manager) throws IOException, FontFormatException {
         Map<String, Object> node = (Map<String, Object>) data.get(key);
         String type = (String) node.get("type");
 
