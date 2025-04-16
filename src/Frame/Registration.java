@@ -4,8 +4,10 @@ import DBSourse.JDBCPosgreSQLConnection;
 import DBSourse.UsersTable;
 import HelpClasses.CustomFont;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 
@@ -26,6 +28,26 @@ public class Registration {
         JLabel label = new JLabel(cachedRegistrationFon);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
+
+
+        JButton buttonClose = new JButton();
+        File imgAchievement = new File("src/resource/CloseImage.png").getAbsoluteFile();
+        Image imgReadAchievement = ImageIO.read(imgAchievement);
+        buttonClose.setSize(60, 60);
+        Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
+        buttonClose.setIcon(new ImageIcon(newImg3));
+        Main.parButton(buttonClose);
+        int[] centerLocation1 = Registration.CenterLocationObject(frame);
+        buttonClose.setLocation(centerLocation1[0] + 520, centerLocation1[1] - 360);
+        buttonClose.addActionListener(e -> {
+            try {
+                new Main();
+                frame.dispose();
+            } catch (IOException | SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
 
         JTextField LogginField1 = new JTextField(15);
         LogginField1.setSize(300, 500);
@@ -76,6 +98,7 @@ public class Registration {
         PasswordField2.setFont(CustomFont.CustomFont1().deriveFont(40f));
 
         PasswordField2.setOpaque(false);
+
 
         Field3.setSize(300, 30);
         Field3.setEditable(false);
@@ -213,6 +236,7 @@ public class Registration {
         panelsignIn1.add(Password);
 
         frame.add(panelsignIn1);
+        frame.add(buttonClose);
         frame.add(panelBlock);
         frame.add(panelsignIn);
         frame.add(label);
