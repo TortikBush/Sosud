@@ -3,9 +3,10 @@ package HelpClasses;
 import javax.swing.*;
 
 public class DesktopWidget {
+    private static JFrame frame = new JFrame("Виджет");
     public static void Desktop() {
         // Создаём фрейм (окошко)
-        JFrame frame = new JFrame("Виджет");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(200, 100);
         frame.setAlwaysOnTop(true); // Всегда поверх окон
@@ -18,5 +19,8 @@ public class DesktopWidget {
 
         // Показываем
         frame.setVisible(true);
+    }
+    public static void Close() {
+        frame.setVisible(false);
     }
 }

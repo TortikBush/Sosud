@@ -163,8 +163,10 @@ public class Main extends JFrame {
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameMain.setUndecorated(true);
-        frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH);// Убираем границы и заголовок окна
+        frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // Убираем границы и заголовок окна
         frameMain.setVisible(true);
+        DesktopWidget.Close();
     }
 
     static ImageIcon cachedMainBackground;
