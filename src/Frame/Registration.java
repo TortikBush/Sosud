@@ -29,6 +29,8 @@ public class Registration {
 
         JTextField LogginField1 = new JTextField(15);
         LogginField1.setSize(300, 500);
+        LogginField1.setEditable(true);
+        LogginField1.setCaretColor(new Color(254, 222, 143));
         LogginField1.setBackground(Color.black);
         LogginField1.setForeground(Color.WHITE);
         LogginField1.setOpaque(false);
@@ -38,7 +40,7 @@ public class Registration {
         JPanel panelsignIn1 = new JPanel();
         panelsignIn1.setBackground(Color.black);
         panelsignIn1.setOpaque(false);
-        panelsignIn1.setSize(230, 100);
+        panelsignIn1.setSize(240, 100);
         panelsignIn1.setLocation(centerLocation[0] - 300, centerLocation[1] - 45);
         panelsignIn1.setLayout(new BoxLayout(panelsignIn1, BoxLayout.Y_AXIS));
 
@@ -67,6 +69,8 @@ public class Registration {
 
         JTextField PasswordField2 = new JTextField(15);
         PasswordField2.setSize(300, 500);
+        PasswordField2.setEditable(true);
+        PasswordField2.setCaretColor(new Color(254, 222, 143));
         PasswordField2.setBackground(Color.black);
         PasswordField2.setForeground(Color.WHITE);
         PasswordField2.setFont(CustomFont.CustomFont1().deriveFont(40f));
@@ -74,12 +78,18 @@ public class Registration {
         PasswordField2.setOpaque(false);
 
         Field3.setSize(300, 30);
+        Field3.setEditable(false);
+        Field3.setBorder(null);
+        Field3.setFocusable(false);
+        Field3.setHighlighter(null);
         Field3.setOpaque(false);
         Field3.setForeground(Color.RED);
 
         btnRegistration.setSize(100, 30);
         btnRegistration.setForeground(Color.WHITE);
         btnRegistration.setOpaque(false);
+        btnRegistration.setFont(CustomFont.CustomFont1().deriveFont(20f));
+        btnRegistration.setForeground(new Color(254, 222, 143));
         parButton(btnRegistration);
 
         JPanel panelsignIn = new JPanel();
@@ -102,9 +112,13 @@ public class Registration {
         signInBtn.setText("Войти");
         signInBtn.setFont(CustomFont.CustomFont1().deriveFont(20f));
         signInBtn.setForeground(new Color(254, 222, 143));
-
+        signInBtn.setBackground(Color.black);
         signInBtn.addActionListener(e -> {
-            SignInRegistration();
+            try {
+                SignInRegistration();
+            } catch (IOException | FontFormatException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         panelsignIn.add(Account);
@@ -179,12 +193,14 @@ public class Registration {
                     } catch (SQLException exc) {
                         throw new RuntimeException(exc);
                     }
-                } catch (ClassNotFoundException ex) {
+                } catch (ClassNotFoundException | IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
-        panelBlock.setSize(400, 130);
+        panelBlock.setSize(400, 230);
         panelBlock.setOpaque(false);
         panelBlock.add(LogginField1);
         centerLocation = CenterLocationObject(frame);
@@ -207,7 +223,7 @@ public class Registration {
         frame.setVisible(true);
     }
 
-    public static void SignInRegistration() {
+    public static void SignInRegistration() throws IOException, FontFormatException {
         if (RegSign == 0) {
             btnRegistration.setText("Войти");
             Field3.setText("");
