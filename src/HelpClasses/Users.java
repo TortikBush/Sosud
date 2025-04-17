@@ -4,8 +4,8 @@ public class Users {
     public static int IdUser;
     public static String UserName;
     public static String SavePoint;
-    public static Boolean MusicActive = true;
-    public static Boolean SoundActive = true;
+    public static Boolean MusicActive;
+    public static Boolean SoundActive;
 
     public static String GetUserName(){
         return UserName;

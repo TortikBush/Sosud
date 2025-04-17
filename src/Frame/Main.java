@@ -1,5 +1,6 @@
 package Frame;
 
+import DBSourse.JDBCPostgreSQLConnection;
 import Frame.History.NovelFrame;
 import HelpClasses.ClickArrow;
 import HelpClasses.DesktopWidget;
@@ -17,6 +18,7 @@ import java.sql.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+        EnableSetting();
         MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
         DesktopWidget.Desktop();
         new Main();
@@ -25,6 +27,7 @@ public class Main extends JFrame {
     public static byte[] mp3Data;
 
     public Main() throws IOException, SQLException, ClassNotFoundException {
+        EnableSetting();
         MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
         File file = new File("src/resource/SoundForSosud/Clac.mp3");
         FileInputStream fis = new FileInputStream(file);
@@ -155,9 +158,9 @@ public class Main extends JFrame {
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
         int[] topLocation = Registration.CenterLocationObject(frameMain);
-        frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
         if (Users.GetUserName() != null) {
             frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
+            frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
         }
 
         frameMain.add(label);
@@ -213,13 +216,39 @@ public class Main extends JFrame {
     }
 
     public static void MusicEnable(String url) {
-        if (Users.GetMusicActive()) {
+        if (Setting.GetCheckboxMusicEnable()) {
             MusicOnMenu.playMusic(url);
         } else {
             MusicOnMenu.stopMusic();
         }
-        if (Users.GetSoundActive()) {
+        if (Setting.GetCheckboxSoundEnable()) {
             //тут будет логика про звуки или голоса, но пока у нас только музыка
+        }
+    }
+
+    public static void EnableSetting() throws SQLException, ClassNotFoundException {
+        if (Users.GetIdUser()==0){
+            Setting.setCheckboxSoundEnable(true);
+            Setting.setCheckboxMusicEnable(true);
+            return;
+        }
+
+        Connection connection = JDBCPostgreSQLConnection.OpenConnection();
+        String sql1 = "Select user_setting.isactive, settings.name from user_setting join settings on settings.id = user_setting.idsetting where user_setting.iduser = ?;";
+        PreparedStatement stmt = connection.prepareStatement(sql1);
+        stmt.setInt(1, Users.GetIdUser());
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            switch (rs.getString("name")) {
+                case "Звук":
+                    Setting.setCheckboxSoundEnable(rs.getBoolean("isactive"));
+                    System.out.println(rs.getBoolean("isactive"));
+                    break;
+                case "Музыка":
+                    Setting.setCheckboxMusicEnable(rs.getBoolean("isactive"));
+                    break;
+            }
         }
     }
 }
