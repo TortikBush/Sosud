@@ -2,7 +2,7 @@
   "start": {
     "type": "monologue",
     "text": "Вы просыпаетесь в темной комнате...",
-    "imgfon": "src/resource/MainBackground.png",
+    "image": "MainBackground.png",
     "next": "intro_dialogue"
   },
   "intro_dialogue": {
