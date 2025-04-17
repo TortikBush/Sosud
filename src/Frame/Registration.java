@@ -20,14 +20,14 @@ public class Registration {
     private static final JTextArea Field3 = new JTextArea();
     private static final JTextArea Account = new JTextArea();
     private static final JButton signInBtn = new JButton();
-    private static final JLabel label = new JLabel();
+    private static final JLabel label = new JLabel(cachedRegistrationFon);
 
     private static int RegSign = 0;
 
     public Registration() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
-        label.setIcon(cachedRegistrationFon);
+//        label.setIcon(cachedRegistrationFon);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
