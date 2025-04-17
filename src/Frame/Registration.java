@@ -4,6 +4,7 @@ import DBSourse.JDBCPostgreSQLConnection;
 import DBSourse.UsersTable;
 import HelpClasses.CustomFont;
 import HelpClasses.Users;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -130,6 +131,13 @@ public class Registration {
                     } else {
                         Users.IdUser = rs.getInt("id");
                         Users.UserName = rs.getString("login");
+                        for (int i = 1; i <= 2; i++) {
+                            String sql3 = "INSERT INTO user_setting (iduser, idsetting,isactive ) VALUES (?, ?, true)";
+                            PreparedStatement stmt1 = connection.prepareStatement(sql3);
+                            stmt1.setInt(1, Users.GetIdUser());
+                            stmt1.setInt(2, i);
+                            stmt1.executeUpdate();
+                        }
                         new Main();
                         try {
                             Thread.sleep(600);
