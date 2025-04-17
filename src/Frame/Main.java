@@ -221,9 +221,6 @@ public class Main extends JFrame {
         } else {
             MusicOnMenu.stopMusic();
         }
-        if (Setting.GetCheckboxSoundEnable()) {
-            //тут будет логика про звуки или голоса, но пока у нас только музыка
-        }
     }
 
     public static void EnableSetting() throws SQLException, ClassNotFoundException {
@@ -243,7 +240,6 @@ public class Main extends JFrame {
             switch (rs.getString("name")) {
                 case "Звук":
                     Setting.setCheckboxSoundEnable(rs.getBoolean("isactive"));
-                    System.out.println(rs.getBoolean("isactive"));
                     break;
                 case "Музыка":
                     Setting.setCheckboxMusicEnable(rs.getBoolean("isactive"));
