@@ -65,9 +65,9 @@ public class Main extends JFrame {
                     throw new RuntimeException(ex);
                 }
             } else {
-                frameMain.dispose();
                 try {
                     new NovelFrame("src/story.json");
+                    frameMain.dispose();
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -190,6 +190,18 @@ public class Main extends JFrame {
             BufferedImage img = ImageIO.read(new File("src/resource/RegistrationFon.png"));
             Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
             cachedRegistrationFon = new ImageIcon(scaled);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static ImageIcon cachedSingInFon;
+
+    static {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/resource/SignIn.png"));
+            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
+            cachedSingInFon = new ImageIcon(scaled);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -20,12 +20,14 @@ public class Registration {
     private static final JTextArea Field3 = new JTextArea();
     private static final JTextArea Account = new JTextArea();
     private static final JButton signInBtn = new JButton();
+    private static final JLabel label = new JLabel();
+
     private static int RegSign = 0;
 
     public Registration() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
-        JLabel label = new JLabel(cachedRegistrationFon);
+        label.setIcon(cachedRegistrationFon);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
@@ -246,8 +248,10 @@ public class Registration {
             Field3.setText("");
             Account.setText("У вас нет аккаунта? ");
             signInBtn.setText("Зарегистрироваться");
+            label.setIcon(cachedSingInFon);
             RegSign = 1;
         } else if (RegSign == 1) {
+            label.setIcon(cachedRegistrationFon);
             Account.setText("У вас есть аккаунт? ");
             signInBtn.setText("Войти");
             btnRegistration.setText("Зарегистрироваться");
