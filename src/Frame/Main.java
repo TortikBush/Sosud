@@ -4,7 +4,7 @@ import Frame.History.NovelFrame;
 import HelpClasses.ClickArrow;
 import HelpClasses.DesktopWidget;
 import HelpClasses.MusickOnMenu;
-
+import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +17,7 @@ import java.sql.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        MusickOnMenu.playMusic("src/resource/SoundForSosud/music.piano_bg.wav");
-
+        MusicEnable();
         DesktopWidget.Desktop();
         new Main();
     }
@@ -26,6 +25,7 @@ public class Main extends JFrame {
     public static byte[] mp3Data;
 
     public Main() throws IOException, SQLException, ClassNotFoundException {
+        MusicEnable();
         File file = new File("src/resource/SoundForSosud/Clac.mp3");
         FileInputStream fis = new FileInputStream(file);
         mp3Data = fis.readAllBytes(); // Кешируем в массив байтов
@@ -215,5 +215,16 @@ public class Main extends JFrame {
         button.setFocusable(false);
         button.setBorderPainted(false);
         return button;
+    }
+
+    public static void MusicEnable(){
+        if (Users.GetMusicActive()){
+            MusickOnMenu.playMusic("src/resource/SoundForSosud/music.piano_bg.wav");
+        } else {
+            MusickOnMenu.stopMusic();
+        }
+        if (Users.GetSoundActive()){
+            //тут будет логика про звуки или голоса, но пока у нас только музыка
+        }
     }
 }

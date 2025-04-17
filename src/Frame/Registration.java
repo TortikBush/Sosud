@@ -3,6 +3,7 @@ package Frame;
 import DBSourse.JDBCPosgreSQLConnection;
 import DBSourse.UsersTable;
 import HelpClasses.CustomFont;
+import HelpClasses.Users;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

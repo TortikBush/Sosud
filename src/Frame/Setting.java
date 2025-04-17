@@ -2,6 +2,7 @@ package Frame;
 
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
+import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -71,6 +72,7 @@ public class Setting {
         checkboxMusic.setBorderPainted(false);
         checkboxMusic.setFocusable(false);
         checkboxMusic.setOpaque(false);
+        checkboxMusic.setSelected(Users.GetMusicActive());
 
         JCheckBox checkboxSound = new JCheckBox("Звуки");
         checkboxSound.setFont(CustomFont.CustomFont2().deriveFont(70f));
@@ -83,6 +85,7 @@ public class Setting {
         checkboxSound.setBorderPainted(false);
         checkboxSound.setFocusable(false);
         checkboxSound.setOpaque(false);
+        checkboxSound.setSelected(Users.GetSoundActive());
 
         JButton buttonSave = new JButton("Сохранить");
         buttonSave.setFont(CustomFont.CustomFont2().deriveFont(50f));
@@ -109,6 +112,9 @@ public class Setting {
 
                 stm1.executeUpdate();
                 stm2.executeUpdate();
+
+                Users.SoundActive = checkboxSound.isSelected();
+                Users.MusicActive = checkboxMusic.isSelected();
 
                 new Main();
                 frameSetting.dispose();
