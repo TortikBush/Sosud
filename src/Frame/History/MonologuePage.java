@@ -1,8 +1,6 @@
 package Frame.History;
-// MonologuePage.java
 
 import HelpClasses.CustomFont;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -14,9 +12,9 @@ public class MonologuePage extends JPanel {
 
         JLabel textLabel = new JLabel("<html><div style='padding:10px;'>" + node.get("text").toString() + "</div></html>");
         textLabel.setFont(CustomFont.CustomFont1().deriveFont(20f));
-        textLabel.setForeground(new Color(254, 222, 143));
-        add(textLabel, BorderLayout.CENTER);
+        textLabel.setForeground(Color.RED);
 
+        add(textLabel, BorderLayout.CENTER);
         JButton nextButton = new JButton("Далее");
         nextButton.addActionListener(e -> {
             String next = (String) node.get("next");
@@ -28,6 +26,7 @@ public class MonologuePage extends JPanel {
                 }
             }
         });
+
         add(nextButton, BorderLayout.SOUTH);
     }
 }
