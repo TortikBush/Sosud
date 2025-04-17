@@ -15,7 +15,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
-    private static final JButton btnRegistration = new JButton("Зарегистрироваться");
+    private static final JButton btnRegistration = new JButton();
     private static final JTextArea Field3 = new JTextArea();
     private static final JTextArea Account = new JTextArea();
     private static final JButton signInBtn = new JButton();
@@ -108,6 +108,7 @@ public class Registration {
         Field3.setForeground(Color.RED);
 
         btnRegistration.setSize(100, 30);
+        btnRegistration.setText("Зарегистрироваться");
         btnRegistration.setForeground(Color.WHITE);
         btnRegistration.setOpaque(false);
         btnRegistration.setFont(CustomFont.CustomFont1().deriveFont(20f));
