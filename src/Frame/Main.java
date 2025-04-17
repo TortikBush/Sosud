@@ -17,7 +17,7 @@ import java.sql.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        MusicEnable();
+        MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
         DesktopWidget.Desktop();
         new Main();
     }
@@ -25,7 +25,7 @@ public class Main extends JFrame {
     public static byte[] mp3Data;
 
     public Main() throws IOException, SQLException, ClassNotFoundException {
-        MusicEnable();
+        MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
         File file = new File("src/resource/SoundForSosud/Clac.mp3");
         FileInputStream fis = new FileInputStream(file);
         mp3Data = fis.readAllBytes(); // Кешируем в массив байтов
@@ -217,9 +217,9 @@ public class Main extends JFrame {
         return button;
     }
 
-    public static void MusicEnable(){
+    public static void MusicEnable(String url){
         if (Users.GetMusicActive()){
-            MusickOnMenu.playMusic("src/resource/SoundForSosud/music.piano_bg.wav");
+            MusickOnMenu.playMusic(url);
         } else {
             MusickOnMenu.stopMusic();
         }
