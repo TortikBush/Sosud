@@ -3,9 +3,9 @@ package Frame.History;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
+import static Frame.Main.MusicEnable;
 import static Frame.Main.parButton;
 
 public class ChoicePage extends JPanel {
@@ -19,6 +19,9 @@ public class ChoicePage extends JPanel {
         // 1. Фон
 
         String imagePath = "src/resource/story/" + node.get("image").toString();
+        String music = "src/resource/story/" + node.get("music").toString();
+        MusicEnable(music);
+
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaled = originalIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
         JLabel background = new JLabel(new ImageIcon(scaled));

@@ -1,6 +1,7 @@
 {
   "start": {
     "type": "choice",
+    "music": "music_bg.wav",
     "image": "First.jpg",
     "question": "",
     "options": {
