@@ -134,6 +134,5 @@ public class Setting {
         frameSetting.add(label);
         frameSetting.setUndecorated(true);
         frameSetting.setVisible(true);
-
     }
 }

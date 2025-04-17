@@ -10,6 +10,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+
 import static Frame.Main.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -28,7 +29,6 @@ public class Registration {
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
-
         JButton buttonClose = new JButton();
         File imgAchievement = new File("src/resource/CloseImage.png").getAbsoluteFile();
         Image imgReadAchievement = ImageIO.read(imgAchievement);
@@ -46,7 +46,6 @@ public class Registration {
                 throw new RuntimeException(ex);
             }
         });
-
 
         JTextField LogginField1 = new JTextField(15);
         LogginField1.setSize(300, 500);
@@ -87,7 +86,6 @@ public class Registration {
         Password.setFont(CustomFont.CustomFont1().deriveFont(40f));
         Password.setForeground(new Color(254, 222, 143));
 
-
         JTextField PasswordField2 = new JTextField(15);
         PasswordField2.setSize(300, 500);
         PasswordField2.setEditable(true);
@@ -95,9 +93,7 @@ public class Registration {
         PasswordField2.setBackground(Color.black);
         PasswordField2.setForeground(Color.WHITE);
         PasswordField2.setFont(CustomFont.CustomFont1().deriveFont(40f));
-
         PasswordField2.setOpaque(false);
-
 
         Field3.setSize(300, 30);
         Field3.setEditable(false);
@@ -114,39 +110,6 @@ public class Registration {
         btnRegistration.setFont(CustomFont.CustomFont1().deriveFont(20f));
         btnRegistration.setForeground(new Color(254, 222, 143));
         parButton(btnRegistration);
-
-        JPanel panelsignIn = new JPanel();
-        panelsignIn.setBackground(Color.black);
-        panelsignIn.setOpaque(false);
-        panelsignIn.setSize(400, 70);
-        panelsignIn.setLocation(centerLocation[0] - 200, centerLocation[1] + 170);
-
-        Account.setSize(300, 30);
-        Account.setOpaque(false);
-        Account.setForeground(Color.WHITE);
-
-        Account.setText("У вас есть аккаунт?");
-        Account.setFont(CustomFont.CustomFont1().deriveFont(20f));
-        Account.setForeground(new Color(254, 222, 143));
-
-        signInBtn.setSize(100, 30);
-        signInBtn.setForeground(Color.WHITE);
-        signInBtn.setOpaque(false);
-        signInBtn.setText("Войти");
-        signInBtn.setFont(CustomFont.CustomFont1().deriveFont(20f));
-        signInBtn.setForeground(new Color(254, 222, 143));
-        signInBtn.setBackground(Color.black);
-        signInBtn.addActionListener(e -> {
-            try {
-                SignInRegistration();
-            } catch (IOException | FontFormatException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        panelsignIn.add(Account);
-        panelsignIn.add(signInBtn);
-
         btnRegistration.addActionListener(e -> {
             if (LogginField1.getText().isEmpty() || PasswordField2.getText().isEmpty()) {
                 Field3.setText("Вы не заполнили все поля");
@@ -221,6 +184,38 @@ public class Registration {
                 }
             }
         });
+
+        JPanel panelsignIn = new JPanel();
+        panelsignIn.setBackground(Color.black);
+        panelsignIn.setOpaque(false);
+        panelsignIn.setSize(400, 70);
+        panelsignIn.setLocation(centerLocation[0] - 200, centerLocation[1] + 170);
+
+        Account.setSize(300, 30);
+        Account.setOpaque(false);
+        Account.setForeground(Color.WHITE);
+        Account.setText("У вас есть аккаунт?");
+        Account.setFont(CustomFont.CustomFont1().deriveFont(20f));
+        Account.setForeground(new Color(254, 222, 143));
+
+        signInBtn.setSize(100, 30);
+        signInBtn.setForeground(Color.WHITE);
+        signInBtn.setOpaque(false);
+        signInBtn.setText("Войти");
+        signInBtn.setFont(CustomFont.CustomFont1().deriveFont(20f));
+        signInBtn.setForeground(new Color(254, 222, 143));
+        signInBtn.setBackground(Color.black);
+        signInBtn.addActionListener(e -> {
+            try {
+                SignInRegistration();
+            } catch (IOException | FontFormatException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        panelsignIn.add(Account);
+        panelsignIn.add(signInBtn);
+
         panelBlock.setSize(400, 230);
         panelBlock.setOpaque(false);
         panelBlock.add(LogginField1);
