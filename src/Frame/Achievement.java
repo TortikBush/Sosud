@@ -1,8 +1,10 @@
 package Frame;
 
 import DBSourse.AchievementList;
+import HelpClasses.ClickArrow;
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPosgreSQLConnection;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
@@ -17,12 +19,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Achievement {
     private static int FirstIdCharacter = 0;
+
     public Achievement() throws SQLException, ClassNotFoundException, IOException, FontFormatException {
         var ref = new Object() {
             int indexAchiv = 0;
@@ -161,9 +165,10 @@ public class Achievement {
         parButton(buttonNextNameCharacter);
 
         buttonNextNameCharacter.addActionListener(e -> {
+            ClickArrow.playCachedMP3();
             ref.indexAchiv = 0;
             ref.id = 0;
-            if (FirstIdCharacter == 2){
+            if (FirstIdCharacter == 2) {
                 ref.IdCharacter = FirstIdCharacter;
                 FirstIdCharacter = 0;
             }
@@ -219,6 +224,7 @@ public class Achievement {
 
 
         buttonNextNameAchievement.addActionListener(e -> {
+            ClickArrow.playCachedMP3();
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
                     .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
@@ -248,6 +254,7 @@ public class Achievement {
 
 
         buttonReversNameAchievement.addActionListener(e -> {
+            ClickArrow.playCachedMP3();
             List<AchievementList> achievementList1 = new ArrayList<>();
             achievementList.stream()
                     .filter(achievement -> achievement.getIdCharacter() == ref.IdCharacter)// Применение тернарного оператора
@@ -277,6 +284,7 @@ public class Achievement {
 
 
         buttonReversNameCharacter.addActionListener(e -> {
+            ClickArrow.playCachedMP3();
             ref.indexAchiv = 0;
             int ID = ref.IdCharacter;
             ref.id = 0;
