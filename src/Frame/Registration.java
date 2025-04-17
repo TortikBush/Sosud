@@ -113,6 +113,7 @@ public class Registration {
         btnRegistration.setForeground(new Color(254, 222, 143));
         parButton(btnRegistration);
         btnRegistration.addActionListener(e -> {
+            int firstRegistration = 1;
             if (LogginField1.getText().isEmpty() || PasswordField2.getText().isEmpty()) {
                 Field3.setText("Вы не заполнили все поля");
                 return;
@@ -131,20 +132,22 @@ public class Registration {
                     } else {
                         Users.IdUser = rs.getInt("id");
                         Users.UserName = rs.getString("login");
-                        for (int i = 1; i <= 2; i++) {
-                            String sql3 = "INSERT INTO user_setting (iduser, idsetting,isactive ) VALUES (?, ?, true)";
-                            PreparedStatement stmt1 = connection.prepareStatement(sql3);
-                            stmt1.setInt(1, Users.GetIdUser());
-                            stmt1.setInt(2, i);
-                            stmt1.executeUpdate();
+                        if (firstRegistration == 0) {
+                            for (int i = 1; i <= 2; i++) {
+                                String sql3 = "INSERT INTO user_setting (iduser, idsetting,isactive ) VALUES (?, ?, true)";
+                                PreparedStatement stmt1 = connection.prepareStatement(sql3);
+                                stmt1.setInt(1, Users.GetIdUser());
+                                stmt1.setInt(2, i);
+                                stmt1.executeUpdate();
+                            }
                         }
-                        new Main();
-                        try {
-                            Thread.sleep(600);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        frame.dispose();
+                            new Main();
+                            try {
+                                Thread.sleep(600);
+                            } catch (InterruptedException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            frame.dispose();
                     }
 
                 } catch (SQLException | ClassNotFoundException | IOException ex) {
@@ -154,6 +157,7 @@ public class Registration {
             } else {
                 Field3.setText("");
                 try {
+
                     if (LogginField1.getText().length() >= 5 && PasswordField2.getText().length() >= 8) {
                         Connection connection = JDBCPostgreSQLConnection.OpenConnection();
                         String sql1 = "Select id from users where login = ? LIMIT 1;";
@@ -166,12 +170,14 @@ public class Registration {
                             UsersTable.setId(rs.getInt("Id"));
                         }
                         if (UsersTable.getId() == 0) {
+
                             String sql2 = "INSERT INTO users (login, password, idrole) VALUES (?, ?, 2)";
                             PreparedStatement add = connection.prepareStatement(sql2);
                             add.setString(1, LogginField1.getText());
                             add.setString(2, PasswordField2.getText());
                             int resultUpdate = add.executeUpdate();
                             if (resultUpdate == 1) {
+                                firstRegistration = 0;
                                 SignInRegistration();
                             } else {
                                 Field3.setText("Неизвестная ошибка, попробуйте еще раз");
