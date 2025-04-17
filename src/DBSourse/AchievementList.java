@@ -6,7 +6,6 @@ public class AchievementList {
     private int IdCharacter;
     private String Description;
     private String NameCharacter;
-    public int countAchievements = 0;
 
     public AchievementList() {
     }

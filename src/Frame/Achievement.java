@@ -3,7 +3,7 @@ package Frame;
 import DBSourse.AchievementList;
 import HelpClasses.ClickArrow;
 import HelpClasses.CustomFont;
-import DBSourse.JDBCPosgreSQLConnection;
+import DBSourse.JDBCPostgreSQLConnection;
 import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -355,7 +355,7 @@ public class Achievement {
     }
 
     public static List<AchievementList> SelectAchievementFromDB() throws SQLException, ClassNotFoundException {
-        Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+        Connection connection = JDBCPostgreSQLConnection.OpenConnection();
         List<AchievementList> achievementList = new ArrayList<>();
         String sql1 = "SELECT achievement.id AS id, achievement.name AS name, idcharacter, description, \"character\".name AS namecharacter " +
                 "FROM achievement " +

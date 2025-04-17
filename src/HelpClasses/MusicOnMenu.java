@@ -4,7 +4,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-public class MusickOnMenu {
+public class MusicOnMenu {
     private static Clip clip;
 
     public static void playMusic(String filepath) {

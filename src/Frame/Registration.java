@@ -1,26 +1,24 @@
 package Frame;
 
-import DBSourse.JDBCPosgreSQLConnection;
+import DBSourse.JDBCPostgreSQLConnection;
 import DBSourse.UsersTable;
 import HelpClasses.CustomFont;
 import HelpClasses.Users;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-
 import static Frame.Main.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class Registration {
-    private static JButton btnRegistration = new JButton("Зарегистрироваться");
-    private static JTextArea Field3 = new JTextArea();
-    private static JTextArea Account = new JTextArea();
-    private static JButton signInBtn = new JButton();
+    private static final JButton btnRegistration = new JButton("Зарегистрироваться");
+    private static final JTextArea Field3 = new JTextArea();
+    private static final JTextArea Account = new JTextArea();
+    private static final JButton signInBtn = new JButton();
     private static int RegSign = 0;
 
     public Registration() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
@@ -156,7 +154,7 @@ public class Registration {
             if (RegSign == 1) {
                 Field3.setText("");
                 try {
-                    Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+                    Connection connection = JDBCPostgreSQLConnection.OpenConnection();
                     String sql1 = "Select id, login from users where login = ? and password = ? LIMIT 1;";
                     PreparedStatement stmt = connection.prepareStatement(sql1);
                     stmt.setString(1, LogginField1.getText());
@@ -184,7 +182,7 @@ public class Registration {
                 Field3.setText("");
                 try {
                     if (LogginField1.getText().length() >= 5 && PasswordField2.getText().length() >= 8) {
-                        Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+                        Connection connection = JDBCPostgreSQLConnection.OpenConnection();
                         String sql1 = "Select id from users where login = ? LIMIT 1;";
                         PreparedStatement stmt = connection.prepareStatement(sql1);
                         stmt.setString(1, LogginField1.getText());
@@ -217,9 +215,7 @@ public class Registration {
                     } catch (SQLException exc) {
                         throw new RuntimeException(exc);
                     }
-                } catch (ClassNotFoundException | IOException ex) {
-                    throw new RuntimeException(ex);
-                } catch (FontFormatException ex) {
+                } catch (ClassNotFoundException | IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
             }
@@ -273,6 +269,7 @@ public class Registration {
         int[] centerLocation = new int[2];
         centerLocation[0] = x;
         centerLocation[1] = y;
+
         return centerLocation;
     }
 }

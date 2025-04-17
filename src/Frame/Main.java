@@ -3,7 +3,7 @@ package Frame;
 import Frame.History.NovelFrame;
 import HelpClasses.ClickArrow;
 import HelpClasses.DesktopWidget;
-import HelpClasses.MusickOnMenu;
+import HelpClasses.MusicOnMenu;
 import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,8 +53,7 @@ public class Main extends JFrame {
 
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
-            Users user = new Users();
-            if (user.GetUserName() == null) {
+            if (Users.GetUserName() == null) {
                 //
                 try {
                     new Registration();
@@ -118,9 +117,7 @@ public class Main extends JFrame {
         btnExit.setIcon(new ImageIcon(newImg5));
 
         parButton(btnExit);
-        btnExit.addActionListener(e ->
-
-        {
+        btnExit.addActionListener(e ->{
             System.exit(0);
         });
         //Кнопка Достижения
@@ -158,16 +155,15 @@ public class Main extends JFrame {
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
         int[] topLocation = Registration.CenterLocationObject(frameMain);
-//        if (Users.GetUserName()!=null) {
         frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
-        frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
-//        }
+        if (Users.GetUserName() != null) {
+            frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
+        }
 
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameMain.setUndecorated(true);
         frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // Убираем границы и заголовок окна
         frameMain.setVisible(true);
         DesktopWidget.Close();
     }
@@ -196,7 +192,6 @@ public class Main extends JFrame {
         }
     }
 
-
     static ImageIcon cachedSettingFon;
 
     static {
@@ -217,13 +212,13 @@ public class Main extends JFrame {
         return button;
     }
 
-    public static void MusicEnable(String url){
-        if (Users.GetMusicActive()){
-            MusickOnMenu.playMusic(url);
+    public static void MusicEnable(String url) {
+        if (Users.GetMusicActive()) {
+            MusicOnMenu.playMusic(url);
         } else {
-            MusickOnMenu.stopMusic();
+            MusicOnMenu.stopMusic();
         }
-        if (Users.GetSoundActive()){
+        if (Users.GetSoundActive()) {
             //тут будет логика про звуки или голоса, но пока у нас только музыка
         }
     }

@@ -1,7 +1,7 @@
 package Frame;
 
 import HelpClasses.CustomFont;
-import DBSourse.JDBCPosgreSQLConnection;
+import DBSourse.JDBCPostgreSQLConnection;
 import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -98,7 +98,7 @@ public class Setting {
 
         buttonSave.addActionListener(e -> {
             try {
-                Connection connection = JDBCPosgreSQLConnection.OpenConnection();
+                Connection connection = JDBCPostgreSQLConnection.OpenConnection();
 
                 String sql1 = "UPDATE user_setting SET isactive = ? from settings WHERE user_setting.idsetting = 1 and user_setting.iduser = ?;";
                 PreparedStatement stm1 = connection.prepareStatement(sql1);
