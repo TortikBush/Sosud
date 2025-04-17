@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class MusickOnMenu {
-    private static Clip clip; // сохраняем Clip как поле класса
+    private static Clip clip;
 
     public static void playMusic(String filepath) {
         try {
             if (clip != null && clip.isRunning()) {
-                clip.stop(); // остановить предыдущую музыку, если она играет
+                clip.stop();
             }
 
             File audioFile = new File(filepath);
