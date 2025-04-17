@@ -1,34 +1,16 @@
 {
   "start": {
-    "type": "monologue",
-    "text": "Вы просыпаетесь в темной комнате...",
-    "image": "MainBackground.png",
-    "next": "intro_dialogue"
-  },
-  "intro_dialogue": {
-    "type": "dialogue",
-    "lines": [
-      {"name": "Голос", "text": "Ты наконец-то проснулся."},
-      {"name": "Ты", "text": "Где я? Что происходит?"}
-    ],
-    "next": "first_choice"
-  },
-  "first_choice": {
     "type": "choice",
-    "question": "Что ты сделаешь?",
+    "image": "First.jpg",
+    "question": "",
     "options": {
-      "Осмотреться": "look_around",
-      "Позвать на помощь": "call_for_help"
+      "Пифон": "Pifon"
     }
   },
-  "look_around": {
+  "Pifon": {
     "type": "monologue",
-    "text": "Ты осматриваешь комнату и замечаешь дверь...",
-    "next": "end"
-  },
-  "call_for_help": {
-    "type": "monologue",
-    "text": "Ты зовешь, но никто не отвечает...",
+    "image": "MainBackground.png",
+    "text": "Вы выбрали пифона",
     "next": "end"
   },
   "end": {

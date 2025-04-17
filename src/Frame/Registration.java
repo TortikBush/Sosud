@@ -27,7 +27,6 @@ public class Registration {
     public Registration() throws IOException, SQLException, ClassNotFoundException, FontFormatException {
         JFrame frame = new JFrame();
         JPanel panelBlock = new JPanel();
-//        label.setIcon(cachedRegistrationFon);
         int[] centerLocation = CenterLocationObject(frame);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
