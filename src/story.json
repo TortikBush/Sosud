@@ -17,7 +17,7 @@
   "choice1": {
     "type": "choice",
     "text": "",
-    "image": "Choice.png",
+    "image": "выбор.png",
     "options": [
       {
         "text": "Осмотреть помещение",
