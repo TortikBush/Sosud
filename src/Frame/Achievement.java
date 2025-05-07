@@ -19,7 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -328,7 +327,6 @@ public class Achievement {
             NameAchievement.setText(previous.getName());
             textDescription.setText(previous.getDescription());
         });
-
 
         panelBlockAchievement.add(buttonReversNameAchievement);
         panelBlockAchievement.add(NameAchievement);

@@ -1,59 +1,90 @@
 package Frame.History;
 
+import HelpClasses.CustomFont;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
-import static Frame.Main.MusicEnable;
-import static Frame.Main.parButton;
+import static HelpClasses.CreateButtonMenuOnHistory.CreateButton;
 
 public class ChoicePage extends JPanel {
-    public ChoicePage(Map<String, Object> node, StoryManager manager, Map<String, Object> storyData) {
-        setLayout(new BorderLayout());
+
+    public ChoicePage(Map<String, Object> node, StoryManager manager, Map<String, Object> data) throws IOException, FontFormatException {
+        setLayout(null);
         setPreferredSize(new Dimension(1920, 1080));
 
-        // JLayeredPane: фон + интерфейс
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1920, 1080));
-        // 1. Фон
+        // ==== Фон через кастомную панель ====
+        String imagePath = "";
+        if (node.get("image") != null) {
+            imagePath = "src/resource/story/" + node.get("image").toString();
+        }
 
-        String imagePath = "src/resource/story/" + node.get("image").toString();
-        String music = "src/resource/story/" + node.get("music").toString();
-        MusicEnable(music);
+        Image backgroundImg = ImageIO.read(new File(imagePath))
+                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
 
-        ImageIcon originalIcon = new ImageIcon(imagePath);
-        Image scaled = originalIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        JLabel background = new JLabel(new ImageIcon(scaled));
-        background.setBounds(0, 0, 1920, 1080);
-        layeredPane.add(background, Integer.valueOf(0));  // слой 0 — фон
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImg, 0, 0, null);
+            }
+        };
+        backgroundPanel.setLayout(null);
+        backgroundPanel.setBounds(0, 0, 1920, 1080);
+        add(backgroundPanel);
 
-        // 3. Кнопки выбора
-        int buttonY = 100;
+        // ==== Верхние кнопки ====
+        JPanel topButtons = new JPanel();
+        topButtons = CreateButton(topButtons);
 
-        Map<String, String> options = (Map<String, String>) node.get("options");
-        for (Map.Entry<String, String> entry : options.entrySet()) {
-            JButton button = new JButton();
-            button.setBounds(730, buttonY, 480, 840);
-            button.setFocusPainted(true);
+        backgroundPanel.add(topButtons);
 
-            button.setContentAreaFilled(false);
-            button.setOpaque(false);
-            parButton(button);
-            button.setFocusable(true);
-            button.setBorderPainted(true);
-            buttonY += 30;
-            button.addActionListener(e -> {
-                button.transferFocus();
+        // ==== Панель выбора ====
+        JPanel choicePanel = new JPanel();
+        choicePanel.setLayout(new BoxLayout(choicePanel, BoxLayout.Y_AXIS));
+        choicePanel.setBackground(new Color(0, 0, 0, 180));
+        choicePanel.setBounds(620, 800, 1020, 280);
+        choicePanel.setOpaque(false);
+        choicePanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+
+        // ==== Заголовок ====
+        JLabel questionLabel = new JLabel(node.get("text").toString());
+        questionLabel.setForeground(Color.red);
+        questionLabel.setFont(new Font("Serif", Font.BOLD, 40));
+        questionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        choicePanel.add(questionLabel);
+        choicePanel.add(Box.createVerticalStrut(20));
+
+        // ==== Кнопки выбора ====
+        List<Map<String, Object>> options = (List<Map<String, Object>>) node.get("options");
+        for (Map<String, Object> choice : options) {
+            String text = choice.get("text").toString();
+            String next = choice.get("next").toString();
+
+            JButton choiceButton = new JButton(text);
+            choiceButton.setOpaque(false);
+            choiceButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+            choiceButton.setFont(CustomFont.CustomFont1().deriveFont(21f));
+            choiceButton.setForeground(new Color(254, 222, 143));
+            choiceButton.setMaximumSize(new Dimension(1000, 50));
+            choiceButton.setFocusable(false);
+
+            choiceButton.addActionListener(e -> {
                 try {
-                    manager.showPage(entry.getValue(), storyData);
+                    manager.showPage(next, data);
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
             });
-            layeredPane.add(button, Integer.valueOf(1));
+
+            choicePanel.add(choiceButton);
+            choicePanel.add(Box.createVerticalStrut(10));
         }
 
-        add(layeredPane, BorderLayout.CENTER);
+        backgroundPanel.add(choicePanel);
     }
 }

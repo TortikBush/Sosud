@@ -18,6 +18,8 @@ public class PageFactory {
                 return new DialoguePage(node, manager, data);
             case "choice":
                 return new ChoicePage(node, manager, data);
+            case "first":
+                return new FirstPages(node, manager, data);
             default:
                 return null;
         }

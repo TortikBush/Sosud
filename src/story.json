@@ -1,8 +1,8 @@
 {
   "start": {
-    "type": "choice",
+    "type": "first",
     "music": "music_bg.wav",
-    "image": "First.jpg",
+    "image": "First.png",
     "question": "",
     "options": {
       "Пифон": "Pifon"
@@ -10,12 +10,38 @@
   },
   "Pifon": {
     "type": "monologue",
-    "image": "MainBackground.png",
-    "text": "Вы выбрали пифона",
-    "next": "end"
+    "image": "Пифон.png",
+    "text": "фыаыasdsadasdsadasdasdsadasdasdasd  sadd as dasd as das dasdasdashdnashd asg dhuasghdj gasuy dgas yd ghyasediваа",
+    "next": "choice1"
+  },
+  "choice1": {
+    "type": "choice",
+    "text": "",
+    "image": "Choice.png",
+    "options": [
+      {
+        "text": "Осмотреть помещение",
+        "next": "end"
+      },
+      {
+        "text": "Проверить карман",
+        "next": "end"
+      },
+      {
+        "text": "Позвать на помощь",
+        "next": "end"
+      }
+    ]
+  },
+  "monologue1": {
+    "type": "monologue",
+    "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
+    "image": "Пифон.png",
+    "next": "choice1"
   },
   "end": {
     "type": "monologue",
-    "text": "Продолжение следует..."
+    "text": "Продолжение следует...",
+    "image": "MainBackground.png"
   }
 }
