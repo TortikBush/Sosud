@@ -58,12 +58,24 @@ public class ChoicePage extends JPanel {
             String next = choice.get("next").toString();
 
             JButton choiceButton = new JButton(text);
+            choiceButton.setBackground(Color.black);
             choiceButton.setOpaque(false);
             choiceButton.setAlignmentX(Component.LEFT_ALIGNMENT);
             choiceButton.setFont(CustomFont.CustomFont1().deriveFont(21f));
             choiceButton.setForeground(new Color(254, 222, 143));
             choiceButton.setMaximumSize(new Dimension(1000, 50));
             choiceButton.setFocusable(false);
+            choiceButton.setBorderPainted(false);
+            choiceButton.getModel().addChangeListener(e -> {
+                ButtonModel model = choiceButton.getModel();
+                if (model.isPressed()) {
+                    choiceButton.setBackground(new Color(255, 200, 100));
+                } else if (model.isRollover()) {
+                    choiceButton.setBackground(new Color(255, 230, 160));
+                } else {
+                    choiceButton.setBackground(new Color(254, 222, 143));
+                }
+            });
 
             choiceButton.addActionListener(e -> {
                 try {
