@@ -1,6 +1,5 @@
 package Frame.History;
 
-import HelpClasses.CreateButtonMenuOnHistory;
 import HelpClasses.CustomFont;
 
 import javax.imageio.ImageIO;
@@ -11,7 +10,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import static Frame.Main.parButton;
-import static HelpClasses.CreateButtonMenuOnHistory.CreateButton;
+import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
 
 public class MonologuePage extends JPanel {
 

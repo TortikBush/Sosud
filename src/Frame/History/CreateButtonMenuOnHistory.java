@@ -1,4 +1,4 @@
-package HelpClasses;
+package Frame.History;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import Frame.Setting;
 import Frame.Main;
 import Frame.Achievement;
+import HelpClasses.ClickArrow;
+
 import static Frame.Main.parButton;
 
 public class CreateButtonMenuOnHistory extends Component {
