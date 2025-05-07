@@ -5,6 +5,8 @@ import Frame.Registration;
 import javax.swing.*;
 import java.awt.geom.RoundRectangle2D;
 
+import static HelpClasses.CenterLocation.CenterLocationObject;
+
 
 public class DesktopWidget {
     private static JFrame frame = new JFrame("Виджет");
@@ -20,7 +22,7 @@ public class DesktopWidget {
         frame.add(label);
         frame.setShape(new RoundRectangle2D.Double(5, 6, 810, 400, 58, 58));
 
-        int[] centerLocation1 = Registration.CenterLocationObject(frame);
+        int[] centerLocation1 = CenterLocationObject(frame);
         frame.setLocation(centerLocation1[0] - 360, centerLocation1[1] - 200);
         frame.setSize(820, 400);
 

@@ -9,18 +9,22 @@ import HelpClasses.Users;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
+import static HelpClasses.CashedResource.CashedResource;
+import static HelpClasses.CashedResource.cachedManuForest;
+import static HelpClasses.CenterLocation.CenterLocationObject;
+
 
 public class Main extends JFrame {
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+        DesktopWidget.Desktop();
         EnableSetting();
         MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
-        DesktopWidget.Desktop();
+        CashedResource();
         new Main();
     }
 
@@ -38,12 +42,7 @@ public class Main extends JFrame {
         JPanel panelMainButton = new JPanel();
 
         //Главная картика
-        ImageIcon icon = new ImageIcon(new File("src/resource/MenuForest.png").getAbsolutePath());
-
-        //картинка настройки
-        Image scaledImage = icon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        JLabel label = new JLabel(scaledIcon);
+        JLabel label = new JLabel(cachedManuForest);
 
         //Кнопка Играть
         JButton btnStartGame = new JButton();
@@ -157,7 +156,7 @@ public class Main extends JFrame {
 
         //Работа с фреймом(Работа со стеной)
         frameMain.add(panelMainButton);
-        int[] topLocation = Registration.CenterLocationObject(frameMain);
+        int[] topLocation = CenterLocationObject(frameMain);
         if (Users.GetUserName() != null) {
             frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
             frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
@@ -169,54 +168,6 @@ public class Main extends JFrame {
         frameMain.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameMain.setVisible(true);
         DesktopWidget.Close();
-    }
-
-    static ImageIcon cachedMainBackground;
-
-    static {
-        try {
-            BufferedImage img = ImageIO.read(new File("src/resource/MainBackground.png"));
-            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
-            cachedMainBackground = new ImageIcon(scaled);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ImageIcon cachedRegistrationFon;
-
-    static {
-        try {
-            BufferedImage img = ImageIO.read(new File("src/resource/RegistrationFon.png"));
-            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
-            cachedRegistrationFon = new ImageIcon(scaled);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ImageIcon cachedSingInFon;
-
-    static {
-        try {
-            BufferedImage img = ImageIO.read(new File("src/resource/SignIn.png"));
-            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
-            cachedSingInFon = new ImageIcon(scaled);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static ImageIcon cachedSettingFon;
-
-    static {
-        try {
-            BufferedImage img = ImageIO.read(new File("src/resource/SettingFon.png"));
-            Image scaled = img.getScaledInstance(1920, 1090, Image.SCALE_FAST);
-            cachedSettingFon = new ImageIcon(scaled);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static JButton parButton(JButton button) {

@@ -13,7 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static Frame.Main.cachedSettingFon;
+
+import static HelpClasses.CashedResource.cachedSettingFon;
+import static HelpClasses.CenterLocation.CenterLocationObject;
 
 public class Setting {
     private static final JCheckBox checkboxMusic = new JCheckBox();
@@ -43,7 +45,7 @@ public class Setting {
         panelBlockSettings.setLayout(new BoxLayout(panelBlockSettings, BoxLayout.Y_AXIS));
         panelBlockSettings.setSize(350, 350);
         int[] centerLocation;
-        centerLocation = Registration.CenterLocationObject(frameSetting);
+        centerLocation = CenterLocationObject(frameSetting);
         panelBlockSettings.setLocation(centerLocation[0] - 150, centerLocation[1] - 50);
         panelBlockSettings.setBackground(Color.blue);
         panelBlockSettings.setOpaque(false);
@@ -55,7 +57,7 @@ public class Setting {
         Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
         buttonClose.setIcon(new ImageIcon(newImg3));
         Main.parButton(buttonClose);
-        int[] centerLocation1 = Registration.CenterLocationObject(frameSetting);
+        int[] centerLocation1 = CenterLocationObject(frameSetting);
         buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 180);
         buttonClose.addActionListener(e -> {
             try {

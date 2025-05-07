@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.sql.*;
 
 import static Frame.Main.*;
+import static HelpClasses.CashedResource.cachedRegistrationFon;
+import static HelpClasses.CashedResource.cachedSingInFon;
+import static HelpClasses.CenterLocation.CenterLocationObject;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
@@ -38,7 +41,7 @@ public class Registration {
         Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
         buttonClose.setIcon(new ImageIcon(newImg3));
         Main.parButton(buttonClose);
-        int[] centerLocation1 = Registration.CenterLocationObject(frame);
+        int[] centerLocation1 = CenterLocationObject(frame);
         buttonClose.setLocation(centerLocation1[0] + 520, centerLocation1[1] - 360);
         buttonClose.addActionListener(e -> {
             try {
@@ -271,18 +274,5 @@ public class Registration {
             Field3.setText("");
             RegSign = 0;
         }
-    }
-
-    public static int[] CenterLocationObject(Frame frame) {
-        Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int w = frame.getSize().width;
-        int h = frame.getSize().height;
-        int x = (screenDimension.width - w) / 2;
-        int y = (screenDimension.height - h) / 2;
-        int[] centerLocation = new int[2];
-        centerLocation[0] = x;
-        centerLocation[1] = y;
-
-        return centerLocation;
     }
 }

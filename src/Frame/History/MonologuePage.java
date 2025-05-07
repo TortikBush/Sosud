@@ -1,7 +1,6 @@
 package Frame.History;
 
 import HelpClasses.CustomFont;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

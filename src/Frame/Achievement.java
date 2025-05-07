@@ -1,6 +1,7 @@
 package Frame;
 
 import DBSourse.AchievementList;
+import HelpClasses.CenterLocation;
 import HelpClasses.ClickArrow;
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPostgreSQLConnection;
@@ -19,8 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import static Frame.Main.cachedMainBackground;
 import static Frame.Main.parButton;
+import static HelpClasses.CashedResource.cachedMainBackground;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Achievement {
@@ -36,7 +37,7 @@ public class Achievement {
 
         JFrame frameAchievement = new JFrame();
         JLabel label = new JLabel(cachedMainBackground);
-        int[] centerLocation = Registration.CenterLocationObject(frameAchievement);
+        int[] centerLocation = CenterLocation.CenterLocationObject(frameAchievement);
         label.setBounds(centerLocation[0], centerLocation[1], 1920, 1080);
 
         JPanel panelBlockAchievement = new JPanel();
@@ -46,7 +47,7 @@ public class Achievement {
         panelBlockAchievement.setForeground(Color.red);
         panelBlockAchievement.setOpaque(false);
         panelBlockAchievement.setLayout(new BoxLayout(panelBlockAchievement, BoxLayout.X_AXIS));
-        centerLocation = Registration.CenterLocationObject(frameAchievement);
+        centerLocation = CenterLocation.CenterLocationObject(frameAchievement);
         panelBlockAchievement.setLocation(centerLocation[0] - 670, centerLocation[1] - 100);
 
         JPanel panelForCharacter = new JPanel();
@@ -64,7 +65,7 @@ public class Achievement {
 
         JPanel panelGrid = new JPanel(new GridLayout(2, 0));
         panelGrid.setSize(1000, 300);
-        centerLocation = Registration.CenterLocationObject(frameAchievement);
+        centerLocation = CenterLocation.CenterLocationObject(frameAchievement);
         panelGrid.setLocation(centerLocation[0] - 500, centerLocation[1] - 100);
         panelGrid.setOpaque(false);
 
@@ -90,7 +91,7 @@ public class Achievement {
         Image newImg3 = imgReadAchievement.getScaledInstance((int) buttonClose.getSize().getWidth(), (int) buttonClose.getSize().getHeight(), Image.SCALE_SMOOTH);
         buttonClose.setIcon(new ImageIcon(newImg3));
         Main.parButton(buttonClose);
-        int[] centerLocation1 = Registration.CenterLocationObject(frameAchievement);
+        int[] centerLocation1 = CenterLocation.CenterLocationObject(frameAchievement);
         buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 380);
         buttonClose.addActionListener(e -> {
             try {
