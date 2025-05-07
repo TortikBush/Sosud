@@ -8,13 +8,10 @@ import java.util.Map;
 
 import static Frame.Main.MusicEnable;
 import static Frame.Main.parButton;
-import static HelpClasses.CustomFont.CustomFont1;
+import static HelpClasses.CashedResource.cachedFirst;
 
 public class FirstPages extends JPanel {
-
-    private int index = 0;
-
-    public FirstPages(Map<String, Object> node, StoryManager manager, Map<String, Object> storyData) throws IOException, FontFormatException {
+    public FirstPages(Map<String, Object> node, StoryManager manager, Map<String, Object> storyData) {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(1920, 1080));
 
@@ -22,21 +19,13 @@ public class FirstPages extends JPanel {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1920, 1080));
         // 1. Фон
-        String imagePath = "src/resource/story/" + node.get("image").toString();
-        String music = "src/resource/story/" + node.get("music").toString();
-        if (music.isEmpty()) {
-            MusicEnable(music);
-        }
 
-        if (!imagePath.isEmpty()) {
-            ImageIcon originalIcon = new ImageIcon(imagePath);
-            Image scaled = originalIcon.getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-            JLabel background = new JLabel(new ImageIcon(scaled));
-            background.setBounds(0, 0, 1920, 1080);
-            layeredPane.add(background, Integer.valueOf(0));
-        }
+        JLabel background = new JLabel(new ImageIcon(cachedFirst));
+        background.setBounds(0, 0, 1920, 1080);
+        // слой 0 — фон
+        layeredPane.add(background, Integer.valueOf(0));
+        MusicEnable("src/resource/story/music_bg.wav");
 
-          // слой 0 — фон
 
         // 3. Кнопки выбора
         int buttonY = 100;
@@ -64,7 +53,6 @@ public class FirstPages extends JPanel {
             });
             layeredPane.add(button, Integer.valueOf(1));
         }
-
         add(layeredPane, BorderLayout.CENTER);
     }
 }

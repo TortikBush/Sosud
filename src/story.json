@@ -2,7 +2,6 @@
   "start": {
     "type": "first",
     "music": "music_bg.wav",
-    "image": "First.png",
     "question": "",
     "options": {
       "Пифон": "Pifon"
@@ -10,14 +9,14 @@
   },
   "Pifon": {
     "type": "monologue",
-    "image": "Пифон.png",
+    "image": "",
     "text": "фыаыasdsadasdsadasdasdsadasdasdasd  sadd as dasd as das dasdasdashdnashd asg dhuasghdj gasuy dgas yd ghyasediваа",
     "next": "choice1"
   },
   "choice1": {
     "type": "choice",
     "text": "",
-    "image": "выбор.png",
+    "image": "",
     "options": [
       {
         "text": "Осмотреть помещение",
@@ -42,6 +41,7 @@
   "end": {
     "type": "monologue",
     "text": "Продолжение следует...",
-    "image": "MainBackground.png"
+    "image": "MainBackground.png",
+    "next": "Home"
   }
 }

@@ -1,15 +1,15 @@
 package Frame.History;
 
 import HelpClasses.CustomFont;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
+import static HelpClasses.CashedResource.cashedChoice;
+import static HelpClasses.CashedResource.cashedMonolog;
 
 public class ChoicePage extends JPanel {
 
@@ -18,19 +18,11 @@ public class ChoicePage extends JPanel {
         setPreferredSize(new Dimension(1920, 1080));
 
         // ==== Фон через кастомную панель ====
-        String imagePath = "";
-        if (node.get("image") != null) {
-            imagePath = "src/resource/story/" + node.get("image").toString();
-        }
-
-        Image backgroundImg = ImageIO.read(new File(imagePath))
-                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(backgroundImg, 0, 0, null);
+                g.drawImage(cashedChoice, 0, 0, null);
             }
         };
         backgroundPanel.setLayout(null);

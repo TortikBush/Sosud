@@ -1,15 +1,16 @@
 package Frame.History;
 
 import HelpClasses.CustomFont;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
+import Frame.Main;
 
 import static Frame.Main.parButton;
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
+import static HelpClasses.CashedResource.cashedMonolog;
 
 public class MonologuePage extends JPanel {
 
@@ -17,20 +18,12 @@ public class MonologuePage extends JPanel {
         setLayout(null);
         setPreferredSize(new Dimension(1920, 1080));
 
-        // === Загрузка фонового изображения ===
-        String imagePath = (node.get("image") != null)
-                ? "src/resource/story/" + node.get("image").toString()
-                : "src/resource/story/default.jpg";
-
-        Image backgroundImg = ImageIO.read(new File(imagePath))
-                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-
         // === Фоновая панель ===
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(backgroundImg, 0, 0, null);
+                g.drawImage(cashedMonolog, 0, 0, null);
             }
         };
         backgroundPanel.setLayout(null);
@@ -78,6 +71,16 @@ public class MonologuePage extends JPanel {
         });
 
         nextButton.addActionListener(e -> {
+            if(node.get("next").toString().equals("Home")) {
+                try {
+                    new Main();
+                } catch (IOException | SQLException | ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                topFrame.dispose();
+                return;
+            }
             String next = node.get("next").toString();
             try {
                 manager.showPage(next, data);
