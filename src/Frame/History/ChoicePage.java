@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
 import static HelpClasses.CashedResource.cashedChoicePifon;
@@ -35,6 +36,12 @@ public class ChoicePage extends JPanel {
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, 1920, 1080);
         add(backgroundPanel);
+
+        if (!Objects.equals(node.get("achievement").toString(), "")) {
+            JPanel panelPhoto = new JPanel();
+            HelpClasses.ViewAchievement.ViewAchievement(panelPhoto, node.get("achievement").toString());
+            backgroundPanel.add(panelPhoto, Integer.valueOf(1));
+        }
 
         // ==== Верхние кнопки ====
         JPanel topButtons = new JPanel();

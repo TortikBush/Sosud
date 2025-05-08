@@ -7,6 +7,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Objects;
 
 import Frame.Main;
 
@@ -47,6 +48,13 @@ public class MonologuePage extends JPanel {
                 g.drawImage(finalImage, 0, 0, this); // Потом отрисовка изображения
             }
         };
+
+
+        if (!Objects.equals(node.get("achievement").toString(), "")) {
+            JPanel panelPhoto = new JPanel();
+            HelpClasses.ViewAchievement.ViewAchievement(panelPhoto, node.get("achievement").toString());
+            backgroundPanel.add(panelPhoto, Integer.valueOf(1));
+        }
 
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, 1920, 1080);

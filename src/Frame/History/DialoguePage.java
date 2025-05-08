@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
+
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
 import static HelpClasses.CashedResource.*;
 
@@ -55,6 +57,11 @@ public class DialoguePage extends JPanel {
         dialogPanel.setBounds(200, 870, 1520, 170);
         dialogPanel.setOpaque(false);
 
+        if (!Objects.equals(node.get("achievement").toString(), "")) {
+            JPanel panelPhoto = new JPanel();
+            HelpClasses.ViewAchievement.ViewAchievement(panelPhoto, node.get("achievement").toString());
+            backgroundPanel.add(panelPhoto, Integer.valueOf(1));
+        }
         JLabel leftText = new JLabel();
         JLabel rightText = new JLabel();
 

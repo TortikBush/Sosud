@@ -2,18 +2,21 @@
   "start": {
     "type": "first",
     "music": "music_bg.wav",
+    "achievement": "",
     "question": "",
     "options": {
-      "Пифон": "PifonBody"
+      "Пифон": "Pifon"
     }
   },
   "PifonBody": {
     "type": "watchingPifon",
+    "achievement": "Достижение.png",
     "image": "",
     "next": "choice1"
   },
   "Pifon": {
     "type": "monologue",
+    "achievement": "Достижение.png",
     "image": "Пифон",
     "text": "фыаыasdsadasdsadasdasdsadasdasdasd  sadd as dasd as das dasdasdashdnashd asg dhuasghdj gasuy dgas yd ghyasediваа",
     "next": "choice1"
@@ -21,6 +24,7 @@
   "choice1": {
     "type": "choice",
     "text": "",
+    "achievement": "Достижение.png",
     "image": "Пифон",
     "options": [
       {
@@ -39,6 +43,7 @@
   },
   "monologue1": {
     "type": "monologue",
+    "achievement": "Достижение.png",
     "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
     "image": "Ламия",
     "next": "dialog1"
@@ -46,6 +51,7 @@
   "dialog1": {
     "type": "dialogue",
     "image": "Пифон+Ламия",
+    "achievement": "Достижение.png",
     "who": "left",
     "speaker": "Анте",
     "text": "Привет, как ты себя чувствуешь?",
@@ -53,6 +59,7 @@
   },
   "dialog_2": {
     "type": "dialogue",
+    "achievement": "Достижение.png",
     "image": "Пифон+Ламия",
     "who": "right",
     "speaker": "Ламия",
@@ -62,6 +69,7 @@
 
   "end": {
     "type": "monologue",
+    "achievement": "Достижение.png",
     "text": "Продолжение следует...",
     "image": "MainBackground",
     "next": "Home"

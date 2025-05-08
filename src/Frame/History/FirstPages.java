@@ -1,10 +1,11 @@
 package Frame.History;
 
-import HelpClasses.FadeImagePanel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
+
 import static Frame.Main.MusicEnable;
 import static Frame.Main.parButton;
 import static HelpClasses.CashedResource.cachedChoiceFirst;
@@ -24,29 +25,11 @@ public class FirstPages extends JPanel {
         // слой 0 — фон
         layeredPane.add(background, Integer.valueOf(0));
         MusicEnable("src/resource/story/music_bg.wav");
-
-        JPanel panelPhoto = new JPanel();
-        panelPhoto.setBounds(540, 0, 889, 500);
-        // 2. Фото с fade-in
-        panelPhoto.setOpaque(false);
-        ImageIcon icon = new ImageIcon("src/Resource/Story/Достижение.png"); // Ваше изображение
-        FadeImagePanel fadeImage = new FadeImagePanel(icon.getImage());
-        fadeImage.setBounds(0, 0, 889, 500);
-        panelPhoto.setLayout(null);
-        panelPhoto.add(fadeImage);
-        layeredPane.add(panelPhoto, Integer.valueOf(1));
-
-// Запуск анимации
-        fadeImage.fadeIn(1500); // 1000 мс = 1 секунда
-
-
-        new Timer(2500, e -> {
-            fadeImage.fadeOut(1500, () -> {
-                panelPhoto.setVisible(false); // Скрыть панель после анимации
-            });
-        }).start();
-
-
+        if (!Objects.equals(node.get("achievement").toString(), "")) {
+            JPanel panelPhoto = new JPanel();
+            HelpClasses.ViewAchievement.ViewAchievement(panelPhoto, node.get("achievement").toString());
+            layeredPane.add(panelPhoto, Integer.valueOf(1));
+        }
         // 3. Кнопки выбора
         int buttonY = 100;
 
