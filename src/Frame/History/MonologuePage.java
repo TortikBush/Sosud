@@ -60,13 +60,13 @@ public class MonologuePage extends JPanel {
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BorderLayout());
         textPanel.setBackground(new Color(0, 0, 0, 180));
-        textPanel.setBounds(550, 840, 1000, 160);
+        textPanel.setBounds(540, 830, 1000, 160);
         textPanel.setOpaque(false);
 
         JLabel textLabel = new JLabel("<html><div style='text-align: center;'>" + node.get("text").toString() + "</div></html>");
         textLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        textLabel.setFont(CustomFont.CustomFont1().deriveFont(26f));
-        textLabel.setForeground(Color.WHITE);
+        textLabel.setFont(CustomFont.CustomFont2().deriveFont(27f));
+        textLabel.setForeground(new Color(254, 222, 143));
 
         textPanel.add(textLabel, BorderLayout.CENTER);
 

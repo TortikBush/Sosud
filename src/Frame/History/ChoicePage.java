@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
 import static HelpClasses.CashedResource.cashedChoicePifon;
+import static HelpClasses.CashedResource.cashedChoicePifonOnFlashLight;
 
 public class ChoicePage extends JPanel {
 
@@ -24,6 +25,9 @@ public class ChoicePage extends JPanel {
                 switch (node.get("image").toString()) {
                     case "Пифон":
                         g.drawImage(cashedChoicePifon, 0, 0, null);
+
+                    case "ПифонСФонаремВыбор":
+                        g.drawImage(cashedChoicePifonOnFlashLight, 0, 0, null);
                 }
             }
         };
@@ -64,7 +68,7 @@ public class ChoicePage extends JPanel {
             choiceButton.setBackground(Color.black);
             choiceButton.setOpaque(false);
             choiceButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-            choiceButton.setFont(CustomFont.CustomFont1().deriveFont(21f));
+            choiceButton.setFont(CustomFont.CustomFont2().deriveFont(25f));
             choiceButton.setForeground(new Color(254, 222, 143));
             choiceButton.setMaximumSize(new Dimension(1000, 50));
             choiceButton.setFocusable(false);

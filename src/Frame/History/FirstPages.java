@@ -3,12 +3,11 @@ package Frame.History;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import static Frame.Main.MusicEnable;
 import static Frame.Main.parButton;
-import static HelpClasses.CashedResource.cachedFirst;
+import static HelpClasses.CashedResource.cachedChoiceFirst;
 
 public class FirstPages extends JPanel {
     public FirstPages(Map<String, Object> node, StoryManager manager, Map<String, Object> storyData) {
@@ -20,7 +19,7 @@ public class FirstPages extends JPanel {
         layeredPane.setPreferredSize(new Dimension(1920, 1080));
         // 1. Фон
 
-        JLabel background = new JLabel(new ImageIcon(cachedFirst));
+        JLabel background = new JLabel(new ImageIcon(cachedChoiceFirst));
         background.setBounds(0, 0, 1920, 1080);
         // слой 0 — фон
         layeredPane.add(background, Integer.valueOf(0));

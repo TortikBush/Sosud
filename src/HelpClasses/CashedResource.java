@@ -9,7 +9,68 @@ import java.io.IOException;
 
 public class CashedResource {
     public static void CashedResource() {}
+    //Кеширование Диалогов
+    public static Image cashedDialogPifonAnte;
 
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Анте.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedDialogPifonAnte = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedDialogPifonEhi;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Ехи.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedDialogPifonEhi = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image getCashedDialogPifonEhiRead;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+ЕхиЧитает.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            getCashedDialogPifonEhiRead = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedDialogPifonLamiya;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Ламия.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedDialogPifonLamiya = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedDialogPifonOnFlashLightAnte;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/ПифонСФонарем+Анте.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedDialogPifonOnFlashLightAnte = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Кеширование Выборов
     public static Image cashedChoicePifon;
 
     static {
@@ -21,6 +82,33 @@ public class CashedResource {
             e.printStackTrace();
         }
     }
+
+    public static Image cashedChoicePifonOnFlashLight;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Choice/ПифонСФонаремВыбор.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedChoicePifonOnFlashLight = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cachedChoiceFirst;
+
+    static {
+        try {
+            String imagePath = "src/resource/story/Choice/First.png";
+            Image backgroundImg = ImageIO.read(new File(imagePath))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cachedChoiceFirst = backgroundImg;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Кеширование Монологов
 
     public static Image cashedMonologLamiya;
 
@@ -70,18 +158,7 @@ public class CashedResource {
         }
     }
 
-    public static Image cachedFirst;
 
-    static {
-        try {
-            String imagePath = "src/resource/story/Choice/First.png";
-            Image backgroundImg = ImageIO.read(new File(imagePath))
-                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-            cachedFirst = backgroundImg;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static ImageIcon cachedManuForest;
 
