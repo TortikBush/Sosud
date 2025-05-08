@@ -36,8 +36,25 @@
     "type": "monologue",
     "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
     "image": "Ламия",
-    "next": "choice1"
+    "next": "dialog1"
   },
+  "dialog1": {
+    "type": "dialogue",
+    "image": "Пифон+Лами.png",
+    "who": "left",
+    "speaker": "Анте",
+    "text": "Привет, как ты себя чувствуешь?",
+    "next": "dialog_2"
+  },
+  "dialog_2": {
+    "type": "dialogue",
+    "image": "Пифон+Лами.png",
+    "who": "right",
+    "speaker": "Ламия",
+    "text": "Спасибо, всё хорошо. А у тебя?",
+    "next": "end"
+  },
+
   "end": {
     "type": "monologue",
     "text": "Продолжение следует...",
