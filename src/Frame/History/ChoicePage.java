@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
-import static HelpClasses.CashedResource.cashedChoice;
-import static HelpClasses.CashedResource.cashedMonolog;
+import static HelpClasses.CashedResource.cashedChoicePifon;
 
 public class ChoicePage extends JPanel {
 
@@ -22,9 +21,13 @@ public class ChoicePage extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(cashedChoice, 0, 0, null);
+                switch (node.get("image").toString()) {
+                    case "Пифон":
+                        g.drawImage(cashedChoicePifon, 0, 0, null);
+                }
             }
         };
+
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, 1920, 1080);
         add(backgroundPanel);

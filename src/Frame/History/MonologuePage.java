@@ -1,16 +1,18 @@
 package Frame.History;
 
 import HelpClasses.CustomFont;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
+
 import Frame.Main;
 
 import static Frame.Main.parButton;
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
-import static HelpClasses.CashedResource.cashedMonolog;
+import static HelpClasses.CashedResource.*;
 
 public class MonologuePage extends JPanel {
 
@@ -18,14 +20,34 @@ public class MonologuePage extends JPanel {
         setLayout(null);
         setPreferredSize(new Dimension(1920, 1080));
 
+        Image image = null;
+        switch (node.get("image").toString()) {
+            case "Пифон":
+                image = cashedMonologPifon;
+                break;
+            case "Анте":
+                image = cashedMonologAnte;
+                break;
+            case "Ламия":
+                image = cashedMonologLamiya;
+                break;
+            case "Ехидна":
+                image = cashedMonologEhidna;
+                break;
+            case "MainBackground":
+                    image = cachedMainBackground.getImage();
+        }
+
         // === Фоновая панель ===
+        Image finalImage = image;
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(cashedMonolog, 0, 0, null);
+                super.paintComponent(g); // Сначала вызов super
+                g.drawImage(finalImage, 0, 0, this); // Потом отрисовка изображения
             }
         };
+
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, 1920, 1080);
         add(backgroundPanel);
@@ -71,7 +93,7 @@ public class MonologuePage extends JPanel {
         });
 
         nextButton.addActionListener(e -> {
-            if(node.get("next").toString().equals("Home")) {
+            if (node.get("next").toString().equals("Home")) {
                 try {
                     new Main();
                 } catch (IOException | SQLException | ClassNotFoundException ex) {

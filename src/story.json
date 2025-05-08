@@ -9,14 +9,14 @@
   },
   "Pifon": {
     "type": "monologue",
-    "image": "",
+    "image": "Пифон",
     "text": "фыаыasdsadasdsadasdasdsadasdasdasd  sadd as dasd as das dasdasdashdnashd asg dhuasghdj gasuy dgas yd ghyasediваа",
     "next": "choice1"
   },
   "choice1": {
     "type": "choice",
     "text": "",
-    "image": "",
+    "image": "Пифон",
     "options": [
       {
         "text": "Осмотреть помещение",
@@ -28,20 +28,20 @@
       },
       {
         "text": "Позвать на помощь",
-        "next": "end"
+        "next": "monologue1"
       }
     ]
   },
   "monologue1": {
     "type": "monologue",
     "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
-    "image": "Пифон.png",
+    "image": "Ламия",
     "next": "choice1"
   },
   "end": {
     "type": "monologue",
     "text": "Продолжение следует...",
-    "image": "MainBackground.png",
+    "image": "MainBackground",
     "next": "Home"
   }
 }

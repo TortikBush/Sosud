@@ -8,31 +8,63 @@ import java.io.File;
 import java.io.IOException;
 
 public class CashedResource {
-    public static void CashedResource() {
-    }
+    public static void CashedResource() {}
 
-    public static Image cashedChoice;
+    public static Image cashedChoicePifon;
 
     static {
         try {
-
-            Image backgroundImg = ImageIO.read(new File("src/resource/story/выбор.png"))
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Choice/ПифонВыбор.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-            cashedChoice = backgroundImg;
+            cashedChoicePifon = backgroundImg;
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static Image cashedMonolog;
+    public static Image cashedMonologLamiya;
 
     static {
         try {
-            String imagePath = "src/resource/story/Пифон.png";
-
-            Image backgroundImg = ImageIO.read(new File(imagePath))
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Ламия.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-            cashedMonolog = backgroundImg;
+            cashedMonologLamiya = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedMonologEhidna;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Ехидна.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedMonologEhidna = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedMonologAnte;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Анте.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedMonologAnte = backgroundImg;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedMonologPifon;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Пифон.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            cashedMonologPifon = backgroundImg;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -42,7 +74,7 @@ public class CashedResource {
 
     static {
         try {
-            String imagePath = "src/resource/story/First.png";
+            String imagePath = "src/resource/story/Choice/First.png";
             Image backgroundImg = ImageIO.read(new File(imagePath))
                     .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
             cachedFirst = backgroundImg;
