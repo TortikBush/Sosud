@@ -91,9 +91,9 @@ public class Registration {
         Password.setFont(CustomFont.CustomFont1().deriveFont(40f));
         Password.setForeground(new Color(254, 222, 143));
 
-        JTextField PasswordField2 = new JTextField(15);
+        JPasswordField  PasswordField2 = new JPasswordField (15);
         PasswordField2.setSize(300, 500);
-        PasswordField2.setEditable(true);
+        PasswordField2.setEchoChar('*');        PasswordField2.setEditable(true);
         PasswordField2.setCaretColor(new Color(254, 222, 143));
         PasswordField2.setBackground(Color.black);
         PasswordField2.setForeground(Color.WHITE);

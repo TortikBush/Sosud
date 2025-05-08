@@ -4,8 +4,13 @@
     "music": "music_bg.wav",
     "question": "",
     "options": {
-      "Пифон": "Pifon"
+      "Пифон": "PifonBody"
     }
+  },
+  "PifonBody": {
+    "type": "watchingPifon",
+    "image": "",
+    "next": "choice1"
   },
   "Pifon": {
     "type": "monologue",
