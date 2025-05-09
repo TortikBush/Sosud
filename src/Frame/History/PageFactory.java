@@ -11,17 +11,13 @@ public class PageFactory {
         Map<String, Object> node = (Map<String, Object>) data.get(key);
         String type = (String) node.get("type");
 
-        switch (type) {
-            case "monologue":
-                return new MonologuePage(node, manager, data);
-            case "dialogue":
-                return new DialoguePage(node, manager, data);
-            case "choice":
-                return new ChoicePage(node, manager, data);
-            case "first":
-                return new FirstPages(node, manager, data);
-            default:
-                return null;
-        }
+        return switch (type) {
+            case "monologue" -> new MonologuePage(node, manager, data);
+            case "dialogue" -> new DialoguePage(node, manager, data);
+            case "choice" -> new ChoicePage(node, manager, data);
+            case "first" -> new FirstPages(node, manager, data);
+            case "heroView" -> new HeroViewPage(node, manager, data);
+            default -> null;
+        };
     }
 }

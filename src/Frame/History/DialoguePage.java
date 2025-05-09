@@ -4,10 +4,13 @@ import HelpClasses.CustomFont;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Objects;
+import Frame.Main;
 
 import static Frame.History.CreateButtonMenuOnHistory.CreateButton;
+import static Frame.Main.parButton;
 import static HelpClasses.CashedResource.*;
 
 public class DialoguePage extends JPanel {
@@ -93,15 +96,36 @@ public class DialoguePage extends JPanel {
         backgroundPanel.add(dialogPanel);
 
         // === Кнопка "далее" ===
-        JButton nextButton = new JButton(">>>");
-        nextButton.setBounds(1750, 900, 100, 50);
-        nextButton.setFont(CustomFont.CustomFont1().deriveFont(20f));
-        nextButton.setFocusPainted(false);
-        nextButton.setContentAreaFilled(false);
+        JButton nextButton = new JButton();
+        nextButton.setBounds(1750, 810, 140, 80);
+        parButton(nextButton);
+        nextButton.setFocusable(false);
+        nextButton.setOpaque(false);
+        nextButton.setContentAreaFilled(true);
         nextButton.setBorderPainted(false);
-        nextButton.setForeground(new Color(254, 222, 143));
+        nextButton.getModel().addChangeListener(e -> {
+            ButtonModel model = nextButton.getModel();
+            if (model.isPressed()) {
+                nextButton.setOpaque(true);
+                nextButton.setBackground(new Color(255, 200, 100)); // Цвет при нажатии
+            } else if (model.isRollover()) {
+                nextButton.setOpaque(false);
+            } else {
+                nextButton.setOpaque(false);
+            }
+        });
 
         nextButton.addActionListener(e -> {
+            if (node.get("next").toString().equals("Home")) {
+                try {
+                    new Main();
+                } catch (IOException | SQLException | ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                topFrame.dispose();
+                return;
+            }
             String next = node.get("next").toString();
             try {
                 manager.showPage(next, data);

@@ -5,14 +5,13 @@
     "achievement": "",
     "question": "",
     "options": {
-      "Пифон": "Pifon"
+      "Пифон": "pifon_hero_view"
     }
   },
-  "PifonBody": {
-    "type": "watchingPifon",
-    "achievement": "Достижение.png",
-    "image": "",
-    "next": "choice1"
+  "pifon_hero_view": {
+    "type": "heroView",
+    "image": "BG-02(Без кнопки выбрать).png",
+    "next": "Pifon"
   },
   "Pifon": {
     "type": "monologue",
