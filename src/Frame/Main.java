@@ -45,13 +45,7 @@ public class Main extends JFrame {
         JLabel label = new JLabel(cachedManuForest);
 
         //Кнопка Играть
-        JButton btnStartGame = new JButton();
-        btnStartGame.setSize(850, 150);
-        File imgStartGame = new File("src/resource/ButtonStartGame.png").getAbsoluteFile();
-        Image imgReadStartGame = ImageIO.read(imgStartGame);
-        Image newImg = imgReadStartGame.getScaledInstance((int) btnStartGame.getSize().getWidth(), (int) btnStartGame.getSize().getHeight(), Image.SCALE_SMOOTH);
-        btnStartGame.setIcon(new ImageIcon(newImg));
-        parButton(btnStartGame);
+        JButton btnStartGame = transformButton(850, 150, "src/resource/ButtonStartGame.png", null);
 
         //обработчик кнопки старта
         btnStartGame.addActionListener(e -> {
@@ -74,14 +68,7 @@ public class Main extends JFrame {
         });
 
         //Кнопка Сохранение
-        JButton btnSave = new JButton();
-        btnSave.setSize(500, 50);
-        btnSave.setMargin(new Insets(10, 250, 0, 0));
-        File imgSave = new File("src/resource/ButtonSave.png").getAbsoluteFile();
-        Image imgReadSave = ImageIO.read(imgSave);
-        Image newImg2 = imgReadSave.getScaledInstance((int) btnSave.getSize().getWidth(), (int) btnSave.getSize().getHeight(), Image.SCALE_SMOOTH);
-        btnSave.setIcon(new ImageIcon(newImg2));
-        parButton(btnSave);
+        JButton btnSave = transformButton(500, 50, "src/resource/ButtonSave.png", new Insets(10, 250, 0, 0));
 
         //обработчик кнопки сохранение
         btnSave.addActionListener(e -> {
@@ -89,14 +76,7 @@ public class Main extends JFrame {
         });
 
         //Кнопка Настройки
-        JButton btnSettings = new JButton();
-        btnSettings.setSize(90, 70);
-
-        File imgSetting = new File("src/resource/ButtonSetting.png").getAbsoluteFile();
-        Image imgReadSetting = ImageIO.read(imgSetting);
-        Image newImg4 = imgReadSetting.getScaledInstance((int) btnSettings.getSize().getWidth(), (int) btnSettings.getSize().getHeight(), Image.SCALE_SMOOTH);
-        btnSettings.setIcon(new ImageIcon(newImg4));
-        parButton(btnSettings);
+        JButton btnSettings = transformButton(90, 70, "src/resource/ButtonSetting.png", null);
 
         //обработчик кнопки старта
         btnSettings.addActionListener(e ->
@@ -110,27 +90,12 @@ public class Main extends JFrame {
         });
 
         //Кнопка Выход
-        JButton btnExit = new JButton();
-        btnExit.setSize(300, 100);
-        btnExit.setMargin(new Insets(10, 350, 0, 0));
-        File imgExit = new File("src/resource/ButtonExit.png").getAbsoluteFile();
-        Image imgReadExit = ImageIO.read(imgExit);
-        Image newImg5 = imgReadExit.getScaledInstance((int) btnExit.getSize().getWidth(), (int) btnExit.getSize().getHeight(), Image.SCALE_SMOOTH);
-        btnExit.setIcon(new ImageIcon(newImg5));
-
-        parButton(btnExit);
+        JButton btnExit = transformButton(300, 100, "src/resource/ButtonExit.png", new Insets(10, 350, 0, 0));
         btnExit.addActionListener(e ->{
             System.exit(0);
         });
         //Кнопка Достижения
-        JButton btnAchievement = new JButton();
-        btnAchievement.setSize(90, 70);
-
-        File imgAchievement = new File("src/resource/Achievement.png").getAbsoluteFile();
-        Image imgReadAchievement = ImageIO.read(imgAchievement);
-        Image newImg3 = imgReadAchievement.getScaledInstance((int) btnAchievement.getSize().getWidth(), (int) btnAchievement.getSize().getHeight(), Image.SCALE_SMOOTH);
-        btnAchievement.setIcon(new ImageIcon(newImg3));
-        parButton(btnAchievement);
+        JButton btnAchievement = transformButton(90, 70, "src/resource/Achievement.png", null);
 
         //обработчик кнопки старта
         btnAchievement.addActionListener(e -> {
@@ -176,6 +141,31 @@ public class Main extends JFrame {
         button.setFocusable(false);
         button.setBorderPainted(false);
         return button;
+    }
+
+    /**
+     * Transforms a button by setting its size, loading an image, scaling it, and applying common properties
+     * @param width Button width
+     * @param height Button height
+     * @param imagePath Path to the button image
+     * @param margin Optional margin to set (can be null)
+     * @return Configured JButton
+     * @throws IOException If image loading fails
+     */
+    public static JButton transformButton(int width, int height, String imagePath, Insets margin) throws IOException {
+        JButton button = new JButton();
+        button.setSize(width, height);
+
+        if (margin != null) {
+            button.setMargin(margin);
+        }
+
+        File imgFile = new File(imagePath).getAbsoluteFile();
+        Image imgRead = ImageIO.read(imgFile);
+        Image scaledImg = imgRead.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        button.setIcon(new ImageIcon(scaledImg));
+
+        return parButton(button);
     }
 
     public static void MusicEnable(String url) {
