@@ -35,6 +35,9 @@ public class MonologuePage extends JPanel {
             case "Ехидна":
                 image = cashedMonologEhidna;
                 break;
+            case "ЕхиЧитает":
+                image = cashedMonologEhidnaRiad;
+                break;
             case "MainBackground":
                 image = cachedMainBackground.getImage();
         }
