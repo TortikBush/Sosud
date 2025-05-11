@@ -20,7 +20,7 @@ public class FirstPages extends JPanel {
         layeredPane.setPreferredSize(new Dimension(1920, 1080));
         // 1. Фон
 
-        JLabel background = new JLabel(new ImageIcon(cachedChoiceFirst));
+        JLabel background = new JLabel(cachedChoiceFirst);
         background.setBounds(0, 0, 1920, 1080);
         // слой 0 — фон
         layeredPane.add(background, Integer.valueOf(0));

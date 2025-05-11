@@ -40,7 +40,7 @@ public class HeroViewPage extends JPanel {
 
         // Масштабируем под Full HD
         for (int i = 0; i < heroStates.length; i++) {
-            Image img = heroStates[i].getImage().getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+            Image img = heroStates[i].getImage().getScaledInstance(1920, 1080, Image.SCALE_FAST);
             heroStates[i] = new ImageIcon(img);
         }
 

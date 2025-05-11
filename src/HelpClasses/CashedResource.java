@@ -95,14 +95,14 @@ public class CashedResource {
         }
     }
 
-    public static Image cachedChoiceFirst;
+    public static ImageIcon cachedChoiceFirst;
 
     static {
         try {
             String imagePath = "src/resource/story/Choice/First.png";
             Image backgroundImg = ImageIO.read(new File(imagePath))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
-            cachedChoiceFirst = backgroundImg;
+            cachedChoiceFirst = new ImageIcon(backgroundImg);
         } catch (IOException e) {
             e.printStackTrace();
         }
