@@ -24,7 +24,7 @@
   "choice1": {
     "type": "choice",
     "text": "",
-    "achievement": "Достижение.png",
+    "achievement": "",
     "image": "Пифон",
     "options": [
       {
@@ -50,7 +50,7 @@
   },
   "dialog1": {
     "type": "dialogue",
-    "image": "Пифон+Ламия",
+    "image": "ПифонСФонарем+Анте",
     "achievement": "Достижение.png",
     "who": "left",
     "speaker": "Анте",
@@ -60,13 +60,12 @@
   "dialog_2": {
     "type": "dialogue",
     "achievement": "Достижение.png",
-    "image": "Пифон+Ламия",
+    "image": "ПифонСФонарем+Анте",
     "who": "right",
     "speaker": "Ламия",
     "text": "Привет! Как ты себя чувствуешь после вчерашнего боя? Это было действительно неожиданно.",
     "next": "end"
   },
-
   "end": {
     "type": "monologue",
     "achievement": "Достижение.png",
