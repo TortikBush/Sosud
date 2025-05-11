@@ -1,6 +1,7 @@
 package Frame;
 
 import DBSourse.AchievementList;
+import Frame.History.NovelFrame;
 import HelpClasses.CenterLocation;
 import HelpClasses.ClickArrow;
 import HelpClasses.CustomFont;
@@ -94,6 +95,15 @@ public class Achievement {
         int[] centerLocation1 = CenterLocation.CenterLocationObject(frameAchievement);
         buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 380);
         buttonClose.addActionListener(e -> {
+            if (Users.GetSavePoint() != null){
+                try {
+                    new NovelFrame("src/story.json", Users.GetSavePoint());
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                frameAchievement.dispose();
+                return;
+            }
             try {
                 new Main();
                 frameAchievement.dispose();

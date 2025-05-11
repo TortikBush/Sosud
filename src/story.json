@@ -2,7 +2,7 @@
   "start": {
     "type": "first",
     "music": "music_bg.wav",
-    "point": "",
+    "point": "start",
     "achievement": "",
     "question": "",
     "options": {
@@ -10,11 +10,13 @@
     }
   },
   "pifon_hero_view": {
+    "point": "pifon_hero_view",
     "type": "heroView",
     "image": "BG-02(Без кнопки выбрать).png",
     "next": "Pifon"
   },
   "Pifon": {
+    "point": "Pifon",
     "type": "monologue",
     "achievement": "Достижение.png",
     "image": "Пифон",
@@ -24,6 +26,7 @@
   "choice1": {
     "type": "choice",
     "text": "",
+    "point": "choice1",
     "achievement": "",
     "image": "Пифон",
     "options": [
@@ -43,31 +46,35 @@
   },
   "monologue1": {
     "type": "monologue",
+    "point": "monologue1",
     "achievement": "Достижение.png",
     "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
     "image": "Ламия",
     "next": "dialog1"
   },
   "dialog1": {
+    "point": "dialog1",
     "type": "dialogue",
     "image": "ПифонСФонарем+Анте",
     "achievement": "Достижение.png",
-    "who": "left",
+    "who": "right",
     "speaker": "Анте",
     "text": "Привет, как ты себя чувствуешь?",
     "next": "dialog_2"
   },
   "dialog_2": {
+    "point": "dialog_2",
     "type": "dialogue",
     "achievement": "Достижение.png",
     "image": "ПифонСФонарем+Анте",
-    "who": "right",
+    "who": "left",
     "speaker": "Ламия",
     "text": "Привет! Как ты себя чувствуешь после вчерашнего боя? Это было действительно неожиданно.",
     "next": "end"
   },
   "end": {
     "type": "monologue",
+    "point": "end",
     "achievement": "Достижение.png",
     "text": "Продолжение следует...",
     "image": "MainBackground",

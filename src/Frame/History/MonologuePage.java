@@ -60,7 +60,7 @@ public class MonologuePage extends JPanel {
         add(backgroundPanel);
 
         // === Верхние кнопки ===
-        JPanel topButtons = CreateButton(new JPanel());
+        JPanel topButtons = CreateButton(new JPanel(), node);
         backgroundPanel.add(topButtons);
 
         // === Панель текста монолога ===

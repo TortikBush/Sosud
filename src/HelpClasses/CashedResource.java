@@ -186,6 +186,18 @@ public class CashedResource {
         }
     }
 
+    public static ImageIcon cachedSaveFrame;
+
+    static {
+        try {
+            BufferedImage img = ImageIO.read(new File("src/Resource/Save02.png"));
+            Image scaled = img.getScaledInstance(1920, 1080, Image.SCALE_FAST); // SCALE_FAST быстрее
+            cachedSaveFrame = new ImageIcon(scaled);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ImageIcon cachedRegistrationFon;
 
     static {

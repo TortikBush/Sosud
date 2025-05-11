@@ -1,5 +1,6 @@
 package Frame;
 
+import Frame.History.NovelFrame;
 import HelpClasses.CustomFont;
 import DBSourse.JDBCPostgreSQLConnection;
 import HelpClasses.Users;
@@ -60,6 +61,15 @@ public class Setting {
         int[] centerLocation1 = CenterLocationObject(frameSetting);
         buttonClose.setLocation(centerLocation1[0] + 550, centerLocation1[1] - 180);
         buttonClose.addActionListener(e -> {
+            if (Users.GetSavePoint() != null){
+                try {
+                    new NovelFrame("src/story.json", Users.GetSavePoint());
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                frameSetting.dispose();
+                return;
+            }
             try {
                 new Main();
                 frameSetting.dispose();

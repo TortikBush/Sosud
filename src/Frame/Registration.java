@@ -2,6 +2,7 @@ package Frame;
 
 import DBSourse.JDBCPostgreSQLConnection;
 import DBSourse.UsersTable;
+import Frame.History.NovelFrame;
 import HelpClasses.CustomFont;
 import HelpClasses.Users;
 
@@ -44,6 +45,15 @@ public class Registration {
         int[] centerLocation1 = CenterLocationObject(frame);
         buttonClose.setLocation(centerLocation1[0] + 520, centerLocation1[1] - 360);
         buttonClose.addActionListener(e -> {
+            if (Users.GetSavePoint() != null){
+                try {
+                    new NovelFrame("src/story.json", Users.GetSavePoint());
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                frame.dispose();
+                return;
+            }
             try {
                 new Main();
                 frame.dispose();

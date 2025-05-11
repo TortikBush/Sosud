@@ -6,6 +6,7 @@ import HelpClasses.ClickArrow;
 import HelpClasses.DesktopWidget;
 import HelpClasses.MusicOnMenu;
 import HelpClasses.Users;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,6 @@ import static HelpClasses.CashedResource.CashedResource;
 import static HelpClasses.CashedResource.cachedManuForest;
 import static HelpClasses.CenterLocation.CenterLocationObject;
 
-
 /**
  * Main application class that serves as the entry point for the application.
  * Sets up the main frame with buttons for game start, settings, achievements, etc.
@@ -26,10 +26,10 @@ import static HelpClasses.CenterLocation.CenterLocationObject;
 public class Main extends JFrame {
     /**
      * Main method that initializes the application
-     * 
+     *
      * @param args Command line arguments (not used)
-     * @throws IOException If there is an error loading resources
-     * @throws SQLException If there is an error connecting to the database
+     * @throws IOException            If there is an error loading resources
+     * @throws SQLException           If there is an error connecting to the database
      * @throws ClassNotFoundException If the JDBC driver class is not found
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
@@ -40,14 +40,16 @@ public class Main extends JFrame {
         new Main();
     }
 
-    /** Cached MP3 data for sound effects */
+    /**
+     * Cached MP3 data for sound effects
+     */
     public static byte[] mp3Data;
 
     /**
      * Constructor that initializes the main frame with all UI components
-     * 
-     * @throws IOException If there is an error loading resources
-     * @throws SQLException If there is an error connecting to the database
+     *
+     * @throws IOException            If there is an error loading resources
+     * @throws SQLException           If there is an error connecting to the database
      * @throws ClassNotFoundException If the JDBC driver class is not found
      */
     public Main() throws IOException, SQLException, ClassNotFoundException {
@@ -79,7 +81,7 @@ public class Main extends JFrame {
                 }
             } else {
                 try {
-                    new NovelFrame("src/story.json");
+                    new NovelFrame("src/story.json", "start");
                     frameMain.dispose();
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
@@ -92,13 +94,30 @@ public class Main extends JFrame {
 
         //обработчик кнопки сохранение
         btnSave.addActionListener(e -> {
-            System.exit(0);
+
+            if (Users.GetUserName() == null) {
+                //
+                try {
+                    new Registration();
+                    frameMain.dispose();
+                } catch (IOException | ClassNotFoundException | SQLException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                try {
+                    new Saves();
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                frameMain.dispose();
+            }
+
         });
 
         //Кнопка Настройки
         JButton btnSettings = transformButton(90, 70, "src/resource/ButtonSetting.png", null);
 
-        //обработчик кнопки старта
+        //обработчик кнопки Настройки
         btnSettings.addActionListener(e ->
         {
             try {
@@ -111,13 +130,13 @@ public class Main extends JFrame {
 
         //Кнопка Выход
         JButton btnExit = transformButton(300, 100, "src/resource/ButtonExit.png", new Insets(10, 350, 0, 0));
-        btnExit.addActionListener(e ->{
+        btnExit.addActionListener(e -> {
             System.exit(0);
         });
         //Кнопка Достижения
         JButton btnAchievement = transformButton(90, 70, "src/resource/Achievement.png", null);
 
-        //обработчик кнопки старта
+        //обработчик кнопки Ачивки
         btnAchievement.addActionListener(e -> {
             ClickArrow.playCachedMP3();
             try {
@@ -157,7 +176,7 @@ public class Main extends JFrame {
 
     /**
      * Applies common properties to a button to give it a consistent appearance
-     * 
+     *
      * @param button The button to modify
      * @return The modified button
      */
@@ -171,10 +190,11 @@ public class Main extends JFrame {
 
     /**
      * Transforms a button by setting its size, loading an image, scaling it, and applying common properties
-     * @param width Button width
-     * @param height Button height
+     *
+     * @param width     Button width
+     * @param height    Button height
      * @param imagePath Path to the button image
-     * @param margin Optional margin to set (can be null)
+     * @param margin    Optional margin to set (can be null)
      * @return Configured JButton
      * @throws IOException If image loading fails
      */
@@ -196,7 +216,7 @@ public class Main extends JFrame {
 
     /**
      * Enables or disables music based on user settings
-     * 
+     *
      * @param url The URL of the music file to play
      */
     public static void MusicEnable(String url) {
@@ -209,12 +229,12 @@ public class Main extends JFrame {
 
     /**
      * Loads user settings from the database and applies them
-     * 
-     * @throws SQLException If there is an error connecting to the database
+     *
+     * @throws SQLException           If there is an error connecting to the database
      * @throws ClassNotFoundException If the JDBC driver class is not found
      */
     public static void EnableSetting() throws SQLException, ClassNotFoundException {
-        if (Users.GetIdUser()==0){
+        if (Users.GetIdUser() == 0) {
             Setting.setCheckboxSoundEnable(true);
             Setting.setCheckboxMusicEnable(true);
             return;

@@ -1,12 +1,8 @@
 package HelpClasses;
 
-import Frame.Registration;
-
 import javax.swing.*;
 import java.awt.geom.RoundRectangle2D;
-
 import static HelpClasses.CenterLocation.CenterLocationObject;
-
 
 public class DesktopWidget {
     private static JFrame frame = new JFrame("Виджет");

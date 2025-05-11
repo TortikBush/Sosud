@@ -29,7 +29,7 @@ public class NovelFrame extends JFrame {
      * @throws IOException If there is an error loading resources
      * @throws FontFormatException If there is an error loading custom fonts
      */
-    public NovelFrame(String path) throws IOException, FontFormatException {
+    public NovelFrame(String path, String startData) throws IOException, FontFormatException {
         setTitle("Новелла");
         setSize(1920, 1080);
         setLocationRelativeTo(null);
@@ -37,7 +37,7 @@ public class NovelFrame extends JFrame {
         add(container);
         storyManager = new StoryManager(container, layout);
         loadStory(path);
-        storyManager.startStory("start", storyData);
+        storyManager.startStory(startData, storyData);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setUndecorated(true);

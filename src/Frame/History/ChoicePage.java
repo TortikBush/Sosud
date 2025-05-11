@@ -54,7 +54,7 @@ public class ChoicePage extends JPanel {
 
         // ==== Верхние кнопки ====
         JPanel topButtons = new JPanel();
-        topButtons = CreateButton(topButtons);
+        topButtons = CreateButton(topButtons, node);
 
         backgroundPanel.add(topButtons);
 
