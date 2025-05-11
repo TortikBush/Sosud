@@ -12,58 +12,508 @@
   "pifon_hero_view": {
     "type": "heroView",
     "image": "BG-02(Без кнопки выбрать).png",
-    "next": "Pifon"
+    "next": "first_action1"
   },
-  "Pifon": {
-    "type": "monologue",
+  "first_action1": {
+    "point": "first_action1",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
     "achievement": "Достижение.png",
-    "image": "Пифон",
-    "text": "фыаыasdsadasdsadasdasdsadasdasdasd  sadd as dasd as das dasdasdashdnashd asg dhuasghdj gasuy dgas yd ghyasediваа",
-    "next": "choice1"
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Посвети сюда, не видно ни хера",
+    "next": "first_action2"
   },
-  "choice1": {
+  "first_action2": {
+    "point": "first_action2",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "Лами говорила у Имаго проблемы…Совету поэтому понадобилось столько оружия?",
+    "next": "dialog_zamok1"
+  },
+  "dialog_zamok1": {
+    "point": "dialog_zamok1",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Да пес их знает, в замке в целом сейчас не спокойно",
+    "next": "dialog_zamok2"
+  },
+  "dialog_zamok2": {
+    "point": "dialog_zamok2",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": " А там бывает спокойно?",
+    "next": "dialog_zamok3"
+  },
+  "dialog_zamok3": {
+    "point": "dialog_zamok3",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Было до момента пока они Деймоса Верховным жрецом не сделали.Передай отвертку",
+    "next": "dialog_zamok4"
+  },
+  "dialog_zamok4": {
+    "point": "dialog_zamok4",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": " А чем он плох?",
+    "next": "dialog_zamok5"
+  },
+  "dialog_zamok5": {
+    "point": "dialog_zamok5",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": " Он не плох, он просто псих.Единственный из церкви кто действительно верит в Севдоса.Представляю каково теперь этим болванам, когда у него удалось провести обряд призыва",
+    "next": "dialog_question1"
+  },
+  "dialog_question1": {
+    "point": "dialog_question1",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": " Удалось?",
+    "next": "dialog_question2"
+  },
+  "dialog_question2": {
+    "point": "dialog_question2",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "По слухам да",
+    "next": "dialog_question3"
+  },
+  "dialog_question3": {
+    "point": "dialog_question3",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": " С ума сойти…",
+    "next": "dialog_question4"
+  },
+  "dialog_question4": {
+    "point": "dialog_question4",
+    "type": "dialogue",
+    "image": "ПифонСФонарем+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Да - да безумно увлекательно.Не отвлекайся, свети сюда",
+    "next": "dialog_question5"
+  },
+  "dialog_question5": {
+    "point": "dialog_question5",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Опять тебя штормит?",
+    "next": "choice_vision"
+  },
+  "dialog_vision1": {
+    "point": "dialog_vision1",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Откуда у оракулов такая любовь к невнятным объяснениям…",
+    "next": "dialog_vision2"
+  },
+  "dialog_vision2": {
+    "point": "dialog_vision2",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "  Прости я…Они знают про Ритуал.Они придут, чтобы убить Севдоса",
+    "next": "dialog_vision3"
+  },
+  "dialog_vision3": {
+    "point": "dialog_vision3",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Кто они?",
+    "next": "dialog_vision4"
+  },
+  "dialog_vision4": {
+    "point": "dialog_vision4",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "Я видел одного, парень с кошачьими глазами...Стикс",
+    "next": "dialog_vision5"
+  },
+  "dialog_vision5": {
+    "point": "dialog_vision5",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Стиксы? Паршиво…очень паршиво",
+    "next": "monologue_litter1"
+  },
+  "dialog_allgood": {
+    "point": "dialog_allgood",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Тащи метлу, осколки убрать нужно",
+    "next": "monologue_litter1"
+  },
+  "dialog_nodrive1": {
+    "point": "dialog_nodrive1",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Тогда она притащится сюда.Еще деревенских напугает…",
+    "next": "dialog_nodrive2"
+  },
+  "dialog_nodrive2": {
+    "point": "dialog_nodrive2",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "Значит ты поедешь?",
+    "next": "dialog_nodrive3"
+  },
+  "dialog_nodrive3": {
+    "point": "dialog_nodrive3",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Да, и ты тоже.Так что не злорадствуй ",
+    "next": "dialog_nodrive4"
+  },
+  "dialog_nodrive4": {
+    "point": "dialog_nodrive4",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "Ожидаемо",
+    "next": "dialog_nodrive5"
+  },
+  "dialog_nodrive5": {
+    "point": "dialog_nodrive5",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "... ",
+    "next": "dialog_nodrive6"
+  },
+  "dialog_nodrive6": {
+    "point": "dialog_nodrive6",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "...",
+    "next": "dialog_nodrive7"
+  },
+  "dialog_nodrive7": {
+    "point": "dialog_nodrive7",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Ну что стоишь?На пристань, живо",
+    "next": "dialog_nodrive+vision1"
+  },
+  "dialog_drive1": {
+    "point": "dialog_drive1",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Ну раз нужно, так съезди",
+    "next": "dialog_drive2"
+  },
+  "dialog_drive2": {
+    "point": "dialog_drive2",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "Я?",
+    "next": "dialog_drive3"
+  },
+  "dialog_drive3": {
+    "point": "dialog_drive3",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Именно, заодно Цербера отвезешь ",
+    "next": "dialog_drive4"
+  },
+  "dialog_drive4": {
+    "point": "dialog_drive4",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": "А ты?",
+    "next": "dialog_drive5"
+  },
+  "dialog_drive5": {
+    "point": "dialog_drive5",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "А я что? Мне работать надо",
+    "next": "dialog_drive+vision1"
+  },
+  "dialog_nodrive+vision1": {
+    "point": "dialog_nodrive+vision1",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Да и еще, позови Ехи.Твое пророчество мне спокойствия не добавило",
+    "next": "dialog_nodrive+vision2"
+  },
+  "dialog_nodrive+vision2": {
+    "point": "dialog_nodrive+vision2",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "left",
+    "speaker": "Пифон",
+    "text": " А Ехи тебе вернет это самое спокойствие?",
+    "next": "dialog_nodrive+vision3"
+  },
+  "dialog_nodrive+vision3": {
+    "point": "dialog_nodrive+vision3",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Щас договоришься, вдвоем поедите.Давай, вали на пристань ",
+    "next": "monologue_drive1"
+  },
+  "dialog_drive+vision1": {
+    "point": "dialog_drive+vision1",
+    "type": "dialogue",
+    "image": "Пифон+Анте",
+    "achievement": "",
+    "who": "right",
+    "speaker": "Анте",
+    "text": "Да и возьми с собой Ехи.Твое пророчество спокойствия мне не добавило ",
+    "next": "monologue_drive1"
+  },
+  "choice_vision": {
+    "point": "choice_vision",
     "type": "choice",
     "text": "",
     "achievement": "",
     "image": "Пифон",
     "options": [
       {
-        "text": "Осмотреть помещение",
-        "next": "end"
+        "text": "Я видел Фраотов",
+        "next": "dialog_vision1"
       },
       {
-        "text": "Проверить карман",
-        "next": "end"
-      },
-      {
-        "text": "Позвать на помощь",
-        "next": "monologue1"
+        "text": "Да все хорошо…отпустило уже ",
+        "next": "dialog_allgood"
       }
     ]
   },
-  "monologue1": {
+  "choice_drive": {
+    "point": "choice_drive",
+    "type": "choice",
+    "text": "",
+    "achievement": "",
+    "image": "Пифон",
+    "options": [
+      {
+        "text": "Тебе ведь не обязательно ехать",
+        "next": "dialog_nodrive1"
+      },
+      {
+        "text": "Нужно съездить, мало ли что там ",
+        "next": "dialog_drive1"
+      }
+    ]
+  },
+  "monologue_litter1": {
+    "point": "monologue_litter1",
     "type": "monologue",
-    "achievement": "Достижение.png",
-    "text": "Ты очнулся в незнакомой комнате. Свет лампы ослепляет глаза, и вокруг ни души...",
+    "achievement": "",
+    "text": "Послание, от старухи ",
+    "image": "Ехидна",
+    "next": "monologue_litter2"
+  },
+  "monologue_litter2": {
+    "point": "monologue_litter2",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Читай",
+    "image": "Анте",
+    "next": "monologue_litter3"
+  },
+  "monologue_litter3": {
+    "point": "monologue_litter3",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Бла-бла, уважаемый кузнец Антерос просьба лично прибыть в столицу для разговора…и взять с собой, то что ты брал в прошлый раз\n",
+    "image": "ЕхиЧитает",
+    "next": "monologue_litter4"
+  },
+  "monologue_litter4": {
+    "point": "monologue_litter4",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Ты что не шутил про алкоголь?",
+    "image": "Пифон",
+    "next": "monologue_litter5"
+  },
+  "monologue_litter5": {
+    "point": "monologue_litter5",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Просто безобидная настойка, ее трезвую выносить невозможно ",
+    "image": "Анте",
+    "next": "monologue_litter6"
+  },
+  "monologue_litter6": {
+    "point": "monologue_litter6",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Так королева… ",
+    "image": "Ехидна",
+    "next": "monologue_litter7"
+  },
+  "monologue_litter7": {
+    "point": "monologue_litter7",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Да - да, иди обрадуй “новостью” Лами  ",
+    "image": "Анте",
+    "next": "monologue_litter8"
+  },
+  "monologue_litter8": {
+    "point": "monologue_litter8",
+    "type": "monologue",
+    "achievement": "",
+    "text": "О боги, теперь она и меня в это болото затянуть хочет ",
+    "image": "Анте",
+    "next": "choice_drive"
+  },
+  "monologue_drive1": {
+    "point": "monologue_drive1",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Сам разберется, не маленький ",
+    "image": "Ехидна",
+    "next": "monologue_drive2"
+  },
+  "monologue_drive2": {
+    "point": "monologue_drive2",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Ехидна ",
+    "image": "Анте",
+    "next": "monologue_drive3"
+  },
+  "monologue_drive3": {
+    "point": "monologue_drive3",
+    "type": "monologue",
+    "achievement": "",
+    "text": " Давай я съезжу ",
     "image": "Ламия",
-    "next": "dialog1"
+    "next": "monologue_drive4"
   },
-  "dialog1": {
-    "type": "dialogue",
-    "image": "ПифонСФонарем+Анте",
-    "achievement": "Достижение.png",
-    "who": "left",
-    "speaker": "Анте",
-    "text": "Привет, как ты себя чувствуешь?",
-    "next": "dialog_2"
+  "monologue_drive4": {
+    "point": "monologue_drive4",
+    "type": "monologue",
+    "achievement": "",
+    "text": "А с каких пор ты у нас боевой апетхант?",
+    "image": "Анте",
+    "next": "monologue_drive5"
   },
-  "dialog_2": {
-    "type": "dialogue",
-    "achievement": "Достижение.png",
-    "image": "ПифонСФонарем+Анте",
-    "who": "right",
-    "speaker": "Ламия",
-    "text": "Привет! Как ты себя чувствуешь после вчерашнего боя? Это было действительно неожиданно.",
+  "monologue_drive5": {
+    "point": "monologue_drive5",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Во дворце я уж получше Ехи разбираюсь.И вообще когда ее боевые навыки приносили реальную пользу?",
+    "image": "Ламия",
+    "next": "monologue_drive6"
+  },
+  "monologue_drive6": {
+    "point": "monologue_drive6",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Чего?! ",
+    "image": "Ехидна",
+    "next": "monologue_drive7"
+  },
+  "monologue_drive7": {
+    "point": "monologue_drive7",
+    "type": "monologue",
+    "achievement": "",
+    "text": "Все, закрыли тему.Хочешь, езжай.Только свалите отсюда",
+    "image": "Анте",
+    "next": "monologue_drive8"
+  },
+  "monologue_drive8": {
+    "point": "monologue_drive8",
+    "type": "monologue",
+    "achievement": "",
+    "text": " Отлично.Пифи иди на пристань.Я сбегаю к себе, кое - что возьму и приду",
+    "image": "Ламия",
     "next": "end"
   },
   "end": {

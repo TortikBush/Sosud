@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class CashedResource {
-    public static void CashedResource() {}
+    public static void CashedResource() {
+    }
+
     //Кеширование Диалогов
     public static Image cashedDialogPifonAnte;
 
@@ -17,7 +19,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Анте.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedDialogPifonAnte = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -29,7 +31,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Ехи.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedDialogPifonEhi = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -41,7 +43,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+ЕхиЧитает.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             getCashedDialogPifonEhiRead = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -53,7 +55,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/Пифон+Ламия.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedDialogPifonLamiya = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -65,7 +67,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Dialog/ПифонСФонарем+Анте.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedDialogPifonOnFlashLightAnte = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -75,10 +77,10 @@ public class CashedResource {
 
     static {
         try {
-            Image backgroundImg = ImageIO.read(new File("src/resource/story/Choice/ПифонВыбор.png"))
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Choice/ПифонВыбор1.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedChoicePifon = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -90,7 +92,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Choice/ПифонСФонаремВыбор.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedChoicePifonOnFlashLight = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -116,7 +118,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Ламия.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedMonologLamiya = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -128,7 +130,19 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Ехидна.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedMonologEhidna = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Image cashedMonologEhidnaRiad;
+
+    static {
+        try {
+            Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/ЕхиЧитает.png"))
+                    .getScaledInstance(1920, 1080, Image.SCALE_FAST);
+            cashedMonologEhidnaRiad = backgroundImg;
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -140,7 +154,7 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Анте.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedMonologAnte = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -152,11 +166,10 @@ public class CashedResource {
             Image backgroundImg = ImageIO.read(new File("src/resource/story/Monolog/Пифон.png"))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cashedMonologPifon = backgroundImg;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
     public static ImageIcon cachedManuForest;
