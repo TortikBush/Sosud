@@ -64,8 +64,8 @@ public class CreateButtonMenuOnHistory extends Component {
                 throw new RuntimeException(ex);
             }
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(topButtons);
-            createNewSave("Сохранение " + randomNumber,node.get("point").toString());
-                topFrame.dispose();
+            Users.SavePoint = node.get("point").toString();
+            topFrame.dispose();
         });
 
         buttonView(btnAchievements);
@@ -74,7 +74,7 @@ public class CreateButtonMenuOnHistory extends Component {
             try {
                 new Achievement();
                 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(topButtons);
-                createNewSave("Сохранение " + randomNumber,node.get("point").toString());
+                Users.SavePoint = node.get("point").toString();
                 topFrame.dispose();
             } catch (SQLException | IOException | ClassNotFoundException | FontFormatException ex) {
                 throw new RuntimeException(ex);
