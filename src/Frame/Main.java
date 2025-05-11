@@ -19,7 +19,19 @@ import static HelpClasses.CashedResource.cachedManuForest;
 import static HelpClasses.CenterLocation.CenterLocationObject;
 
 
+/**
+ * Main application class that serves as the entry point for the application.
+ * Sets up the main frame with buttons for game start, settings, achievements, etc.
+ */
 public class Main extends JFrame {
+    /**
+     * Main method that initializes the application
+     * 
+     * @param args Command line arguments (not used)
+     * @throws IOException If there is an error loading resources
+     * @throws SQLException If there is an error connecting to the database
+     * @throws ClassNotFoundException If the JDBC driver class is not found
+     */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         DesktopWidget.Desktop();
         EnableSetting();
@@ -28,8 +40,16 @@ public class Main extends JFrame {
         new Main();
     }
 
+    /** Cached MP3 data for sound effects */
     public static byte[] mp3Data;
 
+    /**
+     * Constructor that initializes the main frame with all UI components
+     * 
+     * @throws IOException If there is an error loading resources
+     * @throws SQLException If there is an error connecting to the database
+     * @throws ClassNotFoundException If the JDBC driver class is not found
+     */
     public Main() throws IOException, SQLException, ClassNotFoundException {
         EnableSetting();
         MusicEnable("src/resource/SoundForSosud/music.piano_bg.wav");
@@ -110,7 +130,7 @@ public class Main extends JFrame {
             }
         });
 
-        //Работа с панелью(Работа с гвоздями и картиной)
+        //Работа с панелью (Работа с гвоздями и картиной)
         panelMainButton.setSize(900, 450);
         panelMainButton.setOpaque(false);
         panelMainButton.setLayout(new GridLayout(0, 1, 2, 4));
@@ -119,7 +139,7 @@ public class Main extends JFrame {
         panelMainButton.add(btnExit);
         panelMainButton.setLocation(800, 600);
 
-        //Работа с фреймом(Работа со стеной)
+        //Работа с фреймом (Работа со стеной)
         frameMain.add(panelMainButton);
         int[] topLocation = CenterLocationObject(frameMain);
         if (Users.GetUserName() != null) {
@@ -135,6 +155,12 @@ public class Main extends JFrame {
         DesktopWidget.Close();
     }
 
+    /**
+     * Applies common properties to a button to give it a consistent appearance
+     * 
+     * @param button The button to modify
+     * @return The modified button
+     */
     public static JButton parButton(JButton button) {
         button.setBackground(Color.black);
         button.setOpaque(false);
@@ -168,6 +194,11 @@ public class Main extends JFrame {
         return parButton(button);
     }
 
+    /**
+     * Enables or disables music based on user settings
+     * 
+     * @param url The URL of the music file to play
+     */
     public static void MusicEnable(String url) {
         if (Setting.GetCheckboxMusicEnable()) {
             MusicOnMenu.playMusic(url);
@@ -176,6 +207,12 @@ public class Main extends JFrame {
         }
     }
 
+    /**
+     * Loads user settings from the database and applies them
+     * 
+     * @throws SQLException If there is an error connecting to the database
+     * @throws ClassNotFoundException If the JDBC driver class is not found
+     */
     public static void EnableSetting() throws SQLException, ClassNotFoundException {
         if (Users.GetIdUser()==0){
             Setting.setCheckboxSoundEnable(true);

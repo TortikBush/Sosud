@@ -6,11 +6,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Map;
 
+/**
+ * A panel that displays different hero states/images that the user can cycle through by clicking.
+ * After viewing all states, a "Next" button appears to proceed in the story.
+ */
 public class HeroViewPage extends JPanel {
+    /** Label to display the current hero image */
     private JLabel heroLabel;
+    /** Array of different hero state images */
     private ImageIcon[] heroStates;
+    /** Index of the currently displayed hero state */
     private int currentIndex = 0;
 
+    /**
+     * Constructor for creating a hero view page
+     * 
+     * @param node The node containing information about the current page (next page, etc.)
+     * @param manager The StoryManager instance to handle navigation between pages
+     * @param data Additional data needed for the story progression
+     */
     public HeroViewPage(Map<String, Object> node, StoryManager manager, Map<String, Object> data) {
         setLayout(null);
         setPreferredSize(new Dimension(1920, 1080));

@@ -36,7 +36,7 @@ public class MonologuePage extends JPanel {
                 image = cashedMonologEhidna;
                 break;
             case "MainBackground":
-                    image = cachedMainBackground.getImage();
+                image = cachedMainBackground.getImage();
         }
 
         // === Фоновая панель ===
@@ -48,7 +48,6 @@ public class MonologuePage extends JPanel {
                 g.drawImage(finalImage, 0, 0, this); // Потом отрисовка изображения
             }
         };
-
 
         if (!Objects.equals(node.get("achievement").toString(), "")) {
             JPanel panelPhoto = new JPanel();

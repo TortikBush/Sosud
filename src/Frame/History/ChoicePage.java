@@ -14,6 +14,15 @@ import static HelpClasses.CashedResource.cashedChoicePifonOnFlashLight;
 
 public class ChoicePage extends JPanel {
 
+    /**
+     * Constructor for creating a choice page in the story
+     * 
+     * @param node The node containing information about the current choice page (text, options, image, etc.)
+     * @param manager The StoryManager instance to handle navigation between pages
+     * @param data Additional data needed for the story progression
+     * @throws IOException If there is an error loading resources
+     * @throws FontFormatException If there is an error loading custom fonts
+     */
     public ChoicePage(Map<String, Object> node, StoryManager manager, Map<String, Object> data) throws IOException, FontFormatException {
         setLayout(null);
         setPreferredSize(new Dimension(1920, 1080));

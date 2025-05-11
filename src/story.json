@@ -2,6 +2,7 @@
   "start": {
     "type": "first",
     "music": "music_bg.wav",
+    "point": "",
     "achievement": "",
     "question": "",
     "options": {
