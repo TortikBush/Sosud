@@ -101,9 +101,13 @@ public class MonologuePage extends JPanel {
                 nextButton.setOpaque(false);
             }
         });
+        if (node.get("next").toString().equals("Home")) {
+            nextButton.setText("В меню");
+        }
 
         nextButton.addActionListener(e -> {
             if (node.get("next").toString().equals("Home")) {
+
                 try {
                     new Main();
                 } catch (IOException | SQLException | ClassNotFoundException ex) {
