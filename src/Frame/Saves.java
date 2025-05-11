@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static HelpClasses.CashedResource.cachedSaveFrame;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Saves {
 
@@ -25,7 +26,7 @@ public class Saves {
     public Saves() throws IOException, FontFormatException {
         saves = loadSavesFromDatabase();
 
-        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main.setDefaultCloseOperation(EXIT_ON_CLOSE);
         main.setUndecorated(true);
         main.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -74,6 +75,9 @@ public class Saves {
         layeredPane.add(listPanel, Integer.valueOf(1));
 
         main.setContentPane(layeredPane);
+        main.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        main.setUndecorated(true);
+        main.setExtendedState(JFrame.MAXIMIZED_BOTH);
         main.pack();
         main.setVisible(true);
     }

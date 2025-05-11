@@ -103,6 +103,8 @@ public class MonologuePage extends JPanel {
         });
         if (node.get("next").toString().equals("Home")) {
             nextButton.setText("В меню");
+            nextButton.setFont(CustomFont.CustomFont2().deriveFont(25f));
+            nextButton.setForeground(new Color(254, 222, 143));
         }
 
         nextButton.addActionListener(e -> {
