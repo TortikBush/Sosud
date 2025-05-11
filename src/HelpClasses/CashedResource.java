@@ -99,7 +99,7 @@ public class CashedResource {
 
     static {
         try {
-            String imagePath = "src/resource/story/Choice/First.png";
+            String imagePath = "src/resource/story/Choice/BG.png";
             Image backgroundImg = ImageIO.read(new File(imagePath))
                     .getScaledInstance(1920, 1080, Image.SCALE_FAST);
             cachedChoiceFirst = new ImageIcon(backgroundImg);
