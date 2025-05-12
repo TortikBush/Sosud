@@ -24,7 +24,7 @@ public class FirstPages extends JPanel {
         background.setBounds(0, 0, 1920, 1080);
         // слой 0 — фон
         layeredPane.add(background, Integer.valueOf(0));
-        MusicEnable("src/resource/story/music_bg.wav");
+        MusicEnable("src/resource/story/" + node.get("music").toString());
         if (!Objects.equals(node.get("achievement").toString(), "")) {
             JPanel panelPhoto = new JPanel();
             HelpClasses.ViewAchievement.ViewAchievement(panelPhoto, node.get("achievement").toString());

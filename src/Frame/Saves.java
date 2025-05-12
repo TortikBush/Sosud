@@ -3,7 +3,6 @@ package Frame;
 import DBSourse.JDBCPostgreSQLConnection;
 import DBSourse.SaveData;
 import Frame.History.NovelFrame;
-import HelpClasses.CenterLocation;
 import HelpClasses.CustomFont;
 import HelpClasses.Users;
 import javax.swing.*;
@@ -210,7 +209,6 @@ public class Saves {
     }
 
     // ==== База данных ====
-
     public List<SaveData> loadSavesFromDatabase() {
         List<SaveData> saves = new ArrayList<>();
         try (Connection connection = JDBCPostgreSQLConnection.OpenConnection()) {
