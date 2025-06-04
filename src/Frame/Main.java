@@ -242,7 +242,7 @@ public class Main extends JFrame {
 
         Connection connection = JDBCPostgreSQLConnection.OpenConnection();
         String sql1 = "Select user_setting.isactive, settings.name from user_setting " +
-                "join settings on settings.id = user_setting.idsetting where user_setting.iduser = ?;";
+                        "join settings on settings.id = user_setting.idsetting where user_setting.iduser = ?;";
         PreparedStatement stmt = connection.prepareStatement(sql1);
         stmt.setInt(1, Users.GetIdUser());
         ResultSet rs = stmt.executeQuery();
