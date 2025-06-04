@@ -135,7 +135,7 @@ public class Registration {
                 Field3.setText("");
                 try {
                     Connection connection = JDBCPostgreSQLConnection.OpenConnection();
-                    String sql1 = "Select id, login from users where login = ? and password = ? LIMIT 1;";
+                    String sql1 = "Select id, login, idrole from users where login = ? and password = ? LIMIT 1;";
                     PreparedStatement stmt = connection.prepareStatement(sql1);
                     stmt.setString(1, LogginField1.getText());
                     stmt.setString(2, PasswordField2.getText());
@@ -145,6 +145,7 @@ public class Registration {
                     } else {
                         Users.IdUser = rs.getInt("id");
                         Users.UserName = rs.getString("login");
+                        Users.idRole = rs.getInt("idrole");
                         if (firstRegistration == 0) {
                             for (int i = 1; i <= 2; i++) {
                                 String sql3 = "INSERT INTO user_setting (iduser, idsetting,isactive ) VALUES (?, ?, true)";

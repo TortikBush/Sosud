@@ -15,6 +15,7 @@ public class Users {
     public static Boolean MusicActive;
     /** Flag indicating whether sound is active for the current user */
     public static Boolean SoundActive;
+    public static int idRole;
 
     /**
      * Gets the name of the current user
@@ -60,5 +61,10 @@ public class Users {
     public static Boolean GetSoundActive() {
         return SoundActive;
     }
+
+    public static int GetIdRole() {
+        return idRole;
+    }
+
 
 }

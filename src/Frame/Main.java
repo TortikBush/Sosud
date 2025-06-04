@@ -149,6 +149,18 @@ public class Main extends JFrame {
             }
         });
 
+        JButton btnAdminPanel = transformButton(90, 70, "src/Resource/AdminPanelImage.png", null);
+        btnAdminPanel.addActionListener(e -> {
+           ClickArrow.playCachedMP3();
+           if(!AdminPanel.isOpen) {
+               try {
+                   new AdminPanel();
+               } catch (SQLException | ClassNotFoundException | FontFormatException | IOException ex) {
+                   throw new RuntimeException(ex);
+               }
+           }
+        });
+
         //Работа с панелью (Работа с гвоздями и картиной)
         panelMainButton.setSize(900, 450);
         panelMainButton.setOpaque(false);
@@ -164,7 +176,11 @@ public class Main extends JFrame {
         if (Users.GetUserName() != null) {
             frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
             frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
+            if (Users.GetIdRole() == 1){
+                frameMain.add(btnAdminPanel).setLocation(topLocation[0] + 550, 150);
+            }
         }
+
 
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
