@@ -100,7 +100,7 @@ public class AdminPanel extends JFrame {
                 String password = rs.getString("password");
                 String roleName = rs.getString("name");
 
-                model.addRow(new Object[]{id, login, password, roleName});
+                model.addRow(new Object[]{(Object) id, login, password, roleName});
             }
         }
     }

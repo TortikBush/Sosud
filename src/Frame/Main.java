@@ -166,21 +166,21 @@ public class Main extends JFrame {
         panelMainButton.setOpaque(false);
         panelMainButton.setLayout(new GridLayout(0, 1, 2, 4));
         panelMainButton.add(btnStartGame);
-        panelMainButton.add(btnSave);
-        panelMainButton.add(btnExit);
         panelMainButton.setLocation(800, 600);
 
-        //Работа с фреймом (Работа со стеной)
-        frameMain.add(panelMainButton);
         int[] topLocation = CenterLocationObject(frameMain);
         if (Users.GetUserName() != null) {
             frameMain.add(btnAchievement).setLocation(topLocation[0] + 750, 150);
             frameMain.add(btnSettings).setLocation(topLocation[0] + 650, 150);
+            panelMainButton.add(btnSave);
             if (Users.GetIdRole() == 1){
                 frameMain.add(btnAdminPanel).setLocation(topLocation[0] + 550, 150);
             }
         }
+        panelMainButton.add(btnExit);
 
+        //Работа с фреймом
+        frameMain.add(panelMainButton);
 
         frameMain.add(label);
         frameMain.setDefaultCloseOperation(EXIT_ON_CLOSE);

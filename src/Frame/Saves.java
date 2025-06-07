@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Frame.Main.MusicEnable;
 import static HelpClasses.CashedResource.cachedSaveFrame;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -115,6 +116,7 @@ public class Saves {
         nameButton.addActionListener(e -> {
             try {
                 new NovelFrame("src/story.json", save.getSavePoint());
+                MusicEnable("src/resource/story/music_bg.wav");
                 main.dispose();
             } catch (IOException | FontFormatException ex) {
                 throw new RuntimeException(ex);
